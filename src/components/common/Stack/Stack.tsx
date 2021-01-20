@@ -2,7 +2,7 @@ import React, { FC, CSSProperties } from 'react';
 import { Box, BoxProps } from 'rebass/styled-components';
 import { ResponsiveValue } from 'styled-system';
 
-import { modifyResponsiveValue } from '~lib';
+import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
 
 type CSS = CSSProperties;
 interface StackProps extends BoxProps {

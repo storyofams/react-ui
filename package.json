@@ -12,20 +12,20 @@
     "/dist"
   ],
   "scripts": {
+    "now-build": "build-storybook -c .storybook -o storybook-static",
     "commit": "./node_modules/cz-customizable/standalone.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "eslint --ext .ts --ext .tsx ./src",
     "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
-    "build-bundle": "npm run build-types && npm run bundle",
+    "build": "npm run build-types && npm run bundle",
     "bundle": "rollup -c",
     "bundle:watch": "rollup -c -w",
     "build-types": "tsc --project tsconfig.build.json",
     "build-types:watch": "tsc --project tsconfig.build.json --watch",
     "prepublishOnly": "npm run build",
     "semantic-release": "semantic-release",
-    "storybook": "start-storybook -s ./public/static -p 6006",
-    "build": "build-storybook -c .storybook -o storybook-static"
+    "storybook": "start-storybook -s ./public/static -p 6006"
   },
   "peerDependencies": {
     "@reach/alert": "0.12.1",

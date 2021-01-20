@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Box, BoxProps, Flex } from 'rebass/styled-components';
 import { ResponsiveValue } from 'styled-system';
 
-import { modifyResponsiveValue } from '~lib';
+import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
 
 interface GridProps extends BoxProps {
   rowSize: ResponsiveValue<number>;
