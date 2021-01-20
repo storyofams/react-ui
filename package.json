@@ -25,7 +25,7 @@
     "prepublishOnly": "npm run build",
     "semantic-release": "semantic-release",
     "storybook": "start-storybook -s ./public/static -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -c .storybook -o storybook-static"
   },
   "peerDependencies": {
     "@reach/alert": "0.12.1",
