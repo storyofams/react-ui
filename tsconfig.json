@@ -28,7 +28,7 @@
   },
   "exclude": [
     "node_modules",
-    "src/lib/test-utils.ts",
+    "src/lib/test-utils.tsx",
     "build",
     "dist",
     "example",
