@@ -1,8 +1,8 @@
 import React from 'react';
-import { render } from 'test-utils';
+import { render } from '~lib/test-utils';
 import theme from '~styles/theme';
 
-import StatusMessage from './StatusMessage';
+import { StatusMessage } from '.';
 
 function RGBToHex(rgb) {
   // Choose correct separator

@@ -5,7 +5,7 @@ import {
   LinkProps as RebassLinkProps,
 } from 'rebass/styled-components';
 
-interface LinkProps extends RebassLinkProps {
+export interface LinkProps extends RebassLinkProps {
   children?: ReactNode;
   /** usage for regular links */
   href?: string | undefined;
@@ -38,5 +38,3 @@ export const Link: FC<LinkProps> = ({
     </NextLink>
   );
 };
-
-export default Link;

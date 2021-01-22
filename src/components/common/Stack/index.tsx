@@ -5,13 +5,14 @@ import { ResponsiveValue } from 'styled-system';
 import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
 
 type CSS = CSSProperties;
-interface StackProps extends BoxProps {
+
+export interface StackProps extends BoxProps {
   space: ResponsiveValue<CSS['margin']>;
   role?: string;
   flexDirection?: ResponsiveValue<CSS['flexDirection']>;
 }
 
-const Stack: FC<StackProps> = ({
+export const Stack: FC<StackProps> = ({
   space,
   flexDirection,
   role,
@@ -47,5 +48,3 @@ const Stack: FC<StackProps> = ({
     />
   );
 };
-
-export default Stack;
