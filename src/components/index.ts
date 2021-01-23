@@ -4,7 +4,6 @@ export * from './common/Grid';
 export * from './common/Icon';
 export * from './common/Input';
 export * from './common/InputWrapper';
-export * from './common/Image';
 export * from './common/Link';
 export * from './common/Radio';
 export * from './common/Select';
