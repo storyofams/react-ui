@@ -28,5 +28,3 @@ export const Textarea = forwardRef<RebassTextareaProps, InputWrapperProps>(
     );
   },
 );
-
-export default Textarea;

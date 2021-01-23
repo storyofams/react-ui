@@ -4,13 +4,13 @@ import { ResponsiveValue } from 'styled-system';
 
 import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
 
-interface GridProps extends BoxProps {
+export interface GridProps extends BoxProps {
   rowSize: ResponsiveValue<number>;
   rowGap?: ResponsiveValue<number>;
   columnGap?: ResponsiveValue<number>;
 }
 
-const Grid: FC<GridProps> = ({
+export const Grid: FC<GridProps> = ({
   rowSize,
   rowGap = 0,
   columnGap = 0,
@@ -39,5 +39,3 @@ const Grid: FC<GridProps> = ({
     </Box>
   );
 };
-
-export default Grid;
