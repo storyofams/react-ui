@@ -4,7 +4,7 @@ import { Text, BoxProps, TextProps } from 'rebass/styled-components';
 
 export type status = 'default' | 'success' | 'warning' | 'error';
 
-interface StatusMessageProps extends BoxProps, TextProps {
+export interface StatusMessageProps extends BoxProps, TextProps {
   status: status | Boolean;
   type?: 'polite' | 'assertive';
 }

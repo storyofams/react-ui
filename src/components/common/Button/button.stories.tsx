@@ -8,52 +8,33 @@ export default {
   args: { isLoading: false, disabled: false },
 };
 
-export const Primary = (args) => (
-  <Button {...args} variant="primary">
-    Lorem Ipsum
-  </Button>
-);
+export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Primary.args = {
   variant: 'primary',
 };
 
-export const Secondary = (args) => (
-  <Button {...args} variant="secondary">
-    Lorem Ipsum
-  </Button>
-);
+export const Secondary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Secondary.args = {
   variant: 'secondary',
 };
 
-export const Outline = (args) => (
-  <Button {...args} variant="outline">
-    Lorem Ipsum
-  </Button>
-);
+export const Outline = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
-Secondary.args = {
+Outline.args = {
   variant: 'outline',
 };
 
-export const Underline = (args) => (
-  <Button {...args} variant="underline">
-    Lorem Ipsum
-  </Button>
-);
+export const Underline = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Underline.args = {
   variant: 'underline',
 };
 
-export const Link = (args) => (
-  <Button {...args} href="/" variant="primary">
-    Lorem Ipsum
-  </Button>
-);
+export const Link = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Link.args = {
+  href: '/',
   variant: 'link',
 };
