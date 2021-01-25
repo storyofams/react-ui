@@ -5,7 +5,7 @@ import { pick } from '@styled-system/props';
 import { Box, BoxProps } from 'rebass/styled-components';
 // import { useId } from '@storyofams/react-helpers';
 
-import { status, StatusMessage } from '~components';
+import { status, StatusMessage } from '~components/common/StatusMessage';
 
 export interface InputWrapperProps extends BoxProps {
   statusMessage?: string;

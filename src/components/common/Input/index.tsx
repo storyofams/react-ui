@@ -7,7 +7,10 @@ import {
 import { pick, omit } from '@styled-system/props';
 // import { useId } from '@storyofams/react-helpers';
 
-import { InputWrapper, InputWrapperProps } from '~components';
+import {
+  InputWrapper,
+  InputWrapperProps,
+} from '~components/common/InputWrapper';
 
 export const Input = forwardRef<RebassInputProps, InputWrapperProps>(
   ({ label, status, statusMessage, error, id: givenId, ...props }, ref) => {
