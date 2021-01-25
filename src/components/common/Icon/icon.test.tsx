@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '~components';
-import { render } from '~/lib';
+import { render } from '~lib';
 import 'jest-styled-components';
 
 test('handles the iconAs with iconAs', async () => {

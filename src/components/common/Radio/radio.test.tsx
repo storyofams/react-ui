@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Radio, RadioGroup } from '~components';
-import { fireEvent, render } from '~/lib';
+import { fireEvent, render } from '~lib';
 
 export const Basic = (args) => {
   const [val, setVal] = useState(null);

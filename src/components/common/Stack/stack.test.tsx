@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack } from '~components';
-import { render } from '~/lib';
+import { render } from '~lib';
 
 test('handles the flexdirection prop when not provided', async () => {
   const { getByTestId } = render(<Stack data-testid="stack" space={0} />);

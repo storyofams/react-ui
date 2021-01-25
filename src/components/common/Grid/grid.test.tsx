@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '~components';
-import { render } from '~/lib';
+import { render } from '~lib';
 import 'jest-styled-components';
 import theme from '~styles/theme';
 

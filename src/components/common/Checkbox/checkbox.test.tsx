@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox } from '~components';
-import { render } from '~/lib';
+import { render } from '~lib';
 
 const label = 'label-input-wrapper';
 

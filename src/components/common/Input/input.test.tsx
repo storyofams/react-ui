@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from '~components';
-import { render } from '~/lib';
+import { render } from '~lib';
 
 const id = 'testid';
 const label = 'label-input-wrapper';

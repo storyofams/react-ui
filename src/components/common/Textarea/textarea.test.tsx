@@ -1,6 +1,6 @@
 import React from 'react';
 import { Textarea } from '~components';
-import { render } from '~/lib';
+import { render } from '~lib';
 
 test('handles the id prop when an id has been provided', async () => {
   const label = 'label';
