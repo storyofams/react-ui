@@ -1,17 +1,25 @@
-import React from 'react';
-import { render, fireEvent } from 'test-utils';
-import RadioGroup from './components/RadioGroup';
+import React, { useState } from 'react';
+import { Radio, RadioGroup } from '~components';
+import { fireEvent, render } from '~lib';
 
-import { Basic } from './radio.stories';
+export const Basic = (args) => {
+  const [val, setVal] = useState(null);
 
-const args = {
-  children: 'one',
-  value: '1',
+  return (
+    <RadioGroup value={val} onChange={setVal}>
+      <Radio data-testid="radio-1" value="1">
+        one
+      </Radio>
+      <Radio value="2">two</Radio>
+      <Radio data-testid="radio-3" value="3">
+        three
+      </Radio>
+    </RadioGroup>
+  );
 };
 
 test('receives change events', async () => {
-  // have to provide args/props, since we are rendering a story that expects it
-  const { getByLabelText, getByTestId } = render(<Basic {...args} />);
+  const { getByLabelText, getByTestId } = render(<Basic />);
   const firstRadio: any = getByLabelText(/one/i);
 
   expect(firstRadio.checked).toBeFalsy();
