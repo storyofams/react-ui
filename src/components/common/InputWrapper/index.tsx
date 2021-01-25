@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 
 import { Label } from '@rebass/forms/styled-components';
 import { pick } from '@styled-system/props';
+import { useUID } from 'react-uid';
 import { Box, BoxProps } from 'rebass/styled-components';
-// import { useId } from '@storyofams/react-helpers';
 
 import { status, StatusMessage } from '~components/common/StatusMessage';
 
@@ -23,7 +23,7 @@ export const InputWrapper: FC<InputWrapperProps & { id?: string }> = ({
   children,
   ...props
 }) => {
-  const autoId = 'random-id'; /** @todo replace with useId() */
+  const autoId = useUID();
   const id = givenId || `input-${autoId}`;
 
   return (

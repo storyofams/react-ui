@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { pick, omit } from '@styled-system/props';
 import { Props } from 'react-select';
-// import { useId } from '@storyofams/react-helpers';
+import { useUID } from 'react-uid';
 
 import {
   InputWrapper,
@@ -22,7 +22,7 @@ export const Select = forwardRef<Props, InputWrapperProps>(
     },
     ref,
   ) => {
-    const autoId = 'random-id'; /** @todo replace with useId() */
+    const autoId = useUID();
     const id = givenId || `select-${autoId}`;
 
     return (
