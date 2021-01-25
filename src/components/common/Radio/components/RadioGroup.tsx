@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, FC, isValidElement } from 'react';
 import { BoxProps } from 'rebass';
-import { Stack } from '~components';
+import { Stack } from '~components/common/Stack';
 
 interface RadioElement {
   onChange?: any;

@@ -5,8 +5,8 @@ import {
   ButtonProps as RebassButtonProps,
 } from 'rebass/styled-components';
 
-import { Spinner } from '~components';
 import { Link } from '~components/common/Link';
+import { Spinner } from '~components/common/Spinner';
 
 export interface ButtonProps extends RebassButtonProps {
   isLoading?: boolean;
