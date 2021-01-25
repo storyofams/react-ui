@@ -5,7 +5,7 @@ import {
   TextareaProps as RebassTextareaProps,
 } from '@rebass/forms/styled-components';
 import { pick, omit } from '@styled-system/props';
-import { useUID } from 'react-uid';
+import { useId } from 'react-id-generator';
 
 import {
   InputWrapper,
@@ -14,7 +14,7 @@ import {
 
 export const Textarea = forwardRef<RebassTextareaProps, InputWrapperProps>(
   ({ label, status, statusMessage, error, id: givenId, ...props }, ref) => {
-    const autoId = useUID();
+    const autoId = useId();
     const id = givenId || `checkbox-${autoId}`;
 
     return (
