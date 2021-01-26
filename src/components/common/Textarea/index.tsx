@@ -15,7 +15,7 @@ import {
 export const Textarea = forwardRef<RebassTextareaProps, InputWrapperProps>(
   ({ label, status, statusMessage, error, id: givenId, ...props }, ref) => {
     const autoId = useId();
-    const id = givenId || `checkbox-${autoId}`;
+    const id = givenId || `textarea-${autoId}`;
 
     return (
       <InputWrapper
