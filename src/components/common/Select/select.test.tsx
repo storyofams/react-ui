@@ -1,4 +1,5 @@
 import React from 'react';
+import { resetId } from 'react-id-generator';
 import { Select } from '~components';
 import { render } from '~lib';
 
@@ -12,9 +13,12 @@ test('handles the id prop when an id has been provided', async () => {
 });
 
 test('handles the id prop when no id has been provided', async () => {
+  resetId();
+
+  const randomId = 'select-id1';
   const { getByLabelText } = render(<Select label={label} />);
 
-  expect(getByLabelText(label).id).toBe('select-random-id');
+  expect(getByLabelText(label).id).toBe(randomId);
 });
 
 test('handles the id prop when no label has been provided', async () => {

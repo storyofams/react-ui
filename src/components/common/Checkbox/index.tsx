@@ -6,7 +6,7 @@ import {
   CheckboxProps as RebassCheckboxProps,
 } from '@rebass/forms/styled-components';
 import { pick, omit } from '@styled-system/props';
-// import { useId } from '@storyofams/react-helpers';
+import { useId } from 'react-id-generator';
 
 import {
   InputWrapper,
@@ -17,7 +17,7 @@ export interface CheckboxProps extends RebassCheckboxProps, InputWrapperProps {}
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, status, statusMessage, error, id: givenId, ...props }, ref) => {
-    const autoId = 'random-id'; /** @todo replace with useId() */
+    const autoId = useId();
     const id = givenId || `checkbox-${autoId}`;
 
     return (

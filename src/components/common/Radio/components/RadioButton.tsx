@@ -5,8 +5,8 @@ import {
   CheckboxProps as RebassCheckboxProps,
 } from '@rebass/forms/styled-components';
 import { omit, pick } from '@styled-system/props';
+import { useId } from 'react-id-generator';
 import { Box, BoxProps } from 'rebass/styled-components';
-// import { useId } from '@storyofams/react-helpers';
 
 export interface RadioProps extends RebassCheckboxProps, BoxProps {
   id?: string;
@@ -15,7 +15,7 @@ export interface RadioProps extends RebassCheckboxProps, BoxProps {
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ children, id: initialId, ...props }, ref) => {
-    const autoId = 'random-id'; /** @todo replace with useId() */
+    const autoId = useId();
     const id = initialId || `radio=${autoId}`;
 
     return (

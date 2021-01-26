@@ -1,4 +1,5 @@
 import React from 'react';
+import { resetId } from 'react-id-generator';
 import { Input } from '~components';
 import { render } from '~lib';
 
@@ -12,10 +13,12 @@ test('handles the id prop when an id has been provided', async () => {
 });
 
 test('handles the id prop when no id has been provided', async () => {
-  const id = 'input-random-id';
+  resetId();
+
+  const randomId = 'input-id1';
   const { getByLabelText } = render(<Input label={label} />);
 
-  expect(getByLabelText(label).id).toBe(id);
+  expect(getByLabelText(label).id).toBe(randomId);
 });
 
 test('handles statusMessage', async () => {
