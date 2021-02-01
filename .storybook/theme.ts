@@ -26,5 +26,5 @@ export default create({
 
   brandTitle: 'Story of AMS | React UI',
   brandUrl: 'https://github.com/storyofams/react-ui',
-  brandImage: 'https://storyofams.com/blog/story-of-ams-logo-small@3x.png',
+  brandImage: 'https://storyofams.com/public/story-of-ams-logo-small@3x.png',
 })
