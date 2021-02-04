@@ -6,7 +6,7 @@ const baseStyles = {
   textAlign: 'center',
   fontSize: 'inherit',
   fontWeight: 'regular',
-  borderRadius: 'full',
+  borderRadius: 'sm',
   userSelect: 'none',
   cursor: 'pointer',
   transition:
@@ -16,75 +16,182 @@ const baseStyles = {
   '&[data-is-loading]': { cursor: 'wait' },
 };
 
+const primary = {
+  px: 3,
+  py: '6/4',
+  color: 'primary50',
+  bg: 'primary600',
+  borderColor: 'primary600',
+  boxShadow: 'sm',
+
+  lineHeight: '130%',
+  '&:hover': {
+    color: 'primary50',
+    bg: 'primary700',
+    borderColor: 'primary700',
+  },
+
+  ...baseStyles,
+  '&:active': {
+    color: 'primary50',
+    bg: 'primary600',
+    borderColor: 'primary200',
+    borderWidth: '4px',
+    borderStyle: 'solid',
+    boxShadow: 'none',
+  },
+  '&:disabled': { cursor: 'not-allowed', bg: 'primary600', opacity: 0.25 },
+  fontWeight: 'bold',
+  fontSize: '12px',
+};
+
+const outline = {
+  px: 5,
+  py: '6/4',
+  color: 'grey900',
+  bg: 'transparent',
+  border: '1px',
+  borderColor: 'grey900',
+  boxShadow: 'sm',
+  '&:hover, &:active': {
+    color: 'white',
+    bg: 'grey900',
+  },
+  ...baseStyles,
+};
+
+const secondary = {
+  px: 5,
+  py: '6/4',
+  color: 'primary700',
+  bg: 'primary200',
+  borderColor: 'primary200',
+  boxShadow: 'sm',
+  lineHeight: '130%',
+  '&:hover': {
+    color: 'primary800',
+    bg: 'primary300',
+    borderColor: 'primary300',
+  },
+
+  ...baseStyles,
+  '&:active': {
+    color: 'primary700',
+    bg: 'primary200',
+    borderColor: 'primary100',
+    borderWidth: '4px',
+    borderStyle: 'solid',
+    boxShadow: 'none',
+  },
+  '&:disabled': {
+    cursor: 'not-allowed',
+    color: 'primary700',
+    bg: 'primary200',
+    opacity: 0.25,
+  },
+  fontWeight: 'bold',
+  fontSize: '12px',
+};
+const underline = {
+  px: 0,
+  pt: 0,
+  pb: 1,
+  color: 'grey900',
+  bg: 'transparent',
+  borderColor: 'transparent',
+  '&::before': {
+    content: JSON.stringify(''),
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '2px',
+    bg: 'primary500',
+    transition: 'background-color 0.2s, left 0.2s, right 0.2s',
+  },
+  '&:hover, &:active': {
+    color: 'primary500',
+    '&::before': {
+      left: '50%',
+      right: '50%',
+    },
+  },
+  ...baseStyles,
+};
+
 const buttonTheme = {
   buttons: {
     primary: {
-      px: 5,
-      py: '6/4',
-      color: 'grey900',
-      bg: 'primary500',
-      borderColor: 'primary500',
-      boxShadow: 'sm',
-      '&:hover, &:active': {
-        color: 'white',
-        bg: 'grey900',
-        borderColor: 'grey900',
+      ...primary,
+      small: {
+        ...primary,
+        fontSize: 1,
       },
-      ...baseStyles,
+      medium: {
+        ...primary,
+        fontSize: 3,
+        lineHeight: 'medium',
+      },
+      large: {
+        ...primary,
+        fontSize: 5,
+        px: 4,
+        lineHeight: 'high',
+      },
     },
     outline: {
-      px: 5,
-      py: '6/4',
-      color: 'grey900',
-      bg: 'transparent',
-      border: '1px',
-      borderColor: 'grey900',
-      boxShadow: 'sm',
-      '&:hover, &:active': {
-        color: 'white',
-        bg: 'grey900',
+      ...outline,
+      small: {
+        ...outline,
+        fontSize: 1,
       },
-      ...baseStyles,
+      medium: {
+        ...outline,
+        fontSize: 3,
+        lineHeight: 'medium',
+      },
+      large: {
+        ...outline,
+        fontSize: 5,
+        px: 4,
+        lineHeight: 'high',
+      },
     },
     secondary: {
-      px: 5,
-      py: '6/4',
-      color: 'white',
-      bg: 'secondary500',
-      borderColor: 'secondary500',
-      boxShadow: 'sm',
-      '&:hover, &:active': {
-        color: 'white',
-        bg: 'grey900',
-        borderColor: 'grey900',
+      ...secondary,
+      small: {
+        ...secondary,
+        fontSize: 1,
       },
-      ...baseStyles,
+      medium: {
+        ...secondary,
+        fontSize: 3,
+        lineHeight: 'medium',
+      },
+      large: {
+        ...secondary,
+        fontSize: 5,
+        px: 4,
+        lineHeight: 'high',
+      },
     },
     underline: {
-      px: 0,
-      pt: 0,
-      pb: 1,
-      color: 'grey900',
-      bg: 'transparent',
-      borderColor: 'transparent',
-      '&::before': {
-        content: JSON.stringify(''),
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '2px',
-        bg: 'primary500',
-        transition: 'background-color 0.2s, left 0.2s, right 0.2s',
+      ...underline,
+      small: {
+        ...underline,
+        fontSize: 1,
       },
-      '&:hover, &:active': {
-        color: 'primary500',
-        '&::before': {
-          left: '50%',
-          right: '50%',
-        },
+      medium: {
+        ...underline,
+        fontSize: 3,
+        lineHeight: 'medium',
       },
-      ...baseStyles,
+      large: {
+        ...underline,
+        fontSize: 5,
+        px: 4,
+        lineHeight: 'high',
+      },
     },
   },
 };
