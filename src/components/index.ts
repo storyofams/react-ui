@@ -12,3 +12,4 @@ export * from './common/Stack';
 export * from './common/StatusMessage';
 export * from './common/Textarea';
 export * from './common/Toggle';
+export * from './common/Text';

@@ -1,54 +1,45 @@
 const textTheme = {
   text: {
     h1: {
-      fontSize: [8, 10],
-      fontWeight: 'bold',
-      lineHeight: 'medium',
+      fontSize: '160px',
+      fontWeight: 'semiBold',
+      lineHeight: 'heading',
     },
     h2: {
-      fontSize: [7, 9],
-      fontWeight: 'bold',
-      lineHeight: 'medium',
+      fontSize: [10, 12],
+      fontWeight: 'semiBold',
+      lineHeight: 'heading',
     },
     h3: {
-      fontSize: [6, 8],
-      fontWeight: 'bold',
-      lineHeight: 'medium',
+      fontSize: [7, 9],
+      fontWeight: 'semiBold',
+      lineHeight: 'heading',
     },
     h4: {
-      fontSize: [5, 6],
-      fontWeight: 'bold',
-      lineHeight: 'medium',
+      fontSize: [6, 7],
+      fontWeight: 'semiBold',
+      lineHeight: 'heading',
     },
     h5: {
-      fontSize: [3, 5],
-      fontWeight: 'bold',
-      lineHeight: 'medium',
+      fontSize: [5, 6],
+      fontWeight: 'semiBold',
+      lineHeight: 'heading',
     },
-    pxl: {
-      fontSize: [2, 4],
-      fontWeight: 'regular',
-      lineHeight: 'medium',
-    },
+
     plg: {
-      fontSize: [2, 3],
+      fontSize: [2, 5],
       fontWeight: 'regular',
-      lineHeight: 'medium',
+      lineHeight: 'high',
     },
     pmd: {
-      fontSize: [1, 2],
+      fontSize: [2, 3],
       fontWeight: 'regular',
-      lineHeight: 'medium',
+      lineHeight: 'high',
     },
     psm: {
-      fontSize: 1,
+      fontSize: [0, 1],
       fontWeight: 'regular',
-      lineHeight: 'medium',
-    },
-    pxs: {
-      fontSize: 0,
-      fontWeight: 'regular',
-      lineHeight: 'medium',
+      lineHeight: 'high',
     },
   },
 };
