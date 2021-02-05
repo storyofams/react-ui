@@ -14,9 +14,9 @@ const styles = {
     left: '0',
     right: '0',
     bottom: '0',
-    backgroundColor: 'grey300',
+    backgroundColor: 'primary300',
     border: '1px',
-    borderColor: 'grey300',
+    borderColor: 'primary300',
     transition: ['0.4s', 'background-color 0.18s, border-color 0.18s'],
     borderRadius: '34px',
   },
@@ -33,14 +33,14 @@ const styles = {
   },
   '& > input:checked': {
     '& + .slider': {
-      backgroundColor: 'primary500',
+      backgroundColor: 'primary800',
       border: '1px',
-      borderColor: 'primary500',
+      borderColor: 'primary800',
     },
     '& + .slider:before': { left: 'unset', right: '4px' },
   },
-  '& > input:focus + .slider': { border: '1px', borderColor: 'primary500' },
-  '& > input:disabled + .slider': { cursor: 'not-allowed', opacity: 0.5 },
+  '& > input:focus + .slider': { border: '1px', borderColor: 'primary800' },
+  '& > input:disabled + .slider': { cursor: 'not-allowed', opacity: 0.25 },
 };
 
 export interface ToggleProps extends Omit<BoxProps, 'onChange'> {

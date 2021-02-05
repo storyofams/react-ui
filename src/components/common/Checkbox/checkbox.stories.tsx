@@ -9,6 +9,7 @@ export default {
     label: 'editable label text',
     statusMessage: 'editable status text',
     status: 'error',
+    disabled: false,
   },
   argTypes: {
     status: {

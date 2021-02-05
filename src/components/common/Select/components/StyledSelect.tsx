@@ -23,7 +23,8 @@ const StyledSelect = styled(ReactSelect).attrs({
         transition: border-color 0.18s ease;
         border-radius: ${theme.radii.xs};
         border-color: ${theme.colors.grey200};
-        box-shadow: none;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04),
+          0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
 
         &:hover {
           border-color: ${theme.colors.grey300};
@@ -38,14 +39,30 @@ const StyledSelect = styled(ReactSelect).attrs({
         }
 
         &--is-disabled {
-          background: ${theme.colors.grey200};
+          background: ${theme.colors.white};
           cursor: not-allowed;
-          opacity: 0.5;
+          opacity: 0.25;
 
           .react-select__placeholder {
             color: ${theme.colors.grey700};
           }
         }
+        &--is-focused {
+          background: ${theme.colors.primary50};
+          border-color: ${theme.colors.primary800};
+
+          .react-select__placeholder {
+            color: ${theme.colors.grey700};
+          }
+        }
+      }
+
+      &__dropdown-indicator {
+        color: ${theme.colors.primary800};
+      }
+
+      &__single-value {
+        color: ${theme.colors.grey700};
       }
 
       &__value-container {
@@ -61,7 +78,8 @@ const StyledSelect = styled(ReactSelect).attrs({
         color: ${theme.colors.grey900};
 
         &:hover {
-          background-color: ${theme.colors.grey100};
+          background-color: ${theme.colors.primary50};
+          color: ${theme.colors.primary800};
         }
 
         &.option--is-selected {
