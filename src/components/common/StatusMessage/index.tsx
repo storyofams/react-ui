@@ -19,7 +19,7 @@ export const StatusMessage: FC<StatusMessageProps> = ({
 }) => {
   return (
     <Text
-      color={status !== 'default' && status ? `${status}500` : `grey900`}
+      color={status !== 'default' && status ? `${status}600` : `grey900`}
       fontSize={2}
       fontWeight="medium"
       mt="1/4"

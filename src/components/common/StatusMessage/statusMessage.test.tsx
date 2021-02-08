@@ -42,7 +42,7 @@ test('handles status success', async () => {
   );
   const element = getByTestId('test');
   const style = window.getComputedStyle(element);
-  const themeColor = theme.colors.success500.toLowerCase();
+  const themeColor = theme.colors.success600.toLowerCase();
   const elementColor = RGBToHex(style.color);
 
   expect(elementColor).toBe(themeColor);
@@ -55,7 +55,7 @@ test('handles status warning', async () => {
   );
   const element = getByTestId('test');
   const style = window.getComputedStyle(element);
-  const themeColor = theme.colors.warning500.toLowerCase();
+  const themeColor = theme.colors.warning600.toLowerCase();
   const elementColor = RGBToHex(style.color);
 
   expect(elementColor).toBe(themeColor);
@@ -68,7 +68,7 @@ test('handles status error', async () => {
   );
   const element = getByTestId('test');
   const style = window.getComputedStyle(element);
-  const themeColor = theme.colors.error500.toLowerCase();
+  const themeColor = theme.colors.error600.toLowerCase();
   const elementColor = RGBToHex(style.color);
 
   expect(elementColor).toBe(themeColor);
