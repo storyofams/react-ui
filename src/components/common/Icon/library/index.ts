@@ -9,6 +9,7 @@ const Facebook = require('./facebook.svg');
 const Gift = require('./gift.svg');
 const Heart = require('./heart.svg');
 const Help = require('./help.svg');
+const House = require('./house.svg');
 const Instagram = require('./instagram.svg');
 const Play = require('./play.svg');
 const Search = require('./search.svg');
@@ -30,6 +31,7 @@ export {
   Gift,
   Heart,
   Help,
+  House,
   Instagram,
   Play,
   Search,

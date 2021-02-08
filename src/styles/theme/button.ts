@@ -193,6 +193,33 @@ const buttonTheme = {
         lineHeight: 'high',
       },
     },
+    link: {
+      menu: {
+        ...baseStyles,
+        fontWeight: 'medium',
+        fontSize: 3,
+        lineHeight: '150%',
+        color: 'grey700',
+        '&:hover': {
+          color: 'primary700',
+          textDecoration: 'underline',
+        },
+
+        '&:active': {
+          color: 'primary700',
+        },
+      },
+      category: {
+        fontSize: 2,
+        lineHeight: '100%',
+        color: 'grey700',
+        ...baseStyles,
+
+        '&:hover, &:active': {
+          color: 'primary700',
+        },
+      },
+    },
   },
 };
 
