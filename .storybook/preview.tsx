@@ -5,6 +5,7 @@ import { Box } from 'rebass/styled-components';
 import ProviderDecorator from "./ProviderDecorator";
 import { viewPorts } from './viewports';
 import "../public/static/fonts/stylesheet.css";
+import 'flatpickr/dist/themes/light.css'
 
 export const decorators = [ProviderDecorator]
 

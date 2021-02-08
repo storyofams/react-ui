@@ -1,6 +1,7 @@
 export * from './common/Accordion';
 export * from './common/Button';
 export * from './common/Checkbox';
+export * from './common/DatePicker';
 export * from './common/Grid';
 export * from './common/Icon';
 export * from './common/Input';

@@ -44,7 +44,10 @@
     "styled-components": "5.2.1",
     "styled-system": "^5.1.5"
   },
-  "dependencies": {},
+  "dependencies": {
+    "flatpickr": "^4.6.9",
+    "react-flatpickr": "^3.10.6"
+  },
   "devDependencies": {
     "@babel/cli": "7.12.10",
     "@babel/core": "7.12.10",

@@ -1,5 +1,6 @@
 const Arrow = require('./arrow.svg');
 const BadgeError = require('./badge-error.svg');
+const Calendar = require('./calendar.svg');
 const Checkout = require('./checkout.svg');
 const ChevronDown = require('./chevron-bottom.svg');
 const ChevronLeft = require('./chevron-left.svg');
@@ -22,6 +23,7 @@ const ZoomOut = require('./zoom-out.svg');
 export {
   Arrow,
   BadgeError,
+  Calendar,
   Checkout,
   ChevronDown,
   ChevronLeft,

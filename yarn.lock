@@ -7982,6 +7982,11 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
+flatpickr@^4.6.2, flatpickr@^4.6.9:
+  version "4.6.9"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
+
 flatted@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.1.1.tgz#c4b489e80096d9df1dfc97c79871aea7c617c469"
@@ -13528,6 +13533,14 @@ react-fast-compare@^3.0.1, react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
+react-flatpickr@^3.10.6:
+  version "3.10.6"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-3.10.6.tgz#d6fe73ee12d13f2a804e5362c82e2688b6fbd409"
+  integrity sha512-Gg2zYFs+EoY7PNSk6lkiRyXV3nYmCp+ps29B4XFgZ1O4txOu6TvfHK2YCKT9zCpXbk5CcIGKMlvbupivWzy1+A==
+  dependencies:
+    flatpickr "^4.6.2"
+    prop-types "^15.5.10"
 
 react-helmet-async@^1.0.2:
   version "1.0.7"
