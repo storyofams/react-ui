@@ -1,7 +1,7 @@
 const formTheme = {
   forms: {
     checkbox: {
-      mr: 1,
+      mr: '5.25px',
       color: 'primary800',
       'input:checked + &': {
         display: 'block',
@@ -17,7 +17,7 @@ const formTheme = {
       borderColor: 'grey300',
       borderRadius: 'xs',
       bg: 'grey50',
-      transition: 'border-color 0.18s ease-in-out,',
+      transition: 'border-color 0.18s ease-in-out',
       '::placeholder': {
         color: 'grey400',
       },
@@ -25,6 +25,9 @@ const formTheme = {
       '&:active': {
         borderColor: 'primary800',
         bg: 'primary50',
+      },
+      '&:focus': {
+        borderColor: 'primary800',
       },
       '&:disabled': {
         bg: 'white',
@@ -41,6 +44,9 @@ const formTheme = {
         borderColor: 'error600',
         color: 'error600',
       },
+      'input:focus': {
+        backgroundColor: 'transparent',
+      },
     },
     textarea: {
       py: '3/4',
@@ -50,7 +56,7 @@ const formTheme = {
       color: 'grey900',
       borderColor: 'grey200',
       borderRadius: 'xs',
-      transition: 'border-color 0.18s ease-in-out,',
+      transition: 'border-color 0.18s ease-in-out',
       resize: 'vertical',
       '::placeholder': {
         color: 'grey200',
@@ -69,13 +75,15 @@ const formTheme = {
     },
     label: {
       fontSize: 3,
+      lineHeight: 'medium',
+      fontWeight: 'semiBold',
       '&[disabled=""]': {
         cursor: 'not-allowed',
         opacity: 0.25,
       },
     },
     radio: {
-      mr: 1,
+      mr: '5.25px',
       color: 'primary800',
       'input:checked + &': {
         display: 'block',

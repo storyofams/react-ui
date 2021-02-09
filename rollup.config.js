@@ -14,7 +14,7 @@ import pkg from './package.json';
 const extensions = ['.tsx', '.ts'];
 
 export default {
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'flatpickr/dist/themes/light.css'],
   input: ['./src/index.ts'],
   output: [
     {

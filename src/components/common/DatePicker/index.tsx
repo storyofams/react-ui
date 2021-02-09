@@ -77,6 +77,10 @@ export const DatePicker = styled(DatePickerComponent)`
   div.flatpickr-month {
     background: ${(p) => p.theme.colors.white};
   }
+  .flatpickr-day {
+    transition: border-color 0.18s ease, background-color 0.18s ease,
+      color 0.18s ease;
+  }
 
   .flatpickr-day:hover {
     background-color: ${(p) => p.theme.colors.primary600};

@@ -67,16 +67,36 @@ export const Library = (args) => (
 
 const commonProps = {
   color: 'secondary500' as any,
-  icon: 'heart',
+  icon: createElement(icons.Heart),
   fontSize: 8 as any,
 };
+
+const getIcon = (name) => {
+  const iconName = Object.keys(icons).find(
+    (icon) => icon.toLowerCase() === name,
+  );
+  return createElement(icons[iconName]);
+};
+
 // different semantics
 export const AsButton = (args) => (
-  <Icon {...commonProps} {...args} onClick={action('clicked')} />
+  <Icon
+    {...commonProps}
+    {...args}
+    icon={getIcon(args.icon)}
+    onClick={action('clicked')}
+  />
 );
 
 export const AsATag = (args) => (
-  <Icon {...commonProps} {...args} href="https://www.example.com" />
+  <Icon
+    {...commonProps}
+    {...args}
+    icon={getIcon(args.icon)}
+    href="https://www.example.com"
+  />
 );
 
-export const AsH1 = (args) => <Icon {...commonProps} {...args} as="h1" />;
+export const AsH1 = (args) => (
+  <Icon {...commonProps} {...args} icon={getIcon(args.icon)} as="h1" />
+);

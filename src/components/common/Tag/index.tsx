@@ -15,6 +15,7 @@ const TagComponent = styled(Box)(({ theme, checked }) => ({
   color: checked ? theme.colors.white : theme.colors.grey700,
   backgroundColor: checked ? theme.colors.primary700 : theme.colors.primary100,
   borderColor: checked ? theme.colors.primary700 : theme.colors.primary100,
+  transition: 'border-color 0.18s ease',
 
   '&:hover': {
     borderColor: theme.colors.primary700,

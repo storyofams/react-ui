@@ -23,6 +23,8 @@ const primary = {
   bg: 'primary600',
   borderColor: 'primary600',
   boxShadow: 'sm',
+  transition:
+    'border-color 0.18s ease-in-out,background-color 0.18s ease-in-out, color 0.18s ease-in-out',
 
   lineHeight: '130%',
   '&:hover': {
@@ -35,10 +37,7 @@ const primary = {
   '&:active': {
     color: 'primary50',
     bg: 'primary600',
-    borderColor: 'primary200',
-    borderWidth: '4px',
-    borderStyle: 'solid',
-    boxShadow: 'none',
+    boxShadow: ' inset 0px 0px 0px 4px #BAE6FD',
   },
   '&:disabled': { cursor: 'not-allowed', bg: 'primary600', opacity: 0.25 },
   fontWeight: 'bold',
@@ -53,6 +52,7 @@ const outline = {
   border: '1px',
   borderColor: 'grey900',
   boxShadow: 'sm',
+  transition: 'background-color 0.18s ease-in-out, color 0.18s ease-in-out',
   '&:hover, &:active': {
     color: 'white',
     bg: 'grey900',
@@ -68,6 +68,8 @@ const secondary = {
   borderColor: 'primary200',
   boxShadow: 'sm',
   lineHeight: '130%',
+  transition:
+    'border-color 0.18s ease-in-out,background-color 0.18s ease-in-out, color 0.18s ease-in-out',
   '&:hover': {
     color: 'primary800',
     bg: 'primary300',
@@ -78,10 +80,7 @@ const secondary = {
   '&:active': {
     color: 'primary700',
     bg: 'primary200',
-    borderColor: 'primary100',
-    borderWidth: '4px',
-    borderStyle: 'solid',
-    boxShadow: 'none',
+    boxShadow: ' inset 0px 0px 0px 4px #E0F2FE',
   },
   '&:disabled': {
     cursor: 'not-allowed',
@@ -200,6 +199,8 @@ const buttonTheme = {
         fontSize: 3,
         lineHeight: '150%',
         color: 'grey700',
+        transition:
+          'text-decoration 0.18s ease-in-out, color 0.18s ease-in-out',
         '&:hover': {
           color: 'primary700',
           textDecoration: 'underline',
@@ -214,6 +215,7 @@ const buttonTheme = {
         lineHeight: '100%',
         color: 'grey700',
         ...baseStyles,
+        transition: 'color 0.18s ease-in-out',
 
         '&:hover, &:active': {
           color: 'primary700',
