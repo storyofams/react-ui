@@ -7,4 +7,4 @@
 
 # Description
 
-Collection of ui components build with Rebass to create a resilient front-end applications with React.
+Collection of UI components build with Rebass to create a resilient front-end applications with React.
