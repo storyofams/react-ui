@@ -14,6 +14,7 @@ export const Accordion: FC<AccordionProps> = ({
   ...props
 }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <Box
       sx={{
@@ -26,10 +27,7 @@ export const Accordion: FC<AccordionProps> = ({
       <Flex
         justifyContent="space-between"
         alignItems="center"
-        onClick={() => {
-          console.log('T$ST', !open);
-          setOpen(!open);
-        }}
+        onClick={() => setOpen(!open)}
         mb={1}
         {...props}
       >

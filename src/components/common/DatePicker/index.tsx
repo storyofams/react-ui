@@ -7,6 +7,16 @@ import styled from 'styled-components';
 import { Input, Icon } from '~/components';
 import { Calendar } from '../Icon/library';
 
+const OPTIONS = {
+  altInput: true,
+  altFormat: 'd F Y',
+  dateFormat: 'Y-m-d',
+  monthSelectorType: 'static',
+  locale: {
+    firstDayOfWeek: 1,
+  },
+};
+
 export interface DatePickerProps extends BoxProps {
   value: string;
   onChange: (val) => void;
@@ -24,15 +34,7 @@ const DatePickerComponent: FC<DatePickerProps> = ({
   <Flatpickr
     value={value}
     onChange={onChange}
-    options={{
-      altInput: true,
-      altFormat: 'd F Y',
-      dateFormat: 'Y-m-d',
-      monthSelectorType: 'static',
-      locale: {
-        firstDayOfWeek: 1,
-      },
-    }}
+    options={OPTIONS}
     className={className}
     onReady={(_, __, flatpickr) => {
       className?.split(' ').forEach((singleClassName) => {
@@ -40,7 +42,10 @@ const DatePickerComponent: FC<DatePickerProps> = ({
       });
     }}
     render={(__, ref) => (
-      <div style={{ position: 'relative' }}>
+      <div
+        style={{ position: 'relative' }}
+        data-testid="flatpickr-input-container"
+      >
         <Input {...inputProps} ref={ref} />
         <Icon
           color="#222222"
