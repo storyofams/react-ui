@@ -55,7 +55,10 @@ export const Button: FC<ButtonProps> = forwardRef(
       return (
         <Link
           href={href}
-          sx={{ transition: 'opacity .18s ease', '&:hover': { opacity: 1 } }}
+          sx={{
+            '&:hover': { opacity: 1 },
+            '&::before': { bg: 'transparent' },
+          }}
         >
           <RebassButton {..._props}>{children}</RebassButton>
         </Link>
@@ -66,7 +69,10 @@ export const Button: FC<ButtonProps> = forwardRef(
       return (
         <Link
           to={to}
-          sx={{ transition: 'opacity .18s ease', '&:hover': { opacity: 1 } }}
+          sx={{
+            '&:hover': { opacity: 1 },
+            '&::before': { bg: 'transparent' },
+          }}
         >
           <RebassButton {..._props}>{children}</RebassButton>
         </Link>

@@ -199,15 +199,24 @@ const buttonTheme = {
         fontSize: 3,
         lineHeight: '150%',
         color: 'grey700',
-        transition:
-          'text-decoration 0.18s ease-in-out, color 0.18s ease-in-out',
-        '&:hover': {
-          color: 'primary700',
-          textDecoration: 'underline',
-        },
+        transition: 'color 0.18s ease-in-out',
 
-        '&:active': {
+        '&::before': {
+          content: JSON.stringify(''),
+          position: 'absolute',
+          bottom: '14px',
+          left: '50%',
+          right: '50%',
+          height: '2px',
+          bg: 'primary700',
+          transition: 'background-color 0.2s, left 0.2s, right 0.2s',
+        },
+        '&:hover, &:active': {
           color: 'primary700',
+          '&::before': {
+            left: 2,
+            right: 2,
+          },
         },
       },
       category: {
