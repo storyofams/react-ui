@@ -26,7 +26,7 @@ export const Link: FC<LinkProps> = ({
 }) => {
   if (href) {
     return (
-      <RebassLink href={href} {...props}>
+      <RebassLink href={href} tabIndex={0} {...props} title={href}>
         {children}
       </RebassLink>
     );
@@ -34,7 +34,9 @@ export const Link: FC<LinkProps> = ({
 
   return (
     <NextLink href={to} as={linkAs} passHref>
-      <RebassLink {...props}>{children}</RebassLink>
+      <RebassLink {...props} tabIndex={0} title={to}>
+        {children}
+      </RebassLink>
     </NextLink>
   );
 };

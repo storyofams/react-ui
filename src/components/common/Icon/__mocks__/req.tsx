@@ -1,3 +1,3 @@
 export default () => ({
-  default: () => 'foo',
+  default: () => 'div',
 });

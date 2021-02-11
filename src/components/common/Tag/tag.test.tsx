@@ -1,7 +1,16 @@
 import React from 'react';
+import { axe } from 'jest-axe';
+
 import { Tag } from '~components';
 import { fireEvent, render, RGBToHex } from '~lib';
 import theme from '~styles/theme';
+
+test('[Tag] should not fail accessibility testing', async () => {
+  const { container } = render(<Tag checked={false} onChange={() => null} />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('receives change events', async () => {
   const onChange = jest.fn();

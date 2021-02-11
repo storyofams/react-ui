@@ -59,6 +59,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           checked={checked}
           disabled={disabled}
           type="checkbox"
+          aria-label="toggle"
         />
         <span className="slider" />
       </Box>

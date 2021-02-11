@@ -1,6 +1,15 @@
 import React from 'react';
+import { axe } from 'jest-axe';
+
 import { Stack } from '~components';
 import { render } from '~lib';
+
+test('[Stack] should not fail accessibility testing', async () => {
+  const { container } = render(<Stack space={0} />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('handles the flexdirection prop when not provided', async () => {
   const { getByTestId } = render(<Stack data-testid="stack" space={0} />);

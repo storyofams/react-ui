@@ -9,6 +9,7 @@ import { status, StatusMessage } from '~components/common/StatusMessage';
 
 export interface InputWrapperProps extends BoxProps {
   statusMessage?: string;
+  /** please add a label for accesibility purposes */
   label?: string;
   status?: status;
   error?: string;

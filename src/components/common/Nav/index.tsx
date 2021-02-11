@@ -16,7 +16,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
     }}
     {...props}
   >
-    <Link href="/">
+    <Link href="/" aria-current="step">
       <Icon icon={<House />} size={16} mr={'1/2'} color="grey400" />
     </Link>
     {links.map(({ title, href }, index) => (
@@ -27,6 +27,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
           mr={1}
           fontSize={1}
           href={href}
+          aria-current={index === links.length - 1 ? 'page' : 'step'}
         >
           {title}
         </Link>
