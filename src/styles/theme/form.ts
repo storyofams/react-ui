@@ -9,9 +9,9 @@ const formTheme = {
       'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.25 },
     },
     input: {
-      py: '3/4',
+      py: 0.75,
       px: 2,
-      fontSize: [3, 2],
+      fontSize: [2, 1.75],
       minHeight: '38px',
       color: 'grey700',
       borderColor: 'grey300',
@@ -49,9 +49,9 @@ const formTheme = {
       },
     },
     textarea: {
-      py: '3/4',
+      py: 0.75,
       px: 2,
-      fontSize: [3, 2],
+      fontSize: [2, 1.75],
       minHeight: '38px',
       color: 'grey900',
       borderColor: 'grey200',
@@ -74,7 +74,7 @@ const formTheme = {
       },
     },
     label: {
-      fontSize: 3,
+      fontSize: 2,
       lineHeight: 'medium',
       fontWeight: 'semiBold',
       '&[disabled=""]': {

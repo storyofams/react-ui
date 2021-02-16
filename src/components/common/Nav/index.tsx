@@ -25,7 +25,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
         <Link
           color={index === links.length - 1 ? 'grey700' : 'grey400'}
           mr={1}
-          fontSize={1}
+          fontSize={1.5}
           href={href}
           aria-current={index === links.length - 1 ? 'page' : 'step'}
         >

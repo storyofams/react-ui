@@ -18,7 +18,7 @@ const baseStyles = {
 
 const primary = {
   px: 3,
-  py: '6/4',
+  py: 1.5,
   color: 'primary50',
   bg: 'primary600',
   borderColor: 'primary600',
@@ -41,12 +41,12 @@ const primary = {
   },
   '&:disabled': { cursor: 'not-allowed', bg: 'primary600', opacity: 0.25 },
   fontWeight: 'bold',
-  fontSize: '12px',
+  fontSize: 1.5,
 };
 
 const outline = {
   px: 5,
-  py: '6/4',
+  py: 1.5,
   color: 'grey900',
   bg: 'transparent',
   border: '1px',
@@ -62,7 +62,7 @@ const outline = {
 
 const secondary = {
   px: 5,
-  py: '6/4',
+  py: 1.5,
   color: 'primary700',
   bg: 'primary200',
   borderColor: 'primary200',
@@ -89,7 +89,7 @@ const secondary = {
     opacity: 0.25,
   },
   fontWeight: 'bold',
-  fontSize: '12px',
+  fontSize: 1.5,
 };
 const underline = {
   px: 0,
@@ -124,16 +124,16 @@ const buttonTheme = {
       ...primary,
       small: {
         ...primary,
-        fontSize: 1,
+        fontSize: 1.5,
       },
       medium: {
         ...primary,
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: 'medium',
       },
       large: {
         ...primary,
-        fontSize: 5,
+        fontSize: 2.5,
         px: 4,
         lineHeight: 'high',
       },
@@ -142,16 +142,16 @@ const buttonTheme = {
       ...outline,
       small: {
         ...outline,
-        fontSize: 1,
+        fontSize: 1.5,
       },
       medium: {
         ...outline,
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: 'medium',
       },
       large: {
         ...outline,
-        fontSize: 5,
+        fontSize: 2.5,
         px: 4,
         lineHeight: 'high',
       },
@@ -160,16 +160,16 @@ const buttonTheme = {
       ...secondary,
       small: {
         ...secondary,
-        fontSize: 1,
+        fontSize: 1.5,
       },
       medium: {
         ...secondary,
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: 'medium',
       },
       large: {
         ...secondary,
-        fontSize: 5,
+        fontSize: 2.5,
         px: 4,
         lineHeight: 'high',
       },
@@ -178,16 +178,16 @@ const buttonTheme = {
       ...underline,
       small: {
         ...underline,
-        fontSize: 1,
+        fontSize: 1.5,
       },
       medium: {
         ...underline,
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: 'medium',
       },
       large: {
         ...underline,
-        fontSize: 5,
+        fontSize: 2.5,
         px: 4,
         lineHeight: 'high',
       },
@@ -196,7 +196,7 @@ const buttonTheme = {
       menu: {
         ...baseStyles,
         fontWeight: 'medium',
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: '150%',
         color: 'grey700',
         transition: 'color 0.18s ease-in-out',
@@ -220,7 +220,7 @@ const buttonTheme = {
         },
       },
       category: {
-        fontSize: 2,
+        fontSize: 1.75,
         lineHeight: '100%',
         color: 'grey700',
         ...baseStyles,
