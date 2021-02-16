@@ -21,24 +21,26 @@ export const Accordion: FC<AccordionProps> = ({
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
         borderBottomColor: 'grey600',
-        cursor: 'pointer',
       }}
     >
       <Flex
         justifyContent="space-between"
-        alignItems="center"
+        alignItems="flex-start"
         onClick={() => setOpen(!open)}
-        mb={1}
+        pb={1}
+        sx={{
+          cursor: 'pointer',
+        }}
         {...props}
       >
-        <Text color="grey700" fontWeight="bold" fontSize={3} lineHeight="150%">
+        <Text variant="pmd" color="grey700" fontWeight="bold">
           {title}
         </Text>
         <Icon
           size={24}
           sx={{
-            transform: open ? 'rotate(180deg)' : '',
-            transition: 'transform ease 0.2s',
+            transform: open ? 'rotate(180deg)' : 'none',
+            transition: 'transform 0.2s ease-in-out',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
