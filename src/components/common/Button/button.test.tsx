@@ -1,6 +1,15 @@
 import React, { useEffect, useRef } from 'react';
+import { axe } from 'jest-axe';
+
 import { Button } from '~components';
 import { fireEvent, render } from '~lib';
+
+test('[Button] should not fail accessibility testing', async () => {
+  const { container } = render(<Button>Click</Button>);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('registers event handlers', () => {
   const clickHandler = jest.fn();

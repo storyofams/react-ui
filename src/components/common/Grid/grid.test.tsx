@@ -1,8 +1,17 @@
 import React from 'react';
+import { axe } from 'jest-axe';
+import 'jest-styled-components';
+
 import { Grid } from '~components';
 import { render } from '~lib';
-import 'jest-styled-components';
 import theme from '~styles/theme';
+
+test('[Grid] should not fail accessibility testing', async () => {
+  const { container } = render(<Grid rowSize={1} />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('handles the rowGap prop when not provided', async () => {
   const { getByTestId } = render(<Grid data-testid="grid" rowSize={1} />);

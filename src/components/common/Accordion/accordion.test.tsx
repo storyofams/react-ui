@@ -1,8 +1,17 @@
 import React from 'react';
+import { axe } from 'jest-axe';
+
 import { Accordion } from '~components';
 import { fireEvent, render, screen } from '~lib';
 
 jest.mock('../Icon/library/chevron-bottom.svg', () => 'div');
+
+test('[Accordion] should not fail accessibility testing', async () => {
+  const { container } = render(<Accordion title="title">content</Accordion>);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('renders string content', () => {
   const title = 'accordion title';

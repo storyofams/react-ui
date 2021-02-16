@@ -2,9 +2,12 @@ import React, { FC } from 'react';
 
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { toHaveNoViolations } from 'jest-axe';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../styles/theme/index';
+
+expect.extend(toHaveNoViolations);
 
 function RGBToHex(rgb) {
   // Choose correct separator

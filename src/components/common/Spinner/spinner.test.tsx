@@ -1,7 +1,15 @@
 import React from 'react';
+import { axe } from 'jest-axe';
+
+import { Spinner } from '~components';
 import { render } from '~lib/test-utils';
 
-import { Spinner } from '.';
+test('[Spinner] should not fail accessibility testing', async () => {
+  const { container } = render(<Spinner />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('handles props', async () => {
   const { getByTestId } = render(<Spinner data-testid="spinner" />);
