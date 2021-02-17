@@ -1,34 +1,49 @@
 const formTheme = {
   forms: {
     checkbox: {
-      mr: '5.25px',
+      mr: '1/2',
       color: 'primary800',
+
       'input:checked + &': {
         display: 'block',
       },
+
       'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.25 },
     },
+
+    radio: {
+      mr: '1/2',
+      color: 'primary800',
+
+      'input:checked + &': {
+        display: 'block',
+      },
+
+      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.25 },
+    },
+
     input: {
+      minHeight: '38px',
       py: '3/4',
       px: 2,
-      fontSize: [3, 2],
-      minHeight: '38px',
-      color: 'grey700',
       borderColor: 'grey300',
       borderRadius: 'xs',
-      bg: 'grey50',
-      transition: 'border-color 0.18s ease-in-out',
+      color: 'grey700',
+      fontSize: [3, 2],
+      transition:
+        'border-color 0.18s ease-in-out, background-color 0.18s ease-in-out',
+
       '::placeholder': {
         color: 'grey400',
       },
-      '&:hover': { borderColor: 'grey300' },
-      '&:active': {
-        borderColor: 'primary800',
+
+      '&:hover': { borderColor: 'primary800' },
+
+      '&:active, &:focus': {
         bg: 'primary50',
-      },
-      '&:focus': {
         borderColor: 'primary800',
       },
+
       '&:disabled': {
         bg: 'white',
         borderColor: 'grey200',
@@ -39,31 +54,39 @@ const formTheme = {
           color: 'grey700',
         },
       },
+
       '&[required=""]': {
         bg: 'error50',
         borderColor: 'error600',
         color: 'error600',
       },
-      'input:focus': {
-        backgroundColor: 'transparent',
-      },
     },
+
     textarea: {
+      minHeight: '38px',
       py: '3/4',
       px: 2,
-      fontSize: [3, 2],
-      minHeight: '38px',
-      color: 'grey900',
-      borderColor: 'grey200',
+      borderColor: 'grey300',
       borderRadius: 'xs',
-      transition: 'border-color 0.18s ease-in-out',
+      color: 'grey700',
+      fontSize: [3, 2],
+      transition:
+        'border-color 0.18s ease-in-out, background-color 0.18s ease-in-out',
       resize: 'vertical',
+
       '::placeholder': {
-        color: 'grey200',
+        color: 'grey400',
       },
-      '&:hover': { borderColor: 'grey300' },
+
+      '&:hover': { borderColor: 'primary800' },
+
+      '&:active, &:focus': {
+        bg: 'primary50',
+        borderColor: 'primary800',
+      },
+
       '&:disabled': {
-        bg: 'grey200',
+        bg: 'white',
         borderColor: 'grey200',
         color: 'grey700',
         cursor: 'not-allowed',
@@ -72,23 +95,24 @@ const formTheme = {
           color: 'grey700',
         },
       },
+
+      '&[required=""]': {
+        bg: 'error50',
+        borderColor: 'error600',
+        color: 'error600',
+      },
     },
+
     label: {
       fontSize: 3,
-      lineHeight: 'medium',
+      lineHeight: 1.5,
       fontWeight: 'semiBold',
+      color: 'grey700',
+
       '&[disabled=""]': {
         cursor: 'not-allowed',
         opacity: 0.25,
       },
-    },
-    radio: {
-      mr: '5.25px',
-      color: 'primary800',
-      'input:checked + &': {
-        display: 'block',
-      },
-      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 1 },
     },
   },
 };

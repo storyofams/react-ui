@@ -4,9 +4,11 @@ import { Box, BoxProps } from 'rebass/styled-components';
 const styles = {
   position: 'relative',
   display: 'inline-block',
-  width: '52px',
-  height: '32px',
+  width: '40px',
+  height: '24px',
+
   '& > input': { opacity: 0, width: '0', height: '0' },
+
   '& > .slider': {
     position: 'absolute',
     cursor: 'pointer',
@@ -17,29 +19,36 @@ const styles = {
     backgroundColor: 'primary300',
     border: '1px',
     borderColor: 'primary300',
-    transition: ['0.4s', 'background-color 0.18s, border-color 0.18s'],
-    borderRadius: '34px',
+    transition:
+      'background-color 0.18s ease-in-out, border-color 0.18s ease-in-out',
+    borderRadius: '24px',
   },
+
   '& > .slider:before': {
     position: 'absolute',
     content: "''",
-    height: '24px',
-    width: '24px',
+    height: '16px',
+    width: '16px',
     left: '3px',
     bottom: '3px',
     backgroundColor: 'white',
-    transition: ['0.2s', 'left 0.18s, right 0.18s'],
+    transition: 'left 0.18s ease-in-out, right 0.18s ease-in-out',
     borderRadius: '50%',
   },
+
   '& > input:checked': {
     '& + .slider': {
       backgroundColor: 'primary800',
-      border: '1px',
       borderColor: 'primary800',
     },
-    '& + .slider:before': { left: 'unset', right: '4px' },
+
+    '& + .slider:before': { left: 'unset', right: '3px' },
   },
-  '& > input:focus + .slider': { border: '1px', borderColor: 'primary800' },
+
+  '&:hover > .slider': {
+    borderColor: 'primary800',
+  },
+
   '& > input:disabled + .slider': { cursor: 'not-allowed', opacity: 0.25 },
 };
 

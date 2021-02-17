@@ -9,7 +9,7 @@ const baseStyles = {
   userSelect: 'none',
   cursor: 'pointer',
   transition:
-    'background-color 0.18s ease-in-out, background-color 0.18s ease-in-out, box-shadow 0.18s, border-color 0.18s ease-in-out, color 0.18s ease-in-out, opacity 0.18s ease-in-out',
+    'background-color 0.18s ease-in-out, box-shadow 0.18s, border-color 0.18s ease-in-out, color 0.18s ease-in-out, opacity 0.18s ease-in-out',
   '&:disabled': { cursor: 'not-allowed', opacity: 0.5 },
   '&:active': { boxShadow: 'none' },
   '&[data-is-loading]': { cursor: 'wait' },

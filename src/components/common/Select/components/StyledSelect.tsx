@@ -16,18 +16,16 @@ const StyledSelect = styled(ReactSelect).attrs({
 
     .react-select {
       &__placeholder {
-        color: ${theme.colors.grey200};
+        color: ${theme.colors.grey400};
       }
 
       &__control {
         transition: border-color 0.18s ease;
         border-radius: ${theme.radii.xs};
         border-color: ${theme.colors.grey200};
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04),
-          0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
 
         &:hover {
-          border-color: ${theme.colors.grey300};
+          border-color: ${theme.colors.primary800};
         }
 
         &--menu-is-open {
@@ -39,7 +37,6 @@ const StyledSelect = styled(ReactSelect).attrs({
         }
 
         &--is-disabled {
-          background: ${theme.colors.white};
           cursor: not-allowed;
           opacity: 0.25;
 
@@ -47,9 +44,11 @@ const StyledSelect = styled(ReactSelect).attrs({
             color: ${theme.colors.grey700};
           }
         }
+
         &--is-focused {
           background: ${theme.colors.primary50};
           border-color: ${theme.colors.primary800};
+          box-shadow: none;
 
           .react-select__placeholder {
             color: ${theme.colors.grey700};
@@ -73,17 +72,25 @@ const StyledSelect = styled(ReactSelect).attrs({
         display: none;
       }
 
+      &__menu-list {
+        padding: ${theme.space[1]}px;
+      }
+
       &__option {
-        transition: border-color 0.18s ease, background-color 0.18s ease;
+        padding: 0 ${theme.space['1/2']}px;
+        margin-bottom: ${theme.space['1/2']}px;
+        transition: border-color 0.18s ease-in-out,
+          background-color 0.18s ease-in-out, color 0.18s ease-in-out;
         color: ${theme.colors.grey900};
+        border-radius: ${theme.radii.xs};
+        line-height: 1.5;
 
-        &:hover {
-          background-color: ${theme.colors.primary50};
-          color: ${theme.colors.primary800};
-        }
-
-        &.option--is-selected {
-          background-color: ${theme.colors.primary500};
+        & {
+          &--is-selected,
+          &--is-focused {
+            background-color: ${theme.colors.primary50};
+            color: ${theme.colors.primary800};
+          }
         }
       }
     }
