@@ -1,3 +1,5 @@
+import linkTheme from './link';
+
 const baseStyles = {
   position: 'relative',
   display: 'inline-flex',
@@ -66,37 +68,6 @@ const secondary = {
   },
 };
 
-const underline = {
-  ...baseStyles,
-  px: 0,
-  pt: 0,
-  pb: '1/4',
-  color: 'grey900',
-  fontWeight: 'medium',
-  fontSize: 'inherit',
-  lineHeight: 'inherit',
-
-  '&::before': {
-    content: JSON.stringify(''),
-    position: 'absolute',
-    bottom: 0,
-    left: '50%',
-    right: '50%',
-    height: '2px',
-    bg: 'primary700',
-    transition: 'left 0.18s ease-in-out, right 0.18s ease-in-out',
-  },
-
-  '&:hover, &:active': {
-    color: 'primary700',
-
-    '&::before': {
-      left: 0,
-      right: 0,
-    },
-  },
-};
-
 const buttonTheme = {
   buttons: {
     primary: {
@@ -143,22 +114,7 @@ const buttonTheme = {
       },
     },
 
-    link: {
-      ...baseStyles,
-      px: 0,
-      py: 0,
-      color: 'grey700',
-      fontSize: 'inherit',
-      lineHeight: 'inherit',
-
-      '&:hover, &:active': {
-        color: 'primary700',
-      },
-
-      underline: {
-        ...underline,
-      },
-    },
+    ...linkTheme,
   },
 };
 

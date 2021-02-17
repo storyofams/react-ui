@@ -12,7 +12,7 @@ export default {
 };
 
 export const Basic = (args) => (
-  <Stack space={0} maxWidth="400px" sx={{ flexDirection: 'column' }}>
+  <Stack space={2} maxWidth="400px" flexDirection="column">
     <Breadcrumb links={[{ title: 'Level 1', href: '/' }, args]} />
     <MenuLink href="/">MenuLink</MenuLink>
     <CategoryLink href="/">Category link</CategoryLink>
