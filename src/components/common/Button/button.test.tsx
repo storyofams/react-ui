@@ -22,7 +22,6 @@ test('registers event handlers', () => {
 
 const Component = ({ refHandler }) => {
   const ref = useRef<HTMLButtonElement>();
-
   useEffect(() => {
     if (ref.current) {
       ref.current.click();

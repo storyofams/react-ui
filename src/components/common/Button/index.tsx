@@ -11,13 +11,7 @@ import { Spinner } from '~components/common/Spinner';
 export interface ButtonProps extends RebassButtonProps {
   isLoading?: boolean;
   disabled?: boolean;
-  variant?:
-    | 'primary'
-    | 'outline'
-    | 'secondary'
-    | 'underline'
-    | 'link.menu'
-    | 'link.category';
+  variant?: 'primary' | 'secondary' | 'link' | 'link.underline';
   href?: string;
   to?: string;
 }

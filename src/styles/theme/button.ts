@@ -5,132 +5,114 @@ const baseStyles = {
   justifyContent: 'center',
   textAlign: 'center',
   fontSize: 'inherit',
-  fontWeight: 'regular',
   borderRadius: 'sm',
   userSelect: 'none',
   cursor: 'pointer',
   transition:
-    'background-color 0.18s, box-shadow 0.18s, border-color 0.18s, color 0.18s',
+    'background-color 0.18s ease-in-out, background-color 0.18s ease-in-out, box-shadow 0.18s, border-color 0.18s ease-in-out, color 0.18s ease-in-out, opacity 0.18s ease-in-out',
   '&:disabled': { cursor: 'not-allowed', opacity: 0.5 },
   '&:active': { boxShadow: 'none' },
   '&[data-is-loading]': { cursor: 'wait' },
 };
 
 const primary = {
+  ...baseStyles,
   px: 3,
   py: '6/4',
-  color: 'primary50',
   bg: 'primary600',
-  borderColor: 'primary600',
-  boxShadow: 'sm',
-  transition:
-    'border-color 0.18s ease-in-out,background-color 0.18s ease-in-out, color 0.18s ease-in-out',
-
-  lineHeight: '130%',
-  '&:hover': {
-    color: 'primary50',
-    bg: 'primary700',
-    borderColor: 'primary700',
-  },
-
-  ...baseStyles,
-  '&:active': {
-    color: 'primary50',
-    bg: 'primary600',
-    boxShadow: ' inset 0px 0px 0px 4px #BAE6FD',
-  },
-  '&:disabled': { cursor: 'not-allowed', bg: 'primary600', opacity: 0.25 },
+  color: 'primary50',
   fontWeight: 'bold',
-  fontSize: '12px',
-};
+  fontSize: 1,
+  lineHeight: '130%',
 
-const outline = {
-  px: 5,
-  py: '6/4',
-  color: 'grey900',
-  bg: 'transparent',
-  border: '1px',
-  borderColor: 'grey900',
-  boxShadow: 'sm',
-  transition: 'background-color 0.18s ease-in-out, color 0.18s ease-in-out',
-  '&:hover, &:active': {
-    color: 'white',
-    bg: 'grey900',
+  '&:hover': {
+    bg: 'primary700',
+    color: 'primary50',
   },
-  ...baseStyles,
+
+  '&:active': {
+    bg: 'primary600',
+    boxShadow: '0px 0px 0px 4px #BAE6FD',
+    color: 'primary50',
+  },
+
+  '&:disabled': { cursor: 'not-allowed', opacity: 0.25 },
 };
 
 const secondary = {
-  px: 5,
+  ...baseStyles,
+  px: 3,
   py: '6/4',
-  color: 'primary700',
   bg: 'primary200',
-  borderColor: 'primary200',
-  boxShadow: 'sm',
+  color: 'primary700',
+  fontWeight: 'bold',
+  fontSize: 1,
   lineHeight: '130%',
-  transition:
-    'border-color 0.18s ease-in-out,background-color 0.18s ease-in-out, color 0.18s ease-in-out',
+
   '&:hover': {
-    color: 'primary800',
     bg: 'primary300',
-    borderColor: 'primary300',
+    color: 'primary800',
   },
 
-  ...baseStyles,
   '&:active': {
     color: 'primary700',
     bg: 'primary200',
-    boxShadow: ' inset 0px 0px 0px 4px #E0F2FE',
+    boxShadow: '0px 0px 0px 4px #E0F2FE',
   },
+
   '&:disabled': {
     cursor: 'not-allowed',
-    color: 'primary700',
-    bg: 'primary200',
     opacity: 0.25,
   },
-  fontWeight: 'bold',
-  fontSize: '12px',
 };
+
 const underline = {
+  ...baseStyles,
   px: 0,
   pt: 0,
-  pb: 1,
+  pb: '1/4',
   color: 'grey900',
-  bg: 'transparent',
-  borderColor: 'transparent',
+  fontWeight: 'medium',
+  fontSize: 'inherit',
+  lineHeight: 'inherit',
+
   '&::before': {
     content: JSON.stringify(''),
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: '50%',
+    right: '50%',
     height: '2px',
-    bg: 'primary500',
-    transition: 'background-color 0.2s, left 0.2s, right 0.2s',
+    bg: 'primary700',
+    transition: 'left 0.18s ease-in-out, right 0.18s ease-in-out',
   },
+
   '&:hover, &:active': {
-    color: 'primary500',
+    color: 'primary700',
+
     '&::before': {
-      left: '50%',
-      right: '50%',
+      left: 0,
+      right: 0,
     },
   },
-  ...baseStyles,
 };
 
 const buttonTheme = {
   buttons: {
     primary: {
       ...primary,
+
       small: {
         ...primary,
         fontSize: 1,
       },
+
       medium: {
         ...primary,
         fontSize: 3,
         lineHeight: 'medium',
       },
+
       large: {
         ...primary,
         fontSize: 5,
@@ -138,35 +120,21 @@ const buttonTheme = {
         lineHeight: 'high',
       },
     },
-    outline: {
-      ...outline,
-      small: {
-        ...outline,
-        fontSize: 1,
-      },
-      medium: {
-        ...outline,
-        fontSize: 3,
-        lineHeight: 'medium',
-      },
-      large: {
-        ...outline,
-        fontSize: 5,
-        px: 4,
-        lineHeight: 'high',
-      },
-    },
+
     secondary: {
       ...secondary,
+
       small: {
         ...secondary,
         fontSize: 1,
       },
+
       medium: {
         ...secondary,
         fontSize: 3,
         lineHeight: 'medium',
       },
+
       large: {
         ...secondary,
         fontSize: 5,
@@ -174,61 +142,21 @@ const buttonTheme = {
         lineHeight: 'high',
       },
     },
-    underline: {
-      ...underline,
-      small: {
-        ...underline,
-        fontSize: 1,
-      },
-      medium: {
-        ...underline,
-        fontSize: 3,
-        lineHeight: 'medium',
-      },
-      large: {
-        ...underline,
-        fontSize: 5,
-        px: 4,
-        lineHeight: 'high',
-      },
-    },
+
     link: {
-      menu: {
-        ...baseStyles,
-        fontWeight: 'medium',
-        fontSize: 3,
-        lineHeight: '150%',
-        color: 'grey700',
-        transition: 'color 0.18s ease-in-out',
+      ...baseStyles,
+      px: 0,
+      py: 0,
+      color: 'grey700',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
 
-        '&::before': {
-          content: JSON.stringify(''),
-          position: 'absolute',
-          bottom: '14px',
-          left: '50%',
-          right: '50%',
-          height: '2px',
-          bg: 'primary700',
-          transition: 'background-color 0.2s, left 0.2s, right 0.2s',
-        },
-        '&:hover, &:active': {
-          color: 'primary700',
-          '&::before': {
-            left: 2,
-            right: 2,
-          },
-        },
+      '&:hover, &:active': {
+        color: 'primary700',
       },
-      category: {
-        fontSize: 2,
-        lineHeight: '100%',
-        color: 'grey700',
-        ...baseStyles,
-        transition: 'color 0.18s ease-in-out',
 
-        '&:hover, &:active': {
-          color: 'primary700',
-        },
+      underline: {
+        ...underline,
       },
     },
   },

@@ -39,21 +39,16 @@ Secondary.args = {
   variant: 'secondary',
 };
 
-export const Outline = (args) => <Button {...args}>Lorem Ipsum</Button>;
-
-Outline.args = {
-  variant: 'outline',
-};
-
-export const Underline = (args) => <Button {...args}>Lorem Ipsum</Button>;
-
-Underline.args = {
-  variant: 'underline',
-};
-
 export const Link = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Link.args = {
   href: '/',
   variant: 'link',
+};
+
+export const LinkUnderline = (args) => <Button {...args}>Lorem Ipsum</Button>;
+
+LinkUnderline.args = {
+  href: '/',
+  variant: 'link.underline',
 };
