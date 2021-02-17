@@ -17,7 +17,7 @@ export const Basic = () => {
         value={dateTimeVal}
         onChange={setDateTimeVal}
         inputProps={{
-          placeholder: 'this is a date field',
+          placeholder: 'Placeholder',
         }}
       />
     </Box>

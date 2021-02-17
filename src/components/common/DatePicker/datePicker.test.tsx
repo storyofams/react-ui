@@ -11,7 +11,7 @@ test('[DatePicker] should not fail accessibility testing', async () => {
     <DatePicker
       value={null}
       onChange={() => null}
-      inputProps={{ label: 'label', placeholder: 'placeholder' }}
+      inputProps={{ label: 'label', placeholder: 'Placeholder' }}
     />,
   );
   const results = await axe(container);
@@ -26,7 +26,7 @@ test('adds classnames to allow styling', async () => {
       value={null}
       onChange={() => null}
       inputProps={{
-        placeholder: 'this is a date field',
+        placeholder: 'Placeholder',
       }}
     />,
   );
