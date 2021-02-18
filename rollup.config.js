@@ -1,7 +1,6 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import clear from 'rollup-plugin-clear';
 import filesize from 'rollup-plugin-filesize';
 import external from 'rollup-plugin-peer-deps-external';
 import svg from 'rollup-plugin-svg';
@@ -31,10 +30,6 @@ export default {
     },
   ],
   plugins: [
-    clear({
-      targets: ['dist'],
-      watch: true,
-    }),
     // external handles the third-party deps we've listed in the package.json
     /** @note needs to come before resolve! */
     external(),
