@@ -4,8 +4,8 @@ import 'flatpickr/dist/themes/light.css';
 import { BoxProps } from 'rebass/styled-components';
 import styled from 'styled-components';
 
-import { Input } from '~/components';
-import { Calendar } from '../Icon/library';
+import { Calendar } from '~components/common/Icon/library';
+import { Input } from '~components/common/Input';
 
 const OPTIONS = {
   altInput: true,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from 'rebass/styled-components';
 
-import { DatePicker } from '~/components';
+import { DatePicker } from '~components';
 
 export default {
   component: DatePicker,

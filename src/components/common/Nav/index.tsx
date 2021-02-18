@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import { Box, BoxProps } from 'rebass/styled-components';
-import { Button, Icon, Link, Text } from '~/components';
-import { ChevronRight, House } from '../Icon/library';
+
+import { Button } from '~components/common/Button';
+import { Icon } from '~components/common/Icon';
+import { ChevronRight, House } from '~components/common/Icon/library';
+import { Link } from '~components/common/Link';
+import { Text } from '~components/common/Text';
 
 export interface BreadcrumbProps extends BoxProps {
   links: Array<{ title: string; href: string }>;

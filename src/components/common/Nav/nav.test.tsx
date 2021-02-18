@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { Breadcrumb, MenuLink, CategoryLink, Link } from '~components';
-import { render, screen } from '~/lib';
+import { render, screen } from '~lib';
 
 jest.mock('../Icon/library/chevron-right.svg', () => 'div');
 

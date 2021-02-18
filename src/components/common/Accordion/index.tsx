@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react';
 import { Box, BoxProps, Flex } from 'rebass/styled-components';
 
-import { Icon, Text } from '~components';
-import { ChevronDown } from '../Icon/library';
+import { Icon } from '~components/common/Icon';
+import { ChevronDown } from '~components/common/Icon/library';
+import { Text } from '~components/common/Text';
 
 export interface AccordionProps extends BoxProps {
   title: string;
