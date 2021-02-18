@@ -1,72 +1,110 @@
 const formTheme = {
   forms: {
     checkbox: {
-      mr: 1,
-      color: 'primary500',
+      mr: 0.5,
+      color: 'primary800',
+
       'input:checked + &': {
         display: 'block',
       },
-      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.5 },
+
+      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.6 },
     },
-    input: {
-      py: '3/4',
-      px: 2,
-      fontSize: [3, 2],
-      minHeight: '38px',
-      color: 'grey900',
-      borderColor: 'grey200',
-      borderRadius: 'xs',
-      transition: 'border-color 0.18s ease-in-out,',
-      '::placeholder': {
-        color: 'grey200',
-      },
-      '&:hover': { borderColor: 'grey300' },
-      '&:disabled': {
-        bg: 'grey200',
-        borderColor: 'grey200',
-        color: 'grey700',
-        cursor: 'not-allowed',
-        opacity: 0.5,
-        '::placeholder': {
-          color: 'grey700',
-        },
-      },
-    },
-    textarea: {
-      py: '3/4',
-      px: 2,
-      fontSize: [3, 2],
-      minHeight: '38px',
-      color: 'grey900',
-      borderColor: 'grey200',
-      borderRadius: 'xs',
-      transition: 'border-color 0.18s ease-in-out,',
-      resize: 'vertical',
-      '::placeholder': {
-        color: 'grey200',
-      },
-      '&:hover': { borderColor: 'grey300' },
-      '&:disabled': {
-        bg: 'grey200',
-        borderColor: 'grey200',
-        color: 'grey700',
-        cursor: 'not-allowed',
-        opacity: 0.5,
-        '::placeholder': {
-          color: 'grey700',
-        },
-      },
-    },
-    label: {
-      fontSize: 2,
-    },
+
     radio: {
-      mr: 1,
-      color: 'primary500',
+      mr: 0.5,
+      color: 'primary800',
+
       'input:checked + &': {
         display: 'block',
       },
-      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.5 },
+
+      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.6 },
+    },
+
+    input: {
+      minHeight: '38px',
+      py: 0.75,
+      px: 2,
+      borderColor: 'grey300',
+      borderRadius: 'xs',
+      color: 'grey700',
+      fontSize: [2, 1.75],
+      transition:
+        'border-color 0.18s ease-in-out, background-color 0.18s ease-in-out',
+
+      '::placeholder': {
+        color: 'grey400',
+      },
+
+      '&:hover': { borderColor: 'primary800' },
+
+      '&:active, &:focus': {
+        bg: 'primary50',
+        borderColor: 'primary800',
+      },
+
+      '&:disabled': {
+        cursor: 'not-allowed',
+        opacity: 0.6,
+
+        '&:hover': { borderColor: 'grey300' },
+      },
+
+      '&[required=""]': {
+        bg: 'error50',
+        borderColor: 'error600',
+        color: 'error600',
+      },
+    },
+
+    textarea: {
+      minHeight: '38px',
+      py: 0.75,
+      px: 2,
+      borderColor: 'grey300',
+      borderRadius: 'xs',
+      color: 'grey700',
+      fontSize: [2, 1.75],
+      transition:
+        'border-color 0.18s ease-in-out, background-color 0.18s ease-in-out',
+      resize: 'vertical',
+
+      '::placeholder': {
+        color: 'grey400',
+      },
+
+      '&:hover': { borderColor: 'primary800' },
+
+      '&:active, &:focus': {
+        bg: 'primary50',
+        borderColor: 'primary800',
+      },
+
+      '&:disabled': {
+        cursor: 'not-allowed',
+        opacity: 0.6,
+
+        '&:hover': { borderColor: 'grey300' },
+      },
+
+      '&[required=""]': {
+        bg: 'error50',
+        borderColor: 'error600',
+        color: 'error600',
+      },
+    },
+
+    label: {
+      fontSize: [2, 1.75],
+      lineHeight: 'high',
+      fontWeight: 'semiBold',
+      color: 'grey700',
+
+      '&[disabled=""]': {
+        cursor: 'not-allowed',
+        opacity: 0.6,
+      },
     },
   },
 };

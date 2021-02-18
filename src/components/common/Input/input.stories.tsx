@@ -10,6 +10,8 @@ export default {
     label: 'Label',
     status: 'success',
     statusMessage: 'Status text',
+    required: false,
+    disabled: false,
   },
   argTypes: {
     status: {

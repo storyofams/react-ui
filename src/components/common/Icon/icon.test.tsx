@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { createElement } from 'react';
+import { axe } from 'jest-axe';
+
 import { Icon } from '~components';
 import { render } from '~lib';
 import 'jest-styled-components';
+
+test('[Icon] should not fail accessibility testing', async () => {
+  const { container } = render(<Icon icon={createElement('div')} />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('handles the iconAs with iconAs', async () => {
   const { getByTestId } = render(

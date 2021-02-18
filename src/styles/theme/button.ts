@@ -1,3 +1,5 @@
+import linkTheme from './link';
+
 const baseStyles = {
   position: 'relative',
   display: 'inline-flex',
@@ -5,87 +7,113 @@ const baseStyles = {
   justifyContent: 'center',
   textAlign: 'center',
   fontSize: 'inherit',
-  fontWeight: 'regular',
-  borderRadius: 'full',
+  borderRadius: 'sm',
   userSelect: 'none',
   cursor: 'pointer',
   transition:
-    'background-color 0.18s, box-shadow 0.18s, border-color 0.18s, color 0.18s',
+    'background-color 0.18s ease-in-out, box-shadow 0.18s, border-color 0.18s ease-in-out, color 0.18s ease-in-out, opacity 0.18s ease-in-out',
   '&:disabled': { cursor: 'not-allowed', opacity: 0.5 },
   '&:active': { boxShadow: 'none' },
   '&[data-is-loading]': { cursor: 'wait' },
 };
 
+const primary = {
+  ...baseStyles,
+  px: 3,
+  py: 1.5,
+  bg: 'primary600',
+  color: 'primary50',
+  fontWeight: 'bold',
+  fontSize: 1.5,
+  lineHeight: 'medium',
+
+  '&:hover': {
+    bg: 'primary700',
+    color: 'primary50',
+  },
+
+  '&:active': {
+    bg: 'primary600',
+    boxShadow: '0px 0px 0px 4px #BAE6FD',
+    color: 'primary50',
+  },
+
+  '&:disabled': { cursor: 'not-allowed', opacity: 0.25 },
+};
+
+const secondary = {
+  ...baseStyles,
+  px: 3,
+  py: 1.5,
+  bg: 'primary200',
+  color: 'primary700',
+  fontWeight: 'bold',
+  fontSize: 1.5,
+  lineHeight: 'medium',
+
+  '&:hover': {
+    bg: 'primary300',
+    color: 'primary800',
+  },
+
+  '&:active': {
+    color: 'primary700',
+    bg: 'primary200',
+    boxShadow: '0px 0px 0px 4px #E0F2FE',
+  },
+
+  '&:disabled': {
+    cursor: 'not-allowed',
+    opacity: 0.25,
+  },
+};
+
 const buttonTheme = {
   buttons: {
     primary: {
-      px: 5,
-      py: '6/4',
-      color: 'grey900',
-      bg: 'primary500',
-      borderColor: 'primary500',
-      boxShadow: 'sm',
-      '&:hover, &:active': {
-        color: 'white',
-        bg: 'grey900',
-        borderColor: 'grey900',
+      ...primary,
+
+      small: {
+        ...primary,
+        fontSize: 1.5,
       },
-      ...baseStyles,
-    },
-    outline: {
-      px: 5,
-      py: '6/4',
-      color: 'grey900',
-      bg: 'transparent',
-      border: '1px',
-      borderColor: 'grey900',
-      boxShadow: 'sm',
-      '&:hover, &:active': {
-        color: 'white',
-        bg: 'grey900',
+
+      medium: {
+        ...primary,
+        fontSize: 2,
+        lineHeight: 'medium',
       },
-      ...baseStyles,
+
+      large: {
+        ...primary,
+        fontSize: 2.5,
+        px: 4,
+        lineHeight: 'high',
+      },
     },
     secondary: {
-      px: 5,
-      py: '6/4',
-      color: 'white',
-      bg: 'secondary500',
-      borderColor: 'secondary500',
-      boxShadow: 'sm',
-      '&:hover, &:active': {
-        color: 'white',
-        bg: 'grey900',
-        borderColor: 'grey900',
+      ...secondary,
+
+      small: {
+        ...secondary,
+        fontSize: 1.5,
       },
-      ...baseStyles,
+
+      medium: {
+        ...secondary,
+        fontSize: 2,
+        lineHeight: 'medium',
+      },
+
+      large: {
+        ...secondary,
+        fontSize: 2.5,
+        px: 4,
+        lineHeight: 'high',
+      },
     },
-    underline: {
-      px: 0,
-      pt: 0,
-      pb: 1,
-      color: 'grey900',
-      bg: 'transparent',
-      borderColor: 'transparent',
-      '&::before': {
-        content: JSON.stringify(''),
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '2px',
-        bg: 'primary500',
-        transition: 'background-color 0.2s, left 0.2s, right 0.2s',
-      },
-      '&:hover, &:active': {
-        color: 'primary500',
-        '&::before': {
-          left: '50%',
-          right: '50%',
-        },
-      },
-      ...baseStyles,
-    },
+
+    ...linkTheme,
   },
 };
 

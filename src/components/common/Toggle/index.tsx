@@ -4,9 +4,11 @@ import { Box, BoxProps } from 'rebass/styled-components';
 const styles = {
   position: 'relative',
   display: 'inline-block',
-  width: '52px',
-  height: '32px',
+  width: '40px',
+  height: '24px',
+
   '& > input': { opacity: 0, width: '0', height: '0' },
+
   '& > .slider': {
     position: 'absolute',
     cursor: 'pointer',
@@ -14,33 +16,48 @@ const styles = {
     left: '0',
     right: '0',
     bottom: '0',
-    backgroundColor: 'grey300',
+    backgroundColor: 'primary300',
     border: '1px',
-    borderColor: 'grey300',
-    transition: ['0.4s', 'background-color 0.18s, border-color 0.18s'],
-    borderRadius: '34px',
+    borderColor: 'primary300',
+    transition:
+      'background-color 0.18s ease-in-out, border-color 0.18s ease-in-out',
+    borderRadius: '24px',
   },
+
   '& > .slider:before': {
     position: 'absolute',
     content: "''",
-    height: '24px',
-    width: '24px',
+    height: '16px',
+    width: '16px',
     left: '3px',
     bottom: '3px',
     backgroundColor: 'white',
-    transition: ['0.2s', 'left 0.18s, right 0.18s'],
+    transition: 'left 0.18s ease-in-out, right 0.18s ease-in-out',
     borderRadius: '50%',
   },
+
   '& > input:checked': {
     '& + .slider': {
-      backgroundColor: 'primary500',
-      border: '1px',
-      borderColor: 'primary500',
+      backgroundColor: 'primary800',
+      borderColor: 'primary800',
     },
-    '& + .slider:before': { left: 'unset', right: '4px' },
+
+    '& + .slider:before': { left: 'unset', right: '3px' },
   },
-  '& > input:focus + .slider': { border: '1px', borderColor: 'primary500' },
-  '& > input:disabled + .slider': { cursor: 'not-allowed', opacity: 0.5 },
+
+  '&:hover': {
+    '> .slider': {
+      borderColor: 'primary800',
+    },
+    '> input:disabled + .slider': {
+      borderColor: 'primary300',
+    },
+  },
+
+  '& > input:disabled + .slider': {
+    cursor: 'not-allowed',
+    opacity: 0.6,
+  },
 };
 
 export interface ToggleProps extends Omit<BoxProps, 'onChange'> {
@@ -59,6 +76,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           checked={checked}
           disabled={disabled}
           type="checkbox"
+          aria-label="toggle"
         />
         <span className="slider" />
       </Box>

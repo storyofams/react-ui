@@ -9,6 +9,7 @@ import { status, StatusMessage } from '~components/common/StatusMessage';
 
 export interface InputWrapperProps extends BoxProps {
   statusMessage?: string;
+  /** please add a label for accesibility purposes */
   label?: string;
   status?: status;
   error?: string;
@@ -37,7 +38,7 @@ export const InputWrapper: FC<InputWrapperProps & { id?: string }> = ({
       {children}
 
       {(!!statusMessage || !!error) && (
-        <StatusMessage mt="1/2" status={error ? 'error' : status}>
+        <StatusMessage mt={0.5} status={error ? 'error' : status}>
           {error || statusMessage}
         </StatusMessage>
       )}

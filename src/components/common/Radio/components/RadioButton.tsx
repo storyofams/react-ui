@@ -20,7 +20,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
     return (
       <Box {...pick(props)}>
-        <Label htmlFor={id}>
+        <Label htmlFor={id} disabled={props.disabled} color="grey700">
           <RebassRadio {...omit(props)} type="radio" id={id} ref={ref} />
           {children}
         </Label>

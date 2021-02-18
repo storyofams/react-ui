@@ -1,10 +1,19 @@
 import React from 'react';
+import { axe } from 'jest-axe';
 import { resetId } from 'react-id-generator';
+
 import { Select } from '~components';
 import { render } from '~lib';
 
 const id = 'testid';
 const label = 'label';
+
+test('[Select] should not fail accessibility testing', async () => {
+  const { container } = render(<Select label="select" />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 test('handles the id prop when an id has been provided', async () => {
   const { getByLabelText } = render(<Select id={id} label={label} />);

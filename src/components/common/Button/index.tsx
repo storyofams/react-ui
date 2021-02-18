@@ -11,7 +11,7 @@ import { Spinner } from '~components/common/Spinner';
 export interface ButtonProps extends RebassButtonProps {
   isLoading?: boolean;
   disabled?: boolean;
-  variant?: 'primary' | 'outline' | 'secondary' | 'underline';
+  variant?: 'primary' | 'secondary' | 'link' | 'link.underline';
   href?: string;
   to?: string;
 }
@@ -47,7 +47,13 @@ export const Button: FC<ButtonProps> = forwardRef(
 
     if (href) {
       return (
-        <Link href={href} sx={{ '&:hover': { opacity: 1 } }}>
+        <Link
+          href={href}
+          sx={{
+            '&:hover': { opacity: 1 },
+            '&::before': { bg: 'transparent' },
+          }}
+        >
           <RebassButton {..._props}>{children}</RebassButton>
         </Link>
       );
@@ -55,7 +61,13 @@ export const Button: FC<ButtonProps> = forwardRef(
 
     if (to) {
       return (
-        <Link to={to} sx={{ '&:hover': { opacity: 1 } }}>
+        <Link
+          to={to}
+          sx={{
+            '&:hover': { opacity: 1 },
+            '&::before': { bg: 'transparent' },
+          }}
+        >
           <RebassButton {..._props}>{children}</RebassButton>
         </Link>
       );

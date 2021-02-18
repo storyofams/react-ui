@@ -1,25 +1,17 @@
 import React from 'react';
-import { render } from '~lib/test-utils';
+import { axe } from 'jest-axe';
+
+import { render, RGBToHex } from '~lib/test-utils';
 import theme from '~styles/theme';
 
 import { StatusMessage } from '.';
 
-function RGBToHex(rgb) {
-  // Choose correct separator
-  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
-  // Turn "rgb(r,g,b)" into [r,g,b]
-  rgb = rgb.substr(4).split(')')[0].split(sep);
+test('[StatusMessage] should not fail accessibility testing', async () => {
+  const { container } = render(<StatusMessage status="success" />);
+  const results = await axe(container);
 
-  let r = (+rgb[0]).toString(16),
-    g = (+rgb[1]).toString(16),
-    b = (+rgb[2]).toString(16);
-
-  if (r.length === 1) r = '0' + r;
-  if (g.length === 1) g = '0' + g;
-  if (b.length === 1) b = '0' + b;
-
-  return '#' + r + g + b;
-}
+  expect(results).toHaveNoViolations();
+});
 
 test('receives change events', async () => {
   const { getByTestId } = render(
@@ -42,7 +34,7 @@ test('handles status success', async () => {
   );
   const element = getByTestId('test');
   const style = window.getComputedStyle(element);
-  const themeColor = theme.colors.success500.toLowerCase();
+  const themeColor = theme.colors.success600.toLowerCase();
   const elementColor = RGBToHex(style.color);
 
   expect(elementColor).toBe(themeColor);
@@ -55,7 +47,7 @@ test('handles status warning', async () => {
   );
   const element = getByTestId('test');
   const style = window.getComputedStyle(element);
-  const themeColor = theme.colors.warning500.toLowerCase();
+  const themeColor = theme.colors.warning600.toLowerCase();
   const elementColor = RGBToHex(style.color);
 
   expect(elementColor).toBe(themeColor);
@@ -68,7 +60,7 @@ test('handles status error', async () => {
   );
   const element = getByTestId('test');
   const style = window.getComputedStyle(element);
-  const themeColor = theme.colors.error500.toLowerCase();
+  const themeColor = theme.colors.error600.toLowerCase();
   const elementColor = RGBToHex(style.color);
 
   expect(elementColor).toBe(themeColor);

@@ -1,25 +1,23 @@
 import React from 'react';
-import { Link, Stack } from '~components';
-import theme from '~styles/theme';
+import { Link } from '~components';
 
 export default {
   component: Link,
   title: 'components/Link',
   args: {
-    bg: theme.colors.success100,
     href: '/',
-  },
-  argTypes: {
-    bg: { control: { type: 'select', options: theme.colors } },
   },
 };
 
-export const Basic = (args) => {
-  return (
-    <Stack space={3} sx={{ alignItems: 'center' }}>
-      <Link p={2} {...args}>
-        Link
-      </Link>
-    </Stack>
-  );
+export const Basic = (args) => <Link {...args}>Lorem Ipsum</Link>;
+
+Basic.args = {
+  href: '/',
+};
+
+export const Underline = (args) => <Link {...args}>Lorem Ipsum</Link>;
+
+Underline.args = {
+  href: '/',
+  variant: 'link.underline',
 };

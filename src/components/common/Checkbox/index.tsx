@@ -27,7 +27,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         error={error}
         {...pick(props)}
       >
-        <Label htmlFor={id}>
+        <Label htmlFor={id} disabled={props.disabled}>
           <RebassCheckbox id={id} ref={ref} {...omit(props)} />
           {label}
         </Label>

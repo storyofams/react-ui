@@ -7,26 +7,25 @@ const StyledSelect = styled(ReactSelect).attrs({
   classNamePrefix: 'react-select',
 })(
   ({ styledTheme: theme }) => css`
-    font-size: ${theme.fontSizes[2]};
+    font-size: ${theme.fontSizes[1.75]}px;
 
     /* leave font-size 16px for consistency sake, IOS browsers zoom in on inputs if they are below 16px */
     @media (max-width: ${theme.breakpoints.sm}) {
-      font-size: ${theme.fontSizes[3]};
+      font-size: ${theme.fontSizes[2]}px;
     }
 
     .react-select {
       &__placeholder {
-        color: ${theme.colors.grey200};
+        color: ${theme.colors.grey400};
       }
 
       &__control {
         transition: border-color 0.18s ease;
         border-radius: ${theme.radii.xs};
-        border-color: ${theme.colors.grey200};
-        box-shadow: none;
+        border-color: ${theme.colors.grey300};
 
         &:hover {
-          border-color: ${theme.colors.grey300};
+          border-color: ${theme.colors.primary800};
         }
 
         &--menu-is-open {
@@ -38,14 +37,32 @@ const StyledSelect = styled(ReactSelect).attrs({
         }
 
         &--is-disabled {
-          background: ${theme.colors.grey200};
           cursor: not-allowed;
-          opacity: 0.5;
+          opacity: 0.6;
+          background: none;
+
+          &:hover {
+            border-color: ${theme.colors.grey300};
+          }
+        }
+
+        &--is-focused {
+          background: ${theme.colors.primary50};
+          border-color: ${theme.colors.primary800};
+          box-shadow: none;
 
           .react-select__placeholder {
             color: ${theme.colors.grey700};
           }
         }
+      }
+
+      &__dropdown-indicator {
+        color: ${theme.colors.primary800};
+      }
+
+      &__single-value {
+        color: ${theme.colors.grey700};
       }
 
       &__value-container {
@@ -56,16 +73,25 @@ const StyledSelect = styled(ReactSelect).attrs({
         display: none;
       }
 
+      &__menu-list {
+        padding: ${theme.space[1]}px;
+      }
+
       &__option {
-        transition: border-color 0.18s ease, background-color 0.18s ease;
+        padding: 0 ${theme.space[0.5]}px;
+        margin-bottom: ${theme.space[0.5]}px;
+        transition: border-color 0.18s ease-in-out,
+          background-color 0.18s ease-in-out, color 0.18s ease-in-out;
         color: ${theme.colors.grey900};
+        border-radius: ${theme.radii.xs};
+        line-height: 1.5;
 
-        &:hover {
-          background-color: ${theme.colors.grey100};
-        }
-
-        &.option--is-selected {
-          background-color: ${theme.colors.primary500};
+        & {
+          &--is-selected,
+          &--is-focused {
+            background-color: ${theme.colors.primary50};
+            color: ${theme.colors.primary800};
+          }
         }
       }
     }

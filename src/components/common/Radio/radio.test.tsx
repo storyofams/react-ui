@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
+import { axe } from 'jest-axe';
+
 import { Radio, RadioGroup } from '~components';
 import { fireEvent, render } from '~lib';
+
+test('[Radio] should not fail accessibility testing', async () => {
+  const { container } = render(<Radio value="test">label</Radio>);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 export const Basic = (args) => {
   const [val, setVal] = useState(null);
