@@ -6,9 +6,25 @@ import { DatePicker } from '~/components';
 export default {
   component: DatePicker,
   title: 'components/DatePicker',
+  args: {
+    placeholder: 'Placeholder',
+    label: 'Label',
+    status: 'success',
+    statusMessage: 'Status text',
+    required: false,
+    disabled: false,
+  },
+  argTypes: {
+    status: {
+      control: {
+        type: 'select',
+        options: ['default', 'success', 'warning', 'error'],
+      },
+    },
+  },
 };
 
-export const Basic = () => {
+export const Basic = (args) => {
   const [dateTimeVal, setDateTimeVal] = useState(null);
 
   return (
@@ -16,9 +32,7 @@ export const Basic = () => {
       <DatePicker
         value={dateTimeVal}
         onChange={setDateTimeVal}
-        inputProps={{
-          placeholder: 'Placeholder',
-        }}
+        inputProps={args}
       />
     </Box>
   );

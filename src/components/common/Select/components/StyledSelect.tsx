@@ -22,7 +22,7 @@ const StyledSelect = styled(ReactSelect).attrs({
       &__control {
         transition: border-color 0.18s ease;
         border-radius: ${theme.radii.xs};
-        border-color: ${theme.colors.grey200};
+        border-color: ${theme.colors.grey300};
 
         &:hover {
           border-color: ${theme.colors.primary800};
@@ -38,10 +38,11 @@ const StyledSelect = styled(ReactSelect).attrs({
 
         &--is-disabled {
           cursor: not-allowed;
-          opacity: 0.25;
+          opacity: 0.6;
+          background: none;
 
-          .react-select__placeholder {
-            color: ${theme.colors.grey700};
+          &:hover {
+            border-color: ${theme.colors.grey300};
           }
         }
 

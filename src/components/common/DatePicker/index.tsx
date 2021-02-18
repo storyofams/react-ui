@@ -4,7 +4,7 @@ import 'flatpickr/dist/themes/light.css';
 import { BoxProps } from 'rebass/styled-components';
 import styled from 'styled-components';
 
-import { Input, Icon } from '~/components';
+import { Input } from '~/components';
 import { Calendar } from '../Icon/library';
 
 const OPTIONS = {
@@ -50,19 +50,7 @@ const DatePickerComponent: FC<DatePickerProps> = ({
         style={{ position: 'relative' }}
         data-testid="flatpickr-input-container"
       >
-        <Input {...inputProps} ref={ref} />
-        <Icon
-          color="#222222"
-          icon={<Calendar />}
-          sx={{
-            position: 'absolute',
-            right: '15px',
-            top: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        />
+        <Input icon={<Calendar />} {...inputProps} ref={ref} />
       </div>
     )}
   />

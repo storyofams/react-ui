@@ -45,11 +45,19 @@ const styles = {
     '& + .slider:before': { left: 'unset', right: '3px' },
   },
 
-  '&:hover > .slider': {
-    borderColor: 'primary800',
+  '&:hover': {
+    '> .slider': {
+      borderColor: 'primary800',
+    },
+    '> input:disabled + .slider': {
+      borderColor: 'primary300',
+    },
   },
 
-  '& > input:disabled + .slider': { cursor: 'not-allowed', opacity: 0.25 },
+  '& > input:disabled + .slider': {
+    cursor: 'not-allowed',
+    opacity: 0.6,
+  },
 };
 
 export interface ToggleProps extends Omit<BoxProps, 'onChange'> {

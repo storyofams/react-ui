@@ -8,7 +8,7 @@ const formTheme = {
         display: 'block',
       },
 
-      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.25 },
+      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.6 },
     },
 
     radio: {
@@ -19,7 +19,7 @@ const formTheme = {
         display: 'block',
       },
 
-      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.25 },
+      'input:disabled ~ &': { cursor: 'not-allowed', opacity: 0.6 },
     },
 
     input: {
@@ -45,14 +45,10 @@ const formTheme = {
       },
 
       '&:disabled': {
-        bg: 'white',
-        borderColor: 'grey200',
-        color: 'grey700',
         cursor: 'not-allowed',
-        opacity: 0.5,
-        '::placeholder': {
-          color: 'grey700',
-        },
+        opacity: 0.6,
+
+        '&:hover': { borderColor: 'grey300' },
       },
 
       '&[required=""]': {
@@ -86,14 +82,10 @@ const formTheme = {
       },
 
       '&:disabled': {
-        bg: 'white',
-        borderColor: 'grey200',
-        color: 'grey700',
         cursor: 'not-allowed',
-        opacity: 0.5,
-        '::placeholder': {
-          color: 'grey700',
-        },
+        opacity: 0.6,
+
+        '&:hover': { borderColor: 'grey300' },
       },
 
       '&[required=""]': {
@@ -111,7 +103,7 @@ const formTheme = {
 
       '&[disabled=""]': {
         cursor: 'not-allowed',
-        opacity: 0.25,
+        opacity: 0.6,
       },
     },
   },
