@@ -74,7 +74,7 @@ export const DatePicker = styled(DatePickerComponent)`
     justify-content: center;
     align-items: center;
     color: ${(p) => p.theme.colors.grey700};
-    font-size: ${(p) => p.theme.fontSizes[1]};
+    font-size: ${(p) => p.theme.fontSizes[1.5]}px;
     line-height: ${(p) => p.theme.lineHeights.normal};
     border-width: 5px;
 
@@ -148,7 +148,7 @@ export const DatePicker = styled(DatePickerComponent)`
   .flatpickr-weekday {
     background: ${(p) => p.theme.colors.white};
     color: ${(p) => p.theme.colors.primary900};
-    font-size: ${(p) => p.theme.fontSizes[1]};
+    font-size: ${(p) => p.theme.fontSizes[1.5]}px;
     line-height: ${(p) => p.theme.lineHeights.high};
   }
 
@@ -292,7 +292,7 @@ export const DatePicker = styled(DatePickerComponent)`
     }
 
     .flatpickr-next-month {
-      margin-right: 24px;
+      margin-right: ${(p) => p.theme.space[3]}px;
     }
   }
 

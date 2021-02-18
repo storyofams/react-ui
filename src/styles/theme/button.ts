@@ -20,12 +20,12 @@ const baseStyles = {
 const primary = {
   ...baseStyles,
   px: 3,
-  py: '6/4',
+  py: 1.5,
   bg: 'primary600',
   color: 'primary50',
   fontWeight: 'bold',
-  fontSize: 1,
-  lineHeight: '130%',
+  fontSize: 1.5,
+  lineHeight: 'medium',
 
   '&:hover': {
     bg: 'primary700',
@@ -44,12 +44,12 @@ const primary = {
 const secondary = {
   ...baseStyles,
   px: 3,
-  py: '6/4',
+  py: 1.5,
   bg: 'primary200',
   color: 'primary700',
   fontWeight: 'bold',
-  fontSize: 1,
-  lineHeight: '130%',
+  fontSize: 1.5,
+  lineHeight: 'medium',
 
   '&:hover': {
     bg: 'primary300',
@@ -75,40 +75,39 @@ const buttonTheme = {
 
       small: {
         ...primary,
-        fontSize: 1,
+        fontSize: 1.5,
       },
 
       medium: {
         ...primary,
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: 'medium',
       },
 
       large: {
         ...primary,
-        fontSize: 5,
+        fontSize: 2.5,
         px: 4,
         lineHeight: 'high',
       },
     },
-
     secondary: {
       ...secondary,
 
       small: {
         ...secondary,
-        fontSize: 1,
+        fontSize: 1.5,
       },
 
       medium: {
         ...secondary,
-        fontSize: 3,
+        fontSize: 2,
         lineHeight: 'medium',
       },
 
       large: {
         ...secondary,
-        fontSize: 5,
+        fontSize: 2.5,
         px: 4,
         lineHeight: 'high',
       },

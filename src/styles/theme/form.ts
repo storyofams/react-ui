@@ -1,7 +1,7 @@
 const formTheme = {
   forms: {
     checkbox: {
-      mr: '1/2',
+      mr: 0.5,
       color: 'primary800',
 
       'input:checked + &': {
@@ -12,7 +12,7 @@ const formTheme = {
     },
 
     radio: {
-      mr: '1/2',
+      mr: 0.5,
       color: 'primary800',
 
       'input:checked + &': {
@@ -24,12 +24,12 @@ const formTheme = {
 
     input: {
       minHeight: '38px',
-      py: '3/4',
+      py: 0.75,
       px: 2,
       borderColor: 'grey300',
       borderRadius: 'xs',
       color: 'grey700',
-      fontSize: [3, 2],
+      fontSize: [2, 1.75],
       transition:
         'border-color 0.18s ease-in-out, background-color 0.18s ease-in-out',
 
@@ -64,12 +64,12 @@ const formTheme = {
 
     textarea: {
       minHeight: '38px',
-      py: '3/4',
+      py: 0.75,
       px: 2,
       borderColor: 'grey300',
       borderRadius: 'xs',
       color: 'grey700',
-      fontSize: [3, 2],
+      fontSize: [2, 1.75],
       transition:
         'border-color 0.18s ease-in-out, background-color 0.18s ease-in-out',
       resize: 'vertical',
@@ -104,8 +104,8 @@ const formTheme = {
     },
 
     label: {
-      fontSize: 3,
-      lineHeight: 1.5,
+      fontSize: [2, 1.75],
+      lineHeight: 'high',
       fontWeight: 'semiBold',
       color: 'grey700',
 

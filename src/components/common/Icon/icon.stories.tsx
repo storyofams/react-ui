@@ -48,7 +48,7 @@ export const Library = (args) => (
           py={2}
         >
           <Box width="75%">
-            <Text mr={5} fontSize={2} lineHeight="normal">
+            <Text mr={5} fontSize={1.75} lineHeight="normal">
               {icon}
             </Text>
           </Box>
@@ -56,7 +56,7 @@ export const Library = (args) => (
             <Icon
               icon={createElement(icons[icon])}
               color="grey800"
-              fontSize={4}
+              fontSize={20}
             />
           </Flex>
         </Flex>

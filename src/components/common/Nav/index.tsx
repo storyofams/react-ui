@@ -17,20 +17,20 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
     {...props}
   >
     <Link href="/" aria-current="step" color="grey400">
-      <Icon icon={<House />} size={16} mr={'1/2'} />
+      <Icon icon={<House />} size={16} mr={0.5} />
     </Link>
     {links.map(({ title, href }, index) => (
       <>
-        <Icon icon={<ChevronRight />} color="grey400" size={16} mr={'1/2'} />
+        <Icon icon={<ChevronRight />} color="grey400" size={16} mr={0.5} />
         {index === links.length - 1 ? (
-          <Text color="grey400" mr={1} fontSize={1} aria-current="step">
+          <Text color="grey400" mr={1} fontSize={1.5} aria-current="step">
             {title}
           </Text>
         ) : (
           <Link
             color="grey400"
             mr={1}
-            fontSize={1}
+            fontSize={1.5}
             href={href}
             aria-current="step"
           >

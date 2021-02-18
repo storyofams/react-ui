@@ -2,6 +2,7 @@ import { Breakpoints } from '../styled';
 import buttonTheme from './button';
 import formTheme from './form';
 import linkTheme from './link';
+import space from './space';
 import textTheme from './text';
 import variantsTheme from './variants';
 
@@ -67,21 +68,22 @@ const theme = {
     mono: `SFMono-Regular, Menlo, Monaco,C onsolas, "Liberation Mono", "Courier New", monospace`,
   },
   fontSizes: {
-    root: '14px',
-    0: '10px',
-    1: '12px',
-    2: '14px',
-    3: '16px',
-    4: '18px',
-    5: '20px',
-    6: '24px',
-    7: '32px',
-    8: '40px',
-    9: '48px',
-    10: '56px',
-    11: '64px',
-    12: '80px',
-    heading: '32px',
+    1.25: space['1.25'],
+    1.5: space['1.5'],
+    1.75: space['1.75'],
+    2: space['2'],
+    2.25: space['2.25'],
+    2.5: space['2.5'],
+    3: space['3'],
+    4: space['4'],
+    5: space['5'],
+    6: space['6'],
+    7: space['7'],
+    8: space['8'],
+    10: space['9'],
+    20: space['20'],
+    root: space['1.75'],
+    heading: space['4'],
   },
   lineHeights: {
     normal: 1,
@@ -90,25 +92,8 @@ const theme = {
     high: 1.6,
   },
   space: {
-    0: 0,
-    '1/4': 2,
-    '1/2': 4,
-    '3/4': 6,
-    1: 8,
-    '5/4': 10,
-    '6/4': 12,
-    2: 16,
-    3: 24,
-    4: 32,
-    5: 40,
-    6: 48,
-    7: 56,
-    8: 64,
-    9: 72,
-    10: 80,
-    15: 120,
-    20: 160,
-    mobileGutter: 16,
+    ...space,
+    mobileGutter: space['2'],
   },
   sizes: {
     maxWidth: 1140,

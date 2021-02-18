@@ -59,8 +59,8 @@ export const Accordion: FC<AccordionProps> = ({
           <Text
             variant="psm"
             color="grey500"
-            pt="6/4"
-            pb="20px"
+            pt={1.5}
+            pb={2.5}
             sx={{
               transition: 'opacity ease 0.25s',
               opacity: open ? 1 : 0,

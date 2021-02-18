@@ -7,11 +7,11 @@ const StyledSelect = styled(ReactSelect).attrs({
   classNamePrefix: 'react-select',
 })(
   ({ styledTheme: theme }) => css`
-    font-size: ${theme.fontSizes[2]};
+    font-size: ${theme.fontSizes[1.75]}px;
 
     /* leave font-size 16px for consistency sake, IOS browsers zoom in on inputs if they are below 16px */
     @media (max-width: ${theme.breakpoints.sm}) {
-      font-size: ${theme.fontSizes[3]};
+      font-size: ${theme.fontSizes[2]}px;
     }
 
     .react-select {
@@ -77,8 +77,8 @@ const StyledSelect = styled(ReactSelect).attrs({
       }
 
       &__option {
-        padding: 0 ${theme.space['1/2']}px;
-        margin-bottom: ${theme.space['1/2']}px;
+        padding: 0 ${theme.space[0.5]}px;
+        margin-bottom: ${theme.space[0.5]}px;
         transition: border-color 0.18s ease-in-out,
           background-color 0.18s ease-in-out, color 0.18s ease-in-out;
         color: ${theme.colors.grey900};
