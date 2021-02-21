@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import '@testing-library/react/node_modules/@testing-library/dom/types/queries';
+import '@testing-library/react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toHaveNoViolations } from 'jest-axe';
