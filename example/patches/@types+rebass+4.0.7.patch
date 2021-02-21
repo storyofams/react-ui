@@ -1,0 +1,35 @@
+diff --git a/node_modules/@types/rebass/LICENSE b/node_modules/@types/rebass/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@types/rebass/README.md b/node_modules/@types/rebass/README.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@types/rebass/index.d.ts b/node_modules/@types/rebass/index.d.ts
+old mode 100644
+new mode 100755
+index 26ece82..c921e59
+--- a/node_modules/@types/rebass/index.d.ts
++++ b/node_modules/@types/rebass/index.d.ts
+@@ -48,15 +48,15 @@ export interface SxProps {
+ 
+ interface BoxKnownProps
+     extends BaseProps,
+-        StyledSystem.SpaceProps,
++        StyledSystem.SpaceProps<StyledComponents.DefaultTheme>,
+         StyledSystem.LayoutProps,
+-        StyledSystem.FontSizeProps,
+-        StyledSystem.ColorProps,
++        StyledSystem.FontSizeProps<StyledComponents.DefaultTheme>,
++        StyledSystem.ColorProps<StyledComponents.DefaultTheme>,
+         StyledSystem.FlexProps,
+         StyledSystem.OrderProps,
+         StyledSystem.AlignSelfProps,
+         SxProps {
+-    variant?: StyledSystem.ResponsiveValue<string>;
++    variant?: StyledSystem.ResponsiveValue<StyledSystem.ThemeValue<'variants', StyledComponents.DefaultTheme>>;
+     tx?: string;
+ }
+ export interface BoxProps extends BoxKnownProps, Omit<React.HTMLProps<HTMLDivElement>, keyof BoxKnownProps> {}
+diff --git a/node_modules/@types/rebass/styled-components.d.ts b/node_modules/@types/rebass/styled-components.d.ts
+old mode 100644
+new mode 100755

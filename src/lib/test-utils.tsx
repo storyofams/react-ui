@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
-import { render } from '@testing-library/react';
+import '@testing-library/react/node_modules/@testing-library/dom/types/queries';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toHaveNoViolations } from 'jest-axe';
 import { ThemeProvider } from 'styled-components';
@@ -31,8 +32,12 @@ const Providers: FC = ({ children }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
-const customRender = (ui, options?) =>
-  render(ui, { wrapper: Providers, ...options });
+function customRender(
+  ui: React.ReactElement,
+  options?: Omit<RenderOptions, 'queries'>,
+): RenderResult {
+  return render(ui, { wrapper: Providers, ...options });
+}
 
 // re-export everything
 export * from '@testing-library/react';

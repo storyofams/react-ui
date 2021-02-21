@@ -2,13 +2,19 @@ import React, { FC } from 'react';
 import {
   Text as RebassText,
   TextProps as RebassTextProps,
-  BoxProps,
 } from 'rebass/styled-components';
 
-export interface TextProps extends BoxProps, RebassTextProps {}
+export interface TextProps extends RebassTextProps {}
 
 export const Text: FC<TextProps> = ({ children, ...props }) => (
-  <RebassText {...props}>{children}</RebassText>
+  <RebassText
+    sx={{
+      color: 'pr',
+    }}
+    {...props}
+  >
+    {children}
+  </RebassText>
 );
 
 export default Text;

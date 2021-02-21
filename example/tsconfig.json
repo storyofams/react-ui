@@ -19,7 +19,8 @@
     "paths": {
       "~/*": ["src/*"],
       "test-utils": ["src/lib/test-utils"]
-    }
+    },
+    "sourceMap": true
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

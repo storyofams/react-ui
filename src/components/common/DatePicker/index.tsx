@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/themes/light.css';
 import { BoxProps } from 'rebass/styled-components';
 import styled from 'styled-components';
 

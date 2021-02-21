@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, ReactElement } from 'react';
+import React, { createElement, FC, forwardRef, ReactElement } from 'react';
 import { Box, BoxProps } from 'rebass/styled-components';
 
 const styles = {
@@ -33,7 +33,7 @@ export const Icon: FC<IconProps> = forwardRef(
 
     return (
       <Box ref={ref} aria-hidden as={getAs()} sx={styles} {...props}>
-        {icon}
+        {typeof icon === 'function' ? createElement(icon) : icon}
       </Box>
     );
   },

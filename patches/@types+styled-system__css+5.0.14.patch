@@ -1,0 +1,38 @@
+diff --git a/node_modules/@types/styled-system__css/LICENSE b/node_modules/@types/styled-system__css/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@types/styled-system__css/README.md b/node_modules/@types/styled-system__css/README.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@types/styled-system__css/index.d.ts b/node_modules/@types/styled-system__css/index.d.ts
+old mode 100644
+new mode 100755
+index 863d05c..e489ad9
+--- a/node_modules/@types/styled-system__css/index.d.ts
++++ b/node_modules/@types/styled-system__css/index.d.ts
+@@ -7,6 +7,7 @@
+ // TypeScript Version: 3.1
+ 
+ import * as CSS from 'csstype';
++import { DefaultTheme } from 'styled-components'
+ 
+ export {};
+ 
+@@ -362,7 +363,7 @@ export interface AllSystemCSSProperties
+ export type SystemCssProperties = {
+     [K in keyof AllSystemCSSProperties]:
+         | ResponsiveStyleValue<AllSystemCSSProperties[K]>
+-        | ((theme: any) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
++        | ((theme: DefaultTheme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
+         | SystemStyleObject;
+ };
+ 
+@@ -392,7 +393,7 @@ export interface VariantProperty {
+ }
+ 
+ export interface UseThemeFunction {
+-    (theme: any): SystemStyleObject;
++    (theme: DefaultTheme): SystemStyleObject;
+ }
+ 
+ export interface EmotionLabel {
