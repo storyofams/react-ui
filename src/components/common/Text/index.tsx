@@ -7,14 +7,7 @@ import {
 export interface TextProps extends RebassTextProps {}
 
 export const Text: FC<TextProps> = ({ children, ...props }) => (
-  <RebassText
-    sx={{
-      color: 'pr',
-    }}
-    {...props}
-  >
-    {children}
-  </RebassText>
+  <RebassText {...props}>{children}</RebassText>
 );
 
 export default Text;

@@ -16,23 +16,19 @@ export interface ButtonProps extends RebassButtonProps {
 }
 
 export const Button: FC<ButtonProps> = forwardRef(
-  ({ isLoading, children, disabled, href, to, ...props }, ref) => {
+  ({ isLoading, children, variant, disabled, href, to, ...props }, ref) => {
     const _props = {
       ...props,
       disabled: disabled || isLoading,
+      variant,
       ref,
     };
 
     if (isLoading) {
       return (
-        <RebassButton variant="" data-is-loading {..._props}>
+        <RebassButton data-is-loading {..._props}>
           <Box
-            backgroundColor="error100"
-            color="warning800"
-            mx={'mobileGutter'}
             sx={{
-              // backgroundColor: (theme) => theme.colors.secondary100,
-              backgroundColor: 'primar',
               position: 'absolute',
               left: '50%',
               top: '50%',
@@ -53,7 +49,6 @@ export const Button: FC<ButtonProps> = forwardRef(
         <Link
           href={href}
           sx={{
-            color: 'whitesmoke',
             '&:hover': { opacity: 1 },
             '&::before': { bg: 'transparent' },
           }}

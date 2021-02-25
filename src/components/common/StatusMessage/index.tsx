@@ -27,10 +27,6 @@ export const StatusMessage: FC<StatusMessageProps> = ({
       fontSize={1.75}
       fontWeight="medium"
       mt={0.25}
-      sx={{
-        color: 'pr',
-        backgroundColor: 'error100',
-      }}
       {...props}
     >
       <Alert type={type}>{children}</Alert>

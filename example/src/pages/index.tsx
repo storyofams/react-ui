@@ -8,14 +8,7 @@ const Home = () => {
   return (
     <>
       <NextSeo title="React Helpers" description="React helpers example app" />
-      <Button
-        isLoading
-        // backgroundColor="warning500"
-        // mx={10}
-        // sx={{
-        // backgroundColor: (theme) => theme.colors.error500,
-        // }}
-      >
+      <Button isLoading backgroundColor="primary400">
         <Text fontSize={2}>click me</Text>
         <Icon icon={Arrow} color="warning500" />
       </Button>

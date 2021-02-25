@@ -16,7 +16,6 @@ const theme = {
     grey800: '#343434',
     grey900: '#1B1B1B',
     warning100: '#FFF0BD',
-    /** #F0BB00 */
     warning500: '#F0BB00',
     success100: '#DBFFE3',
     success500: '#0C9151',
@@ -57,7 +56,6 @@ const theme = {
   },
   space: {
     0: 0,
-    /** 2px */
     '1/4': 2,
     '1/2': 4,
     '3/4': 6,

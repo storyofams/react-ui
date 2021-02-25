@@ -1,4 +1,5 @@
 import { Breakpoints } from '../styled';
+import buttonTheme from './button';
 import formTheme from './form';
 import linkTheme from './link';
 import space from './space';
@@ -132,11 +133,11 @@ const theme = {
     lg: '0px 2px 4px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.1)',
     none: 'none',
   },
-  // ...buttonTheme,
-  // ...formTheme,
-  // ...linkTheme,
-  // ...textTheme,
-  // ...variantsTheme,
+  ...buttonTheme,
+  ...formTheme,
+  ...linkTheme,
+  ...textTheme,
+  ...variantsTheme,
 };
 
 theme.breakpoints.sm = theme.breakpoints[0];
