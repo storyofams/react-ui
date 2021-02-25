@@ -7,10 +7,23 @@ new mode 100755
 diff --git a/node_modules/@types/rebass/index.d.ts b/node_modules/@types/rebass/index.d.ts
 old mode 100644
 new mode 100755
-index 26ece82..c921e59
+index 26ece82..d7c6ad3
 --- a/node_modules/@types/rebass/index.d.ts
 +++ b/node_modules/@types/rebass/index.d.ts
-@@ -48,15 +48,15 @@ export interface SxProps {
+@@ -32,6 +32,12 @@ export interface BaseProps extends React.RefAttributes<any> {
+  */
+ export type SxStyleProp =
+     | SystemStyleObject
++    | StyledSystem.SpaceProps<StyledComponents.DefaultTheme>
++    | StyledSystem.TypographyProps<StyledComponents.DefaultTheme>
++    | StyledSystem.FlexboxProps<StyledComponents.DefaultTheme>
++    | StyledSystem.GridProps<StyledComponents.DefaultTheme>
++    | StyledSystem.LayoutProps<StyledComponents.DefaultTheme>
++    | StyledSystem.ColorProps<StyledComponents.DefaultTheme>
+     | Record<
+           string,
+           | SystemStyleObject
+@@ -48,10 +54,10 @@ export interface SxProps {
  
  interface BoxKnownProps
      extends BaseProps,
@@ -24,12 +37,6 @@ index 26ece82..c921e59
          StyledSystem.FlexProps,
          StyledSystem.OrderProps,
          StyledSystem.AlignSelfProps,
-         SxProps {
--    variant?: StyledSystem.ResponsiveValue<string>;
-+    variant?: StyledSystem.ResponsiveValue<StyledSystem.ThemeValue<'variants', StyledComponents.DefaultTheme>>;
-     tx?: string;
- }
- export interface BoxProps extends BoxKnownProps, Omit<React.HTMLProps<HTMLDivElement>, keyof BoxKnownProps> {}
 diff --git a/node_modules/@types/rebass/styled-components.d.ts b/node_modules/@types/rebass/styled-components.d.ts
 old mode 100644
 new mode 100755
