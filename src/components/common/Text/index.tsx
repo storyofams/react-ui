@@ -1,14 +1,10 @@
 import React, { FC } from 'react';
-import {
-  Text as RebassText,
-  TextProps as RebassTextProps,
-  BoxProps,
-} from 'rebass/styled-components';
 
-export interface TextProps extends BoxProps, RebassTextProps {}
+import { Box } from '~components/common/Box';
+import { TextKnownProps } from '~lib/styledSystem';
 
-export const Text: FC<TextProps> = ({ children, ...props }) => (
-  <RebassText {...props}>{children}</RebassText>
-);
+export interface TextProps extends TextKnownProps {}
+
+export const Text: FC<TextProps> = (props) => <Box as="p" {...props} />;
 
 export default Text;

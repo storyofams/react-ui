@@ -1,10 +1,10 @@
 import React, { forwardRef, FC } from 'react';
 import {
-  Box,
   Button as RebassButton,
   ButtonProps as RebassButtonProps,
 } from 'rebass/styled-components';
 
+import { Box } from '~components/common/Box';
 import { Link } from '~components/common/Link';
 import { Spinner } from '~components/common/Spinner';
 
@@ -29,16 +29,15 @@ export const Button: FC<ButtonProps> = forwardRef(
       return (
         <RebassButton data-is-loading {..._props}>
           <Box
-            sx={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
+            as="div"
+            position="absolute"
+            left="50%"
+            top="50%"
+            transform="translate(-50%, -50%)"
           >
             <Spinner size={16} />
           </Box>
-          <Box display="flex" color="transparent">
+          <Box as="div" display="flex" color="transparent">
             {children}
           </Box>
         </RebassButton>
