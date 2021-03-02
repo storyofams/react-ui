@@ -9,7 +9,6 @@ export default {
 
 export const Basic = (args) => (
   <Box
-    as="button"
     display="flex"
     flex={1}
     width="20px"
@@ -18,6 +17,12 @@ export const Basic = (args) => (
     backgroundColor="primary200"
   >
     <Box as="p" fontSize={1.25}>
+      Awesome text
+    </Box>
+    <Box as="button" onClick={console.log} fontSize={1.25}>
+      Awesome text
+    </Box>
+    <Box as="a" target="_blank" fontSize={1.25}>
       Awesome text
     </Box>
   </Box>
