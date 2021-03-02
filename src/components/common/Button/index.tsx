@@ -1,33 +1,38 @@
 import React, { forwardRef, FC } from 'react';
-import {
-  Button as RebassButton,
-  ButtonProps as RebassButtonProps,
-} from 'rebass/styled-components';
 
+import styled from 'styled-components';
 import { Box } from '~components/common/Box';
 import { Link } from '~components/common/Link';
 import { Spinner } from '~components/common/Spinner';
+import { PolymorphicComponentProps, BoxKnownProps } from '~lib/styledSystem';
 
-export interface ButtonProps extends RebassButtonProps {
+export interface CustomButtonProps extends BoxKnownProps {
   isLoading?: boolean;
   disabled?: boolean;
-  variant?: 'primary' | 'secondary' | 'link' | 'link.underline';
   href?: string;
   to?: string;
 }
 
-export const Button: FC<ButtonProps> = forwardRef(
-  ({ isLoading, disabled, children, variant, href, to, ...props }, ref) => {
+export const StyledButton = <AsElementType extends React.ElementType>(
+  props: PolymorphicComponentProps<AsElementType, CustomButtonProps>,
+) => <Box {...props} />;
+
+export const Button: FC<CustomButtonProps> = forwardRef(
+  ({ isLoading, disabled, children, href, to, ...props }, ref) => {
     const _props = {
       ...props,
       disabled: disabled || isLoading,
-      variant,
       ref,
     };
 
     if (isLoading) {
       return (
-        <RebassButton data-is-loading {..._props}>
+        <StyledButton
+          as="button"
+          onClick={console.log}
+          data-is-loading
+          {..._props}
+        >
           <Box
             as="div"
             position="absolute"
@@ -40,7 +45,7 @@ export const Button: FC<ButtonProps> = forwardRef(
           <Box as="div" display="flex" color="transparent">
             {children}
           </Box>
-        </RebassButton>
+        </StyledButton>
       );
     }
 
@@ -53,7 +58,9 @@ export const Button: FC<ButtonProps> = forwardRef(
             '&::before': { bg: 'transparent' },
           }}
         >
-          <RebassButton {..._props}>{children}</RebassButton>
+          <StyledButton as="button" {..._props}>
+            {children}
+          </StyledButton>
         </Link>
       );
     }
@@ -67,11 +74,17 @@ export const Button: FC<ButtonProps> = forwardRef(
             '&::before': { bg: 'transparent' },
           }}
         >
-          <RebassButton {..._props}>{children}</RebassButton>
+          <StyledButton as="button" {..._props}>
+            {children}
+          </StyledButton>
         </Link>
       );
     }
 
-    return <RebassButton {..._props}>{children}</RebassButton>;
+    return (
+      <StyledButton as="button" {..._props}>
+        {children}
+      </StyledButton>
+    );
   },
 );

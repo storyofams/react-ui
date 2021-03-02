@@ -6,5 +6,3 @@ import { TextKnownProps } from '~lib/styledSystem';
 export interface TextProps extends TextKnownProps {}
 
 export const Text: FC<TextProps> = (props) => <Box as="p" {...props} />;
-
-export default Text;

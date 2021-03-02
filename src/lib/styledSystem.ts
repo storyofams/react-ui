@@ -1,6 +1,4 @@
-import { PropsWithChildren } from 'react';
 import { css, DefaultTheme } from 'styled-components';
-import styled from 'styled-components';
 import {
   system as styledSystem,
   background,
@@ -28,38 +26,6 @@ import {
   ColorProps,
 } from 'styled-system';
 
-export const _customSystem: Config = {
-  textDecoration: { property: 'textDecoration' },
-  overflowX: true,
-  overflowY: true,
-  textTransform: true,
-  animation: true,
-  appearance: true,
-  transform: true,
-  transformOrigin: true,
-  visibility: true,
-  whiteSpace: true,
-  userSelect: true,
-  pointerEvents: true,
-  wordBreak: true,
-  overflowWrap: true,
-  textOverflow: true,
-  boxSizing: true,
-  cursor: true,
-  resize: true,
-  transition: true,
-  listStyleType: true,
-  listStylePosition: true,
-  listStyleImage: true,
-  objectFit: true,
-  objectPosition: true,
-  outline: true,
-  float: true,
-  willChange: true,
-};
-
-const customSystem = styledSystem(_customSystem);
-
 type CSS = React.CSSProperties;
 
 export interface System
@@ -77,7 +43,6 @@ export interface System
 
   // CSS properties
   textDecoration?: ResponsiveValue<CSS['textDecoration']>;
-  textDecor?: ResponsiveValue<CSS['textDecoration']>;
   textTransform?: ResponsiveValue<CSS['textTransform']>;
   appearance?: ResponsiveValue<CSS['appearance']>;
   transform?: ResponsiveValue<CSS['transform']>;
@@ -119,14 +84,54 @@ export interface System
 
   height?: ResponsiveValue<CSS['height']>;
   width?: ResponsiveValue<CSS['width']>;
-
-  // provide polymorphic as string
-  as: string;
-
-  // css override
-  css?: any;
-  ref?: any;
 }
+
+type CssProp = {
+  css?: (theme: DefaultTheme) => string;
+};
+
+type AsProp<AsElementType extends React.ElementType> = {
+  as?: AsElementType;
+};
+
+export interface BaseProps<
+  AsElementType extends React.ElementType = React.ElementType
+> extends System,
+    AsProp<AsElementType>,
+    CssProp {}
+
+// Introduce our own flavoured system
+export const _customSystem: Config = {
+  textDecoration: { property: 'textDecoration' },
+  overflowX: true,
+  overflowY: true,
+  textTransform: true,
+  animation: true,
+  appearance: true,
+  transform: true,
+  transformOrigin: true,
+  visibility: true,
+  whiteSpace: true,
+  userSelect: true,
+  pointerEvents: true,
+  wordBreak: true,
+  overflowWrap: true,
+  textOverflow: true,
+  boxSizing: true,
+  cursor: true,
+  resize: true,
+  transition: true,
+  listStyleType: true,
+  listStylePosition: true,
+  listStyleImage: true,
+  objectFit: true,
+  objectPosition: true,
+  outline: true,
+  float: true,
+  willChange: true,
+};
+
+const customSystem = styledSystem(_customSystem);
 
 export const system = (p) => css`
   ${compose(
@@ -140,12 +145,6 @@ export const system = (p) => css`
     shadow,
     typography,
     flexbox,
-    customSystem,
+    customSystem, // add our custom system on top of everything
   )(p)}
 `;
-export interface BoxKnownProps extends System {}
-export interface ButtonKnownProps extends Omit<BoxKnownProps, 'as'> {}
-export interface TextKnownProps extends Omit<BoxKnownProps, 'as'> {}
-export interface HeadingKnownProps extends Omit<BoxKnownProps, 'as'> {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-}
