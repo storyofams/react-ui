@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '~components/common/PolyBox';
+import { Box } from '~components/common/Box';
 
 export default {
   component: Box,
@@ -10,6 +10,8 @@ export default {
 export const Basic = (args) => (
   <Box
     as="button"
+    display="flex"
+    flex={1}
     width="20px"
     height="20px"
     mx={'mobileGutter'}
