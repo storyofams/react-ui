@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Button, Icon } from '~components';
-import { Heart } from '~components/common/Icon/library';
+import { Button } from '~components';
 
 export default {
   component: Button,
@@ -19,7 +18,6 @@ export default {
 
 export const Primary = (args) => (
   <Button {...args} variant={`${args.variant}.${args.size}`}>
-    {args.hasIcon && <Icon icon={<Heart />} sx={{ mr: 1 }} />}
     Lorem Ipsum
   </Button>
 );
@@ -30,30 +28,10 @@ Primary.args = {
 
 export const Secondary = (args) => (
   <Button {...args} variant={`${args.variant}.${args.size}`}>
-    {args.hasIcon && <Icon icon={<Heart />} sx={{ mr: 1 }} />}
     Lorem Ipsum
   </Button>
 );
 
 Secondary.args = {
   variant: 'secondary',
-};
-
-export const Link = (args) => <Button {...args}>Lorem Ipsum</Button>;
-
-Link.args = {
-  href: '/',
-  as: 'a',
-  variant: 'link',
-};
-
-export const LinkUnderline = (args) => (
-  <Button as="a" to="/asdfasd" {...args}>
-    Lorem Ipsum
-  </Button>
-);
-
-LinkUnderline.args = {
-  href: '/',
-  variant: 'link.underline',
 };

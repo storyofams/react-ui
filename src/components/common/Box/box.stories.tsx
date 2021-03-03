@@ -1,7 +1,7 @@
 /* eslint-disable mdx/no-unescaped-entities */
 import React from 'react';
-import { css } from '@styled-system/css';
 
+import { css } from '~lib';
 import { Box } from '~components/common/Box';
 
 export default {
@@ -14,9 +14,9 @@ export const Basic = (args) => (
     <Box
       as="p"
       fontSize={1.25}
-      /** example usages of the css prop (for now) */
       css={css({
-        backgroundColor: 'primary500',
+        color: 'palegreen',
+        backgroundColor: 'primary100',
       })}
     >
       I'm a paragraph

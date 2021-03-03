@@ -19,10 +19,7 @@ const Polymorph = styled.div<SystemProps>`
 
   /** enable css prop; use this with styled-system */
   ${(props) => props?.css}
-
-  && {
-    ${system}
-  }
+  ${system}
 `;
 
 export const Box: <
@@ -31,6 +28,8 @@ export const Box: <
   props: BoxProps<AsElementType>,
 ) => React.ReactElement | null = React.forwardRef(
   (props: BoxOwnProps, ref: React.Ref<Element>) => (
-    <Polymorph {...props} as={props.as || defaultElement} ref={ref} />
+    <>
+      <Polymorph {...props} as={props.as || defaultElement} ref={ref} />
+    </>
   ),
 );

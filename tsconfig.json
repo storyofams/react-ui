@@ -20,7 +20,7 @@
     "plugins": [{"transform": "@zerollup/ts-transform-paths"}],
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "sourceMap": true,
     "target": "es5",
     "typeRoots": ["./node_modules/@types"],
