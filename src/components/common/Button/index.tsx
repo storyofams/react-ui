@@ -1,17 +1,16 @@
 import React, { forwardRef, PropsWithChildren } from 'react';
-import css from '@styled-system/css';
+
+import { css } from '~lib';
 
 import { Box } from '~components/common/Box';
-import { Spinner } from '~components/common/Spinner';
-import { BaseProps } from '~lib/styledSystem';
-// import { Link } from '~components/common/Link';
+import { BaseProps } from '~types/custom-system';
 
+/** add custom button properties here */
 export type ButtonOwnProps<
   AsElementType extends React.ElementType = React.ElementType
 > = {
   isLoading?: boolean;
   to?: string;
-  /** add more custom button properties here */
 } & BaseProps<AsElementType>;
 
 export type ButtonProps<
@@ -32,7 +31,10 @@ const StyledButton = (props: PropsWithChildren<ButtonOwnProps>) => (
     border={0}
     borderRadius="xs"
     css={css({
-      color: 'primary500',
+      color: 'primary100',
+      backgroundColor: 'primary100',
+      mx: 1,
+
       '&:hover': {
         opacity: 0.25,
       },
@@ -58,7 +60,7 @@ export const Button: <
           as={Element}
           ref={ref}
         >
-          <Spinner />
+          loading
         </StyledButton>
       );
     }

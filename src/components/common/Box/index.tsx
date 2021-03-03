@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { BaseProps, system, SystemProps } from '~lib/styledSystem';
+import { system } from '~lib';
+import { BaseProps, SystemProps } from '~types/custom-system';
 
 export type BoxOwnProps<
   AsElementType extends React.ElementType = React.ElementType

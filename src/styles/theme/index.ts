@@ -1,4 +1,4 @@
-import { Breakpoints } from '../styled';
+import { Breakpoints } from '../../types/styled';
 import buttonTheme from './button';
 import formTheme from './form';
 import linkTheme from './link';
