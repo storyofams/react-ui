@@ -43,10 +43,15 @@ export const Link = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Link.args = {
   href: '/',
+  as: 'a',
   variant: 'link',
 };
 
-export const LinkUnderline = (args) => <Button {...args}>Lorem Ipsum</Button>;
+export const LinkUnderline = (args) => (
+  <Button as="a" to="/asdfasd" {...args}>
+    Lorem Ipsum
+  </Button>
+);
 
 LinkUnderline.args = {
   href: '/',

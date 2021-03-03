@@ -1,90 +1,68 @@
-import React, { forwardRef, FC } from 'react';
+import React, { forwardRef, PropsWithChildren } from 'react';
+import css from '@styled-system/css';
 
-import styled from 'styled-components';
 import { Box } from '~components/common/Box';
-import { Link } from '~components/common/Link';
 import { Spinner } from '~components/common/Spinner';
-import { PolymorphicComponentProps, BoxKnownProps } from '~lib/styledSystem';
+import { BaseProps } from '~lib/styledSystem';
+// import { Link } from '~components/common/Link';
 
-export interface CustomButtonProps extends BoxKnownProps {
+export type ButtonOwnProps<
+  AsElementType extends React.ElementType = React.ElementType
+> = {
   isLoading?: boolean;
-  disabled?: boolean;
-  href?: string;
   to?: string;
-}
+  /** add more custom button properties here */
+} & BaseProps<AsElementType>;
 
-export const StyledButton = <AsElementType extends React.ElementType>(
-  props: PolymorphicComponentProps<AsElementType, CustomButtonProps>,
-) => <Box {...props} />;
+export type ButtonProps<
+  AsElementType extends React.ElementType
+> = ButtonOwnProps<AsElementType> &
+  Omit<React.ComponentProps<AsElementType>, keyof ButtonOwnProps>;
 
-export const Button: FC<CustomButtonProps> = forwardRef(
-  ({ isLoading, disabled, children, href, to, ...props }, ref) => {
-    const _props = {
-      ...props,
-      disabled: disabled || isLoading,
-      ref,
-    };
+const defaultElement = 'button';
 
-    if (isLoading) {
+const StyledButton = (props: PropsWithChildren<ButtonOwnProps>) => (
+  <Box
+    appearance="none"
+    display="inline-block"
+    textAlign="center"
+    textDecoration="none"
+    px={3}
+    py={2}
+    border={0}
+    borderRadius="xs"
+    css={css({
+      color: 'primary500',
+      '&:hover': {
+        opacity: 0.25,
+      },
+    })}
+    {...props}
+  />
+);
+
+export const Button: <
+  AsElementType extends React.ElementType = typeof defaultElement
+>(
+  props: ButtonProps<AsElementType>,
+) => React.ReactElement | null = forwardRef(
+  ({ as, ...rest }: ButtonOwnProps, ref: React.Ref<Element>) => {
+    const Element = as || defaultElement;
+
+    if (rest?.isLoading) {
       return (
         <StyledButton
-          as="button"
-          onClick={console.log}
+          aria-disabled
           data-is-loading
-          {..._props}
+          {...rest}
+          as={Element}
+          ref={ref}
         >
-          <Box
-            as="div"
-            position="absolute"
-            left="50%"
-            top="50%"
-            transform="translate(-50%, -50%)"
-          >
-            <Spinner size={16} />
-          </Box>
-          <Box as="div" display="flex" color="transparent">
-            {children}
-          </Box>
+          <Spinner />
         </StyledButton>
       );
     }
 
-    if (href) {
-      return (
-        <Link
-          href={href}
-          sx={{
-            '&:hover': { opacity: 1 },
-            '&::before': { bg: 'transparent' },
-          }}
-        >
-          <StyledButton as="button" {..._props}>
-            {children}
-          </StyledButton>
-        </Link>
-      );
-    }
-
-    if (to) {
-      return (
-        <Link
-          to={to}
-          sx={{
-            '&:hover': { opacity: 1 },
-            '&::before': { bg: 'transparent' },
-          }}
-        >
-          <StyledButton as="button" {..._props}>
-            {children}
-          </StyledButton>
-        </Link>
-      );
-    }
-
-    return (
-      <StyledButton as="button" {..._props}>
-        {children}
-      </StyledButton>
-    );
+    return <StyledButton {...rest} as={Element} ref={ref} />;
   },
 );

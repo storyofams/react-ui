@@ -1,4 +1,4 @@
-import { css, DefaultTheme } from 'styled-components';
+import { css, CSSProp, DefaultTheme } from 'styled-components';
 import {
   system as styledSystem,
   background,
@@ -84,21 +84,17 @@ export interface System
 
   height?: ResponsiveValue<CSS['height']>;
   width?: ResponsiveValue<CSS['width']>;
+
+  // css?: CSSProp<DefaultTheme>;
+  css?: any;
 }
-
-type CssProp = {
-  css?: (theme: DefaultTheme) => string;
-};
-
-type AsProp<AsElementType extends React.ElementType> = {
-  as?: AsElementType;
-};
 
 export interface BaseProps<
   AsElementType extends React.ElementType = React.ElementType
-> extends System,
-    AsProp<AsElementType>,
-    CssProp {}
+> extends SystemProps {
+  as?: AsElementType;
+  ref?: React.Ref<Element>;
+}
 
 // Introduce our own flavoured system
 export const _customSystem: Config = {
@@ -133,18 +129,24 @@ export const _customSystem: Config = {
 
 const customSystem = styledSystem(_customSystem);
 
-export const system = (p) => css`
-  ${compose(
-    layout,
-    color,
-    space,
-    background,
-    border,
-    grid,
-    position,
-    shadow,
-    typography,
-    flexbox,
-    customSystem, // add our custom system on top of everything
-  )(p)}
-`;
+export const system = (props) => {
+  return css`
+    ${compose(
+      layout,
+      color,
+      space,
+      background,
+      border,
+      grid,
+      position,
+      shadow,
+      typography,
+      flexbox,
+      customSystem, // add our custom system on top of everything
+    )(props)}
+  `;
+};
+
+export type SystemProps<T = undefined> = T extends {}
+  ? System & Omit<Omit<T, 'color'>, 'css'>
+  : System;
