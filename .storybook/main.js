@@ -12,4 +12,3 @@ module.exports = {
     '@storybook/addon-viewport',
   ],
 };
-

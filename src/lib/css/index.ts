@@ -236,7 +236,9 @@ type CssFunctionReturnType = (
 
 type CssFunction = (input?: SystemStyleObject) => CssFunctionReturnType;
 
+// @ts-ignore
 export const css: CssFunction = (args: SystemStyleObject) => (props = {}) => {
+  // @ts-ignore
   const theme = { ...defaultTheme, ...(props?.theme || props) };
   let result = {};
   const obj = typeof args === 'function' ? args(theme) : args;

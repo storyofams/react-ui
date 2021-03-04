@@ -1,4 +1,4 @@
-import { RGBToHex } from './test-utils';
+import { RGBToHex } from '../test-utils';
 
 test('works for both comma, and space separators', () => {
   expect(RGBToHex('rgb(255,255,255)')).toEqual('#ffffff');

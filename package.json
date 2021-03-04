@@ -42,7 +42,7 @@
     "react-lazyload": "3.2.0",
     "react-select": "4.1.0",
     "styled-components": "5.2.1",
-    "styled-system": "^5.1.5"
+    "styled-system": "5.1.5"
   },
   "dependencies": {},
   "devDependencies": {
@@ -140,7 +140,7 @@
     "styled-system": "5.1.5",
     "ts-jest": "26.4.4",
     "ts-loader": "8.0.16",
-    "ts-node": "^9.1.1",
+    "ts-node": "9.1.1",
     "tsconfig-paths-webpack-plugin": "3.3.0",
     "tslib": "2.1.0",
     "ttypescript": "1.5.12",

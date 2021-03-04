@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { system } from '~lib';
@@ -22,17 +23,21 @@ export type ButtonProps<
 > = ButtonOwnProps<AsElementType> &
   Omit<React.ComponentProps<AsElementType>, keyof ButtonOwnProps>;
 
-const StyledCssButton = styled(Box).attrs((props) => ({
-  px: 3,
-  py: 2,
-  borderRadius: 'xs',
-  ...props,
-}))<SystemProps>`
+const StyledButton = styled(Box)<SystemProps>`
   appearance: none;
   display: inline-block;
 
   text-align: center;
   text-decoration: none;
+
+  padding-top: ${({ theme }) => theme.sizes['2']};
+  padding-bottom: ${({ theme }) => theme.sizes['2']};
+
+  padding-right: ${({ theme }) => theme.sizes['3']};
+  padding-left: ${({ theme }) => theme.sizes['3']};
+
+  border: 0;
+  border-radius: ${({ theme }) => theme.radii.xs};
 
   &:hover {
     opacity: 0.74;
@@ -52,7 +57,7 @@ export const Button: <
 
     if (rest?.isLoading) {
       return (
-        <StyledCssButton
+        <StyledButton
           aria-disabled
           data-is-loading
           {...rest}
@@ -60,10 +65,18 @@ export const Button: <
           ref={ref}
         >
           loading
-        </StyledCssButton>
+        </StyledButton>
       );
     }
 
-    return <StyledCssButton {...rest} as={Element} ref={ref} />;
+    if (rest?.to) {
+      return (
+        <Link href={rest.to} passHref>
+          <StyledButton {...rest} as={Element} ref={ref} />
+        </Link>
+      );
+    }
+
+    return <StyledButton {...rest} as={Element} ref={ref} />;
   },
 );

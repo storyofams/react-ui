@@ -1,14 +1,22 @@
 import React from 'react';
 
 import { NextSeo } from 'next-seo';
-import { Button, Icon, Arrow } from '@storyofams/react-ui';
+import { Button, css } from '@storyofams/react-ui';
 
 const Home = () => {
   return (
     <>
-      <NextSeo title="React Helpers" description="React helpers example app" />
-      <Button bg="warning500">click me</Button>
-      <Icon icon={<Arrow />} color="warning500" />
+      <NextSeo
+        title="React UI Example"
+        description="React helpers example app"
+      />
+      <Button
+        css={css({
+          backgroundColor: 'primary500',
+        })}
+      >
+        click me
+      </Button>
     </>
   );
 };

@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
-import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toHaveNoViolations } from 'jest-axe';
 import { ThemeProvider } from 'styled-components';
 
-import theme from '../styles/theme/index';
+import theme from '~styles/theme';
 
 expect.extend(toHaveNoViolations);
 
