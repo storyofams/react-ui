@@ -14,8 +14,7 @@
     "outDir": "dist",
     "declarationDir": "dist",
     "paths": {
-      "~*": ["src/*"],
-      "~test-utils": ["src/lib/test-utils"]
+      "~*": ["src/*"]
     },
     "plugins": [{"transform": "@zerollup/ts-transform-paths"}],
     "resolveJsonModule": true,

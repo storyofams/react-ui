@@ -13828,6 +13828,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-polymorphic-types@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-polymorphic-types/-/react-polymorphic-types-1.0.3.tgz#fa4a33e56d2e3a324e4e4a3b81447791aba35120"
+  integrity sha512-FVLrK9nEvr+gTIPf2lw/AzYOaeWRGbSdFLA+qqQIVNpCpdwqZqHkmhpTaChpZkG+Xub1fPMEuLmXTwNykVxbbQ==
+
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-popper-tooltip/-/react-popper-tooltip-3.1.1.tgz#329569eb7b287008f04fcbddb6370452ad3f9eac"
@@ -16253,7 +16258,7 @@ ts-loader@8.0.16:
     micromatch "^4.0.0"
     semver "^7.3.4"
 
-ts-node@^9.1.1:
+ts-node@9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.1.1.tgz#51a9a450a3e959401bda5f004a72d54b936d376d"
   integrity sha512-hPlt7ZACERQGf03M253ytLY3dHbGNGrAq9qIHWUY9XHYl1z7wYngSr3OQ5xmui8o2AaxsONxIzjafLUiWBo1Fg==

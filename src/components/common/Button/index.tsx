@@ -1,5 +1,15 @@
-import React, { forwardRef, ElementType } from 'react';
+import React, {
+  forwardRef,
+  ElementType,
+  ForwardedRef,
+  ElementRef,
+} from 'react';
 import Link from 'next/link';
+import type {
+  PolymorphicForwardRefExoticComponent,
+  PolymorphicPropsWithoutRef,
+  PolymorphicPropsWithRef,
+} from 'react-polymorphic-types';
 import styled from 'styled-components';
 
 import { variant } from 'styled-system';
@@ -7,91 +17,113 @@ import { system } from '~lib';
 
 import { Box } from '~components/common/Box';
 
-import { BaseProps, SystemProps } from '~types/system';
+import { SystemProps } from '~types/system';
 
 const _defaultElement = 'button';
 
 const variants = {
-  variants: {
-    primary: {
-      backgroundColor: 'primary500',
-    },
-    secondary: {
-      backgroundColor: 'secondary500',
-    },
-    link: {
-      textDecoration: 'underline',
-    },
+  primary: {
+    backgroundColor: 'primary500',
+  },
+  secondary: {
+    backgroundColor: 'secondary500',
+  },
+  link: {
+    textDecoration: 'underline',
   },
 };
 
-/** add custom button properties here */
-export type ButtonOwnProps<AsElementType extends ElementType = ElementType> = {
+type CustomProps = {
   isLoading?: boolean;
-  to?: AsElementType extends typeof _defaultElement ? never : string;
+  to?: string;
   variant?: keyof typeof variants;
-} & BaseProps<AsElementType>;
+} & SystemProps;
 
-export type ButtonProps<
-  AsElementType extends ElementType
-> = ButtonOwnProps<AsElementType> &
-  Omit<React.ComponentProps<AsElementType>, keyof ButtonOwnProps>;
+type Props<
+  T extends ElementType = typeof _defaultElement
+> = PolymorphicPropsWithRef<CustomProps, T>;
 
-const StyledButton = styled(Box)<SystemProps>`
+const StyledButton = styled.button`
   appearance: none;
   display: inline-block;
 
   text-align: center;
   text-decoration: none;
 
-  padding-top: ${({ theme }) => theme.sizes['2']};
-  padding-bottom: ${({ theme }) => theme.sizes['2']};
+  padding-top: ${({ theme }) => theme.space['2']}px;
+  padding-bottom: ${({ theme }) => theme.space['2']}px;
 
-  padding-right: ${({ theme }) => theme.sizes['3']};
-  padding-left: ${({ theme }) => theme.sizes['3']};
+  padding-right: ${({ theme }) => theme.space['3']}px;
+  padding-left: ${({ theme }) => theme.space['3']}px;
 
   border: 0;
   border-radius: ${({ theme }) => theme.radii.xs};
 
   &:hover {
-    opacity: 0.74;
+    opacity: 0.75;
   }
 
-  ${variant(variants)}
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &[data-is-loading] {
+    cursor: wait;
+  }
+
+  ${variant({ variants })}
   ${(props) => props.css}
   ${system}
 `;
 
-export const Button: <
-  AsElementType extends React.ElementType = typeof _defaultElement
+export const Button: PolymorphicForwardRefExoticComponent<
+  CustomProps,
+  typeof _defaultElement
+> = forwardRef(function Button<
+  AsElement extends ElementType = typeof _defaultElement
 >(
-  props: ButtonProps<AsElementType>,
-) => React.ReactElement | null = forwardRef(
-  ({ as, ...rest }: ButtonOwnProps, ref: React.Ref<Element>) => {
-    const Element = as || _defaultElement;
-
-    if (rest?.isLoading) {
-      return (
-        <StyledButton
-          aria-disabled
-          data-is-loading
-          {...rest}
-          as={Element}
-          ref={ref}
+  props: PolymorphicPropsWithoutRef<Props, AsElement>,
+  ref: ForwardedRef<ElementRef<AsElement>>,
+) {
+  if (props?.isLoading) {
+    return (
+      // @ts-ignore
+      <StyledButton
+        {...props}
+        ref={ref}
+        position="relative"
+        aria-disabled
+        data-is-loading
+      >
+        <Box
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
         >
-          loading
-        </StyledButton>
-      );
-    }
+          Loading
+        </Box>
+        <Box display="flex" color="transparent">
+          {props?.children}
+        </Box>
+      </StyledButton>
+    );
+  }
 
-    if (rest?.to) {
-      return (
-        <Link href={rest.to} passHref>
-          <StyledButton {...rest} as={Element} ref={ref} />
-        </Link>
-      );
-    }
+  if (props?.to) {
+    return (
+      <Link href={props.to} passHref>
+        {/* @ts-ignore */}
+        <StyledButton {...props} ref={ref} />
+      </Link>
+    );
+  }
 
-    return <StyledButton {...rest} as={Element} ref={ref} />;
-  },
-);
+  // @ts-ignore
+  return <StyledButton {...props} ref={ref} />;
+});

@@ -1,31 +1,29 @@
-import * as React from 'react';
+import React, { ReactElement, ElementType } from 'react';
+import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
 import styled from 'styled-components';
+
 import { system } from '~lib';
-import { BaseProps, SystemProps } from '~types/system';
+import { SystemProps } from '~types/system';
 
-const defaultTag = 'div';
+const _defaultElement = 'div';
 
-export type BoxOwnProps<
-  AsElementType extends React.ElementType = React.ElementType
-> = BaseProps<AsElementType>;
+type CustomProps = {} & SystemProps;
 
-export type BoxProps<
-  AsElementType extends React.ElementType
-> = BoxOwnProps<AsElementType> &
-  Omit<React.ComponentProps<AsElementType>, keyof BoxOwnProps>;
+type Props<
+  AsElement extends ElementType = typeof _defaultElement
+> = PolymorphicPropsWithoutRef<CustomProps, AsElement>;
 
-const Polymorph = styled.div<SystemProps>`
+const Polymorph = styled.div`
   font-family: inherit;
 
-  /** enable css prop; use this with styled-system */
-  ${(props) => props?.css}
+  ${(props) => props.css}
   ${system}
 `;
 
-export const Box: <AsElementType extends React.ElementType = typeof defaultTag>(
-  props: BoxProps<AsElementType>,
-) => React.ReactElement | null = React.forwardRef(
-  (props: BoxOwnProps, ref: React.Ref<Element>) => (
-    <Polymorph {...props} as={props.as || defaultTag} ref={ref} />
-  ),
-);
+export const Box = <AsElement extends ElementType = typeof _defaultElement>(
+  props: Props<AsElement>,
+): ReactElement | null => {
+  /** @todo figure out why return type is misbehaving */
+  // @ts-ignore
+  return <Polymorph {...props} />;
+};

@@ -1,8 +1,29 @@
-import React, { FC } from 'react';
+import React, { ReactElement, ElementType } from 'react';
+import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
+import styled from 'styled-components';
 
-import { Box } from '~components/common/Box';
-import { HeadingKnownProps } from '~lib/styledSystem';
+import { system } from '~lib';
+import { SystemProps } from '~types/system';
 
-export interface HeadingProps extends HeadingKnownProps {}
+const _defaultElement = 'h1';
 
-export const Heading: FC<HeadingProps> = (props) => <Box {...props} />;
+type CustomProps = {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+} & SystemProps;
+
+type Props<
+  AsElement extends ElementType = typeof _defaultElement
+> = PolymorphicPropsWithoutRef<CustomProps, AsElement>;
+
+const Polymorph = styled.h1`
+  ${(props) => props.css}
+  ${system}
+`;
+
+export const Heading = <AsElement extends ElementType = typeof _defaultElement>(
+  props: Props<AsElement>,
+): ReactElement | null => {
+  /** @todo figure out why return type is misbehaving */
+  // @ts-ignore
+  return <Polymorph {...props} />;
+};
