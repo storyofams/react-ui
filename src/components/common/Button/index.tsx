@@ -1,9 +1,13 @@
-import React, { forwardRef, PropsWithChildren } from 'react';
+import React, { forwardRef } from 'react';
+import styled from 'styled-components';
 
-import { css } from '~lib';
+import { system } from '~lib';
 
 import { Box } from '~components/common/Box';
-import { BaseProps } from '~types/custom-system';
+
+import { BaseProps, SystemProps } from '~types/system';
+
+const _defaultElement = 'button';
 
 /** add custom button properties here */
 export type ButtonOwnProps<
@@ -18,42 +22,37 @@ export type ButtonProps<
 > = ButtonOwnProps<AsElementType> &
   Omit<React.ComponentProps<AsElementType>, keyof ButtonOwnProps>;
 
-const defaultElement = 'button';
+const StyledCssButton = styled(Box).attrs((props) => ({
+  px: 3,
+  py: 2,
+  borderRadius: 'xs',
+  ...props,
+}))<SystemProps>`
+  appearance: none;
+  display: inline-block;
 
-const StyledButton = (props: PropsWithChildren<ButtonOwnProps>) => (
-  <Box
-    appearance="none"
-    display="inline-block"
-    textAlign="center"
-    textDecoration="none"
-    px={3}
-    py={2}
-    border={0}
-    borderRadius="xs"
-    css={css({
-      color: 'primary100',
-      backgroundColor: 'primary100',
-      mx: 1,
+  text-align: center;
+  text-decoration: none;
 
-      '&:hover': {
-        opacity: 0.25,
-      },
-    })}
-    {...props}
-  />
-);
+  &:hover {
+    opacity: 0.74;
+  }
+
+  ${(props) => props.css}
+  ${system}
+`;
 
 export const Button: <
-  AsElementType extends React.ElementType = typeof defaultElement
+  AsElementType extends React.ElementType = typeof _defaultElement
 >(
   props: ButtonProps<AsElementType>,
 ) => React.ReactElement | null = forwardRef(
   ({ as, ...rest }: ButtonOwnProps, ref: React.Ref<Element>) => {
-    const Element = as || defaultElement;
+    const Element = as || _defaultElement;
 
     if (rest?.isLoading) {
       return (
-        <StyledButton
+        <StyledCssButton
           aria-disabled
           data-is-loading
           {...rest}
@@ -61,10 +60,10 @@ export const Button: <
           ref={ref}
         >
           loading
-        </StyledButton>
+        </StyledCssButton>
       );
     }
 
-    return <StyledButton {...rest} as={Element} ref={ref} />;
+    return <StyledCssButton {...rest} as={Element} ref={ref} />;
   },
 );

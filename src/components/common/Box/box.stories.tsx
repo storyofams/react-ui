@@ -1,7 +1,5 @@
-/* eslint-disable mdx/no-unescaped-entities */
 import React from 'react';
 
-import { css } from '~lib';
 import { Box } from '~components/common/Box';
 
 export default {
@@ -11,14 +9,7 @@ export default {
 
 export const Basic = (args) => (
   <Box display="flex" flex={1} width="20px" height="20px" mx={'mobileGutter'}>
-    <Box
-      as="p"
-      fontSize={1.25}
-      css={css({
-        color: 'palegreen',
-        backgroundColor: 'primary100',
-      })}
-    >
+    <Box as="p" fontSize={1.25}>
       I'm a paragraph
     </Box>
     <Box as="button" onClick={console.log} fontSize={1.25}>

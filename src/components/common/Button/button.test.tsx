@@ -57,7 +57,11 @@ test('has loading state when loading prop is passed', () => {
 });
 
 test('has loading state when href prop is passed', () => {
-  const { getByRole } = render(<Button href="/">button</Button>);
+  const { getByRole } = render(
+    <Button as="a" href="/">
+      button
+    </Button>,
+  );
   const element = getByRole('link');
 
   const hasAttribute = element.attributes.getNamedItem('href');

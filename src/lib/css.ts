@@ -3,8 +3,8 @@ import {
   CSSSelectorObject,
   EmotionLabel,
   SystemCssProperties,
-  SystemStyleObject,
   VariantProperty,
+  CSSObject,
 } from '@styled-system/css';
 import { DefaultTheme } from 'styled-components';
 import {
@@ -212,29 +212,32 @@ export const responsive = (styles) => (theme) => {
   return next;
 };
 
+type SystemStyleObject =
+  | SystemCssProperties
+  | SpaceProps<DefaultTheme>
+  | TypographyProps<DefaultTheme>
+  | FlexboxProps<DefaultTheme>
+  | GridProps<DefaultTheme>
+  | LayoutProps<DefaultTheme>
+  | ColorProps<DefaultTheme>
+  | CSSPseudoSelectorProps
+  | CSSSelectorObject
+  | VariantProperty
+  | CustomUseThemeFunction
+  | EmotionLabel
+  | null;
 interface CustomUseThemeFunction {
   (theme: DefaultTheme): SystemStyleObject;
 }
 
-export const css = (
-  args:
-    | SystemCssProperties
-    | SpaceProps<DefaultTheme>
-    | TypographyProps<DefaultTheme>
-    | FlexboxProps<DefaultTheme>
-    | GridProps<DefaultTheme>
-    | LayoutProps<DefaultTheme>
-    | ColorProps<DefaultTheme>
-    | CSSPseudoSelectorProps
-    | CSSSelectorObject
-    | VariantProperty
-    | CustomUseThemeFunction
-    | EmotionLabel
-    | null
-    | undefined,
-) => (props = {}) => {
-  // @ts-ignore
-  const theme = { ...defaultTheme, ...(props.theme || props) };
+type CssFunctionReturnType = (
+  props?: DefaultTheme | { theme: DefaultTheme },
+) => CSSObject;
+
+type CssFunction = (input?: SystemStyleObject) => CssFunctionReturnType;
+
+export const css: CssFunction = (args: SystemStyleObject) => (props = {}) => {
+  const theme = { ...defaultTheme, ...(props?.theme || props) };
   let result = {};
   const obj = typeof args === 'function' ? args(theme) : args;
   const styles = responsive(obj)(theme);

@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+export default {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   transform: {
@@ -16,8 +18,5 @@ module.exports = {
     'src/lib', // a utility folder
     __dirname, // the root directory
   ],
-  setupFilesAfterEnv: [
-    '@testing-library/jest-dom/extend-expect',
-    './jest.setup.js',
-  ],
-};
+  setupFilesAfterEnv: ['./jest.setup.ts'],
+} as Config.InitialOptions;

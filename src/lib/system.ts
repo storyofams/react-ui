@@ -15,7 +15,7 @@ import {
   compose,
   Config,
 } from 'styled-system';
-import { SystemProps } from '~types/custom-system';
+import { SystemProps } from '~types/system';
 
 export const _customSystem: Config = {
   textDecoration: { property: 'textDecoration' },

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { system } from '~lib';
-import { BaseProps, SystemProps } from '~types/custom-system';
+import { BaseProps, SystemProps } from '~types/system';
+
+const defaultTag = 'div';
 
 export type BoxOwnProps<
   AsElementType extends React.ElementType = React.ElementType
@@ -12,8 +14,6 @@ export type BoxProps<
 > = BoxOwnProps<AsElementType> &
   Omit<React.ComponentProps<AsElementType>, keyof BoxOwnProps>;
 
-const defaultElement = 'div';
-
 const Polymorph = styled.div<SystemProps>`
   font-family: inherit;
 
@@ -22,14 +22,10 @@ const Polymorph = styled.div<SystemProps>`
   ${system}
 `;
 
-export const Box: <
-  AsElementType extends React.ElementType = typeof defaultElement
->(
+export const Box: <AsElementType extends React.ElementType = typeof defaultTag>(
   props: BoxProps<AsElementType>,
 ) => React.ReactElement | null = React.forwardRef(
   (props: BoxOwnProps, ref: React.Ref<Element>) => (
-    <>
-      <Polymorph {...props} as={props.as || defaultElement} ref={ref} />
-    </>
+    <Polymorph {...props} as={props.as || defaultTag} ref={ref} />
   ),
 );
