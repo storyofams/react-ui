@@ -17,7 +17,13 @@ export default {
 };
 
 export const Primary = (args) => (
-  <Button {...args} variant={`${args.variant}.${args.size}`}>
+  <Button
+    as="button"
+    type="button"
+    {...args}
+    backgroundColor="error100"
+    variant={`${args.variant}.${args.size}`}
+  >
     Lorem Ipsum
   </Button>
 );

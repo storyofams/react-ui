@@ -1,7 +1,8 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, ElementType } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { variant } from 'styled-system';
 import { system } from '~lib';
 
 import { Box } from '~components/common/Box';
@@ -10,16 +11,29 @@ import { BaseProps, SystemProps } from '~types/system';
 
 const _defaultElement = 'button';
 
+const variants = {
+  variants: {
+    primary: {
+      backgroundColor: 'primary500',
+    },
+    secondary: {
+      backgroundColor: 'secondary500',
+    },
+    link: {
+      textDecoration: 'underline',
+    },
+  },
+};
+
 /** add custom button properties here */
-export type ButtonOwnProps<
-  AsElementType extends React.ElementType = React.ElementType
-> = {
+export type ButtonOwnProps<AsElementType extends ElementType = ElementType> = {
   isLoading?: boolean;
-  to?: string;
+  to?: AsElementType extends typeof _defaultElement ? never : string;
+  variant?: keyof typeof variants;
 } & BaseProps<AsElementType>;
 
 export type ButtonProps<
-  AsElementType extends React.ElementType
+  AsElementType extends ElementType
 > = ButtonOwnProps<AsElementType> &
   Omit<React.ComponentProps<AsElementType>, keyof ButtonOwnProps>;
 
@@ -43,6 +57,7 @@ const StyledButton = styled(Box)<SystemProps>`
     opacity: 0.74;
   }
 
+  ${variant(variants)}
   ${(props) => props.css}
   ${system}
 `;

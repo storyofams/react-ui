@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Stack, Text } from '~components';
+import { Box, Text } from '~components';
 
 export default {
   component: Text,
@@ -36,7 +36,7 @@ const texts = [
 ];
 
 export const Basic = (args) => (
-  <Stack space={0} maxWidth="400px" sx={{ flexDirection: 'column' }}>
+  <Box display="flex" maxWidth="400px" flexDirection="column">
     {texts.map(({ key, fontWeight }) => (
       <Text
         variant={key}
@@ -47,5 +47,5 @@ export const Basic = (args) => (
         {args[fontWeight ? `${key}Strong` : key]}
       </Text>
     ))}
-  </Stack>
+  </Box>
 );
