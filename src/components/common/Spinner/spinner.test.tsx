@@ -2,38 +2,25 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { Spinner } from '~components';
-import { render } from '~lib/test-utils';
+import { render, screen } from '~lib/test-utils';
 
 test('[Spinner] should not fail accessibility testing', async () => {
   const { container } = render(<Spinner />);
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
+});
+
+test('it renders without crashing', () => {
+  render(<Spinner data-testid="spinner" />);
+
+  expect(screen.getByTestId('spinner')).toBeInTheDocument();
 });
 
 test('handles props', async () => {
-  const { getByTestId } = render(<Spinner data-testid="spinner" />);
-  const element = await getByTestId('spinner');
+  render(<Spinner data-testid="spinner" color="transparent" size={80} />);
+  const element = screen.getByTestId('spinner');
   const spinnerContainer: Record<string, any> = element.firstChild;
 
-  const hasColorAttribute = spinnerContainer.attributes.getNamedItem('color');
-  expect(hasColorAttribute).toBeTruthy();
-  expect(hasColorAttribute.value).toBe('');
-
-  const hasSizeAttribute = spinnerContainer.attributes.getNamedItem('size');
-  expect(hasSizeAttribute).toBeTruthy();
-  expect(hasSizeAttribute.value).toBe('80');
-});
-
-test('handles theme color', async () => {
-  const color = 'white';
-  const { getByTestId } = render(
-    <Spinner data-testid="spinner" color={color} />,
-  );
-  const element = await getByTestId('spinner');
-  const spinnerContainer: Record<string, any> = element.firstChild;
-
-  const hasColorAttribute = spinnerContainer.attributes.getNamedItem('color');
-  expect(hasColorAttribute).toBeTruthy();
-  expect(hasColorAttribute.value).toBe(color);
+  expect(spinnerContainer).toHaveAttribute('color', 'transparent');
+  expect(spinnerContainer).toHaveAttribute('size', '80');
 });

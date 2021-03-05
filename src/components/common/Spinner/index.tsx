@@ -1,6 +1,7 @@
 import React from 'react';
-import { Flex } from 'rebass/styled-components';
 import styled, { keyframes } from 'styled-components';
+
+import { Flex } from '~components/common/Flex';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -36,7 +37,7 @@ const Container = styled.div<{ color?: string; size: number }>`
   }
 `;
 
-export const Spinner = ({ color = '', size = 80, ...props }) => {
+export const Spinner = ({ color = '', size = 24, ...props }) => {
   return (
     <Flex variant="center" {...props}>
       <Container color={color} size={size}>

@@ -11,12 +11,11 @@ import type {
   PolymorphicPropsWithRef,
 } from 'react-polymorphic-types';
 import styled from 'styled-components';
-
 import { variant } from 'styled-system';
+
 import { system } from '~lib';
-
 import { Box } from '~components/common/Box';
-
+import { Spinner } from '~components/common/Spinner';
 import { SystemProps } from '~types/system';
 
 const _defaultElement = 'button';
@@ -106,7 +105,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
           left="50%"
           transform="translate(-50%, -50%)"
         >
-          Loading
+          <Spinner />
         </Box>
         <Box display="flex" color="transparent">
           {props?.children}
