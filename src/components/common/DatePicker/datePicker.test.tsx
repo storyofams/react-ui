@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { DatePicker } from '~components';
-import { render } from '~lib';
+import { render } from '~lib/test-utils';
 
 jest.mock('../Icon/library/calendar.svg', () => 'div');
 

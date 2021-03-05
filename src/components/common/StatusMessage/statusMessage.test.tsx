@@ -1,16 +1,14 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 
+import { StatusMessage } from '~components';
 import { render, RGBToHex } from '~lib/test-utils';
 import theme from '~styles/theme';
 
-import { StatusMessage } from '.';
-
 test('[StatusMessage] should not fail accessibility testing', async () => {
   const { container } = render(<StatusMessage status="success" />);
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test('receives change events', async () => {

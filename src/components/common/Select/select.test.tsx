@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import { resetId } from 'react-id-generator';
 
 import { Select } from '~components';
-import { render } from '~lib';
+import { render } from '~lib/test-utils';
 
 const id = 'testid';
 const label = 'label';

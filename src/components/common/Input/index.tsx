@@ -12,6 +12,7 @@ import {
   InputWrapper,
   InputWrapperProps,
 } from '~components/common/InputWrapper';
+import { css } from '~lib/css';
 import { Icon } from '../Icon';
 
 export interface InputProps extends RebassInputProps, InputWrapperProps {
@@ -56,7 +57,7 @@ export const Input: FC<InputProps> = forwardRef(
             <Icon
               color="grey800"
               icon={icon}
-              sx={{
+              css={css({
                 position: 'absolute',
                 pointerEvents: 'none',
                 right: 1.5,
@@ -65,7 +66,7 @@ export const Input: FC<InputProps> = forwardRef(
                 display: 'flex',
                 alignItems: 'center',
                 opacity: disabled ? 0.6 : 1,
-              }}
+              })}
             />
           )}
         </Box>

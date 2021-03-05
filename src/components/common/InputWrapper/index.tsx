@@ -6,8 +6,9 @@ import { useId } from 'react-id-generator';
 import { Box, BoxProps } from 'rebass/styled-components';
 
 import { status, StatusMessage } from '~components/common/StatusMessage';
+import { SystemProps } from '~types/system';
 
-export interface InputWrapperProps extends BoxProps {
+export interface InputWrapperProps extends SystemProps {
   statusMessage?: string;
   /** please add a label for accesibility purposes */
   label?: string;

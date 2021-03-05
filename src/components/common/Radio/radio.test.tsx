@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { axe } from 'jest-axe';
 
 import { Radio, RadioGroup } from '~components';
-import { fireEvent, render } from '~lib';
+import { fireEvent, render } from '~lib/test-utils';
 
 test('[Radio] should not fail accessibility testing', async () => {
   const { container } = render(<Radio value="test">label</Radio>);
