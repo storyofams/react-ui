@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { Accordion } from '~components';
-import { fireEvent, render, screen } from '~lib';
+import { fireEvent, render, screen } from '~lib/test-utils';
 
 jest.mock('../Icon/library/chevron-bottom.svg', () => 'div');
 

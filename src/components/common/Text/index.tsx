@@ -1,11 +1,30 @@
 import React, { ReactElement, ElementType } from 'react';
 import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
 import styled from 'styled-components';
+import { variant } from 'styled-system';
 
 import { system } from '~lib';
 import { SystemProps } from '~types/system';
 
 const _defaultElement = 'p';
+
+const variants = {
+  plg: {
+    fontSize: [1.75, 2.5],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  pmd: {
+    fontSize: [1.75, 2],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  psm: {
+    fontSize: [1.25, 1.5],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+};
 
 type CustomProps = {
   as?:
@@ -20,6 +39,7 @@ type CustomProps = {
     | 'h3'
     | 'h4'
     | 'h5';
+  variant?: keyof typeof variants;
 } & SystemProps;
 
 type Props<
@@ -27,6 +47,7 @@ type Props<
 > = PolymorphicPropsWithoutRef<CustomProps, AsElement>;
 
 const Polymorph = styled.p`
+  ${variant({ variants })}
   ${(props) => props.css}
   ${system}
 `;

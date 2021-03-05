@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import { Box } from '~components/common/Box';
-
 import { SystemProps } from '~types/system';
 
 const variants = {

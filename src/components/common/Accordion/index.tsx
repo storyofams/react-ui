@@ -1,10 +1,14 @@
 import React, { FC, useState } from 'react';
-import { Box, BoxProps, Flex } from 'rebass/styled-components';
 
-import { Icon, Text } from '~components';
-import { ChevronDown } from '../Icon/library';
+import { Box } from '~components/common/Box';
+import { Flex } from '~components/common/Flex';
+import { Icon } from '~components/common/Icon';
+import { ChevronDown } from '~components/common/Icon/library';
+import { Text } from '~components/common/Text';
+import { css } from '~lib/css';
+import { SystemProps } from '~types/system';
 
-export interface AccordionProps extends BoxProps {
+export interface AccordionProps extends SystemProps {
   title: string;
 }
 
@@ -17,20 +21,21 @@ export const Accordion: FC<AccordionProps> = ({
 
   return (
     <Box
-      sx={{
+      css={css({
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
         borderBottomColor: 'grey600',
-      }}
+      })}
     >
       <Flex
         justifyContent="space-between"
         alignItems="flex-start"
+        /** @ts-ignore this is an indication of whats wrong with the return type of the polymorph */
         onClick={() => setOpen(!open)}
         pb={1}
-        sx={{
+        css={css({
           cursor: 'pointer',
-        }}
+        })}
         {...props}
       >
         <Text variant="pmd" color="grey700" fontWeight="bold">
@@ -38,7 +43,7 @@ export const Accordion: FC<AccordionProps> = ({
         </Text>
         <Icon
           size={24}
-          sx={{
+          css={{
             transform: open ? 'rotate(180deg)' : 'none',
             transition: 'transform 0.2s ease-in-out',
             display: 'flex',
@@ -50,7 +55,7 @@ export const Accordion: FC<AccordionProps> = ({
       </Flex>
 
       <Box
-        sx={{
+        css={{
           maxHeight: open ? '500px' : 0,
           transition: 'max-height ease 0.5s',
         }}
@@ -61,10 +66,10 @@ export const Accordion: FC<AccordionProps> = ({
             color="grey500"
             pt={1.5}
             pb={2.5}
-            sx={{
+            css={css({
               transition: 'opacity ease 0.25s',
               opacity: open ? 1 : 0,
-            }}
+            })}
           >
             {children}
           </Text>

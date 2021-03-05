@@ -1,3 +1,4 @@
+export * from './common/Accordion';
 export * from './common/Box';
 export * from './common/Button';
 export * from './common/Flex';
