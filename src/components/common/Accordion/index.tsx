@@ -50,7 +50,7 @@ export const Accordion: FC<AccordionProps> = ({
             justifyContent: 'center',
             alignItems: 'center',
           }}
-          icon={<ChevronDown />}
+          icon={ChevronDown}
         />
       </Flex>
 
