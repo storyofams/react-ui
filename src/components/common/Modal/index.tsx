@@ -114,7 +114,7 @@ export const ModalBase: FC<ModalProps & BoxProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 1 }}
             >
-              <CloseButton onClick={close}>
+              <CloseButton onClick={close} aria-label="Close modal">
                 <Icon icon={<Close />} size={12} color="grey600" />
               </CloseButton>
 
@@ -133,7 +133,6 @@ export const Modal: FC<ModalProps & BoxProps> = ({
   footer,
   ...props
 }) => {
-  console.log(typeof header, typeof footer, props);
   return (
     <ModalBase {...omit(props)}>
       {typeof header === 'string' ? (
