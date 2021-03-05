@@ -6,6 +6,7 @@ const ChevronDown = require('./chevron-bottom.svg');
 const ChevronLeft = require('./chevron-left.svg');
 const ChevronRight = require('./chevron-right.svg');
 const ChevronUp = require('./chevron-top.svg');
+const Close = require('./close.svg');
 const Facebook = require('./facebook.svg');
 const Gift = require('./gift.svg');
 const Heart = require('./heart.svg');
@@ -29,6 +30,7 @@ export {
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  Close,
   Facebook,
   Gift,
   Heart,
