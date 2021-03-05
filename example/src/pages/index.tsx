@@ -11,13 +11,12 @@ const Home = () => {
         description="React helpers example app"
       />
 
-      <Box as="div" backgroundColor="primary400" css={css({ px: 4 })}>
+      <Box backgroundColor="primary400" css={css({ px: 4 })}>
         <Heading fontSize="heading">Paragraph</Heading>
         <Text fontSize={4}>Paragraph</Text>
         <Button
-          as="button"
-          variant="primary"
           isLoading
+          variant="primary"
           backgroundColor="primary400"
           css={css({ backgroundColor: 'primary500' })}
         >
