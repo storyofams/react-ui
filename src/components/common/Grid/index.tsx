@@ -1,16 +1,19 @@
 import React, { FC } from 'react';
-import { Box, BoxProps, Flex } from 'rebass/styled-components';
 import { ResponsiveValue } from 'styled-system';
 
+import { Box } from '~components/common/Box';
+import { Flex } from '~components/common/Flex';
+import { css } from '~lib/css';
 import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
+import { SystemProps } from '~types/system';
 
-export interface GridProps extends BoxProps {
+export interface CustomProps extends SystemProps {
   rowSize: ResponsiveValue<number>;
   rowGap?: ResponsiveValue<number>;
   columnGap?: ResponsiveValue<number>;
 }
 
-export const Grid: FC<GridProps> = ({
+export const Grid: FC<CustomProps> = ({
   rowSize,
   rowGap = 0,
   columnGap = 0,
@@ -23,7 +26,7 @@ export const Grid: FC<GridProps> = ({
         flexWrap="wrap"
         ml={modifyResponsiveValue(columnGap, (val) => -val)}
         mt={modifyResponsiveValue(rowGap, (val) => -val)}
-        sx={{
+        css={css({
           '& > *': {
             flex: modifyResponsiveValue(
               rowSize,
@@ -32,7 +35,7 @@ export const Grid: FC<GridProps> = ({
             pl: columnGap,
             pt: rowGap,
           },
-        }}
+        })}
       >
         {children}
       </Flex>

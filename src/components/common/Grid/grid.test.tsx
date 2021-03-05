@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import 'jest-styled-components';
 
 import { Grid } from '~components';
-import { render } from '~lib';
+import { render } from '~lib/test-utils';
 import theme from '~styles/theme';
 
 test('[Grid] should not fail accessibility testing', async () => {

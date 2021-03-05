@@ -12,7 +12,7 @@ const variants = {
 };
 
 type CustomProps = {
-  variant: keyof typeof variants;
+  variant?: keyof typeof variants;
 } & SystemProps;
 
 export const Flex: FC<CustomProps> = ({ ...rest }) => {
