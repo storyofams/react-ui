@@ -7,9 +7,8 @@ import { render, screen, userEvent } from '~lib/test-utils';
 
 test('[Icon] should not fail accessibility testing', async () => {
   const { container } = render(<Icon icon={createElement('div')} />);
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test('renders without crashing', async () => {

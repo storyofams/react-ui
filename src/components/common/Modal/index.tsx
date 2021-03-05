@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import { Icon } from '~components';
 import { Close } from '~components/common/Icon/library';
 
-const MotionOverlay = motion.custom(ReachDialogOverlay);
-const MotionDialog = motion.custom(ReachDialogContent);
+const MotionOverlay = motion(ReachDialogOverlay);
+const MotionDialog = motion(ReachDialogContent);
 
 const DialogOverlay = styled(MotionOverlay)`
   position: fixed;
