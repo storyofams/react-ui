@@ -3,16 +3,15 @@ import { axe } from 'jest-axe';
 import { resetId } from 'react-id-generator';
 
 import { InputWrapper } from '~components';
-import { render } from '~lib';
+import { render } from '~lib/test-utils';
 
 const id = 'testid';
 const label = 'label-input-wrapper';
 
 test('[InputWrapper] should not fail accessibility testing', async () => {
   const { container } = render(<InputWrapper />);
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test('handles the id prop when an id has been provided', async () => {

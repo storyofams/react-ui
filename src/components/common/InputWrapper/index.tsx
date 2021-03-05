@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
-import { Label } from '@rebass/forms/styled-components';
 import { pick } from '@styled-system/props';
 import { useId } from 'react-id-generator';
-import { Box, BoxProps } from 'rebass/styled-components';
 
+import { Box } from '~components/common/Box';
 import { status, StatusMessage } from '~components/common/StatusMessage';
+import { Text } from '~components/common/Text';
 import { SystemProps } from '~types/system';
 
 export interface InputWrapperProps extends SystemProps {
@@ -31,9 +31,9 @@ export const InputWrapper: FC<InputWrapperProps & { id?: string }> = ({
   return (
     <Box {...pick(props)}>
       {label && (
-        <Label mb={1} htmlFor={id}>
+        <Text as="label" mb={1} htmlFor={id}>
           {label}
-        </Label>
+        </Text>
       )}
 
       {children}

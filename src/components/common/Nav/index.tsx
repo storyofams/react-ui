@@ -22,7 +22,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
       <Icon icon={<House />} size={16} mr={0.5} />
     </Button>
     {links.map(({ title, href }, index) => (
-      <>
+      <div key={`${title}-${index}`}>
         <Icon icon={<ChevronRight />} color="grey400" size={16} mr={0.5} />
         {index === links.length - 1 ? (
           <Text color="grey400" mr={1} fontSize={1.5} aria-current="step">
@@ -40,7 +40,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
             {title}
           </Button>
         )}
-      </>
+      </div>
     ))}
   </Box>
 );

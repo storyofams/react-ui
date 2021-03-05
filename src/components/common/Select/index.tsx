@@ -10,7 +10,7 @@ import {
 
 import StyledSelect from './components/StyledSelect';
 
-export const Select = forwardRef<Props, InputWrapperProps>(
+export const Select = forwardRef<Props, InputWrapperProps & { id?: string }>(
   (
     {
       status = false,

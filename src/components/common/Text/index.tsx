@@ -27,18 +27,7 @@ const variants = {
 };
 
 type CustomProps = {
-  as?:
-    | 'p'
-    | 'span'
-    | 'blockquote'
-    | 'strong'
-    | 'em'
-    | 'pre'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5';
+  as?: 'p' | 'span' | 'blockquote' | 'strong' | 'em' | 'pre' | 'label';
   variant?: keyof typeof variants;
 } & SystemProps;
 

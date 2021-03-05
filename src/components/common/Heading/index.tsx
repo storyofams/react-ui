@@ -37,7 +37,7 @@ const variants = {
 };
 
 type CustomProps = {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   variant?: keyof typeof variants;
 } & SystemProps;
 
