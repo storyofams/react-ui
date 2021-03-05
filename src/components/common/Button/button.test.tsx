@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { axe } from 'jest-axe';
 
 import { Button } from '~components';
-import { fireEvent, render, screen } from '~lib/test-utils';
+import { userEvent, render, screen } from '~lib/test-utils';
 
 test('[Button] should not fail accessibility testing', async () => {
   const { container } = render(<Button>Click</Button>);
@@ -14,7 +14,7 @@ test('registers event handlers', () => {
   const clickHandler = jest.fn();
   render(<Button onClick={clickHandler}>button</Button>);
 
-  fireEvent.click(screen.getByRole('button', { name: /button/i }));
+  userEvent.click(screen.getByRole('button', { name: /button/i }));
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
