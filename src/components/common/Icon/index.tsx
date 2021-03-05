@@ -1,40 +1,59 @@
-import React, { FC, forwardRef, ReactElement } from 'react';
-import { Box, BoxProps } from 'rebass/styled-components';
+import React, {
+  createElement,
+  ReactElement,
+  forwardRef,
+  ElementType,
+  ForwardedRef,
+  ElementRef,
+} from 'react';
+import type {
+  PolymorphicForwardRefExoticComponent,
+  PolymorphicPropsWithoutRef,
+  PolymorphicPropsWithRef,
+} from 'react-polymorphic-types';
+import styled from 'styled-components';
 
-const styles = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  lineHeight: 1,
-  svg: { verticalAlign: 'middle' },
-};
+import { system } from '~lib';
+import { SystemProps } from '~types/system';
 
-export interface IconProps extends BoxProps {
+const _defaultElement = 'div';
+
+type CustomProps = {
   icon: ReactElement;
-  iconAs?: string;
-  href?: string;
   className?: string;
-}
+} & SystemProps;
 
-export const Icon: FC<IconProps> = forwardRef(
-  ({ icon, iconAs, ...props }, ref) => {
-    function getAs(): any {
-      switch (true) {
-        case iconAs !== undefined:
-          return iconAs;
-        case props.href !== undefined:
-          return 'a';
-        case props.onClick !== undefined:
-          return 'button';
-        default:
-          return 'div';
-      }
-    }
+type Props<
+  T extends ElementType = typeof _defaultElement
+> = PolymorphicPropsWithRef<CustomProps, T>;
 
-    return (
-      <Box ref={ref} aria-hidden as={getAs()} sx={styles} {...props}>
-        {icon}
-      </Box>
-    );
-  },
-);
+const StyledIcon = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  svg: {
+    vertical-align: middle;
+  }
+
+  ${(props) => props.css}
+  ${system}
+`;
+
+export const Icon: PolymorphicForwardRefExoticComponent<
+  CustomProps,
+  typeof _defaultElement
+> = forwardRef(function Icon<
+  AsElement extends ElementType = typeof _defaultElement
+>(
+  { icon, ...props }: PolymorphicPropsWithoutRef<Props, AsElement>,
+  ref: ForwardedRef<ElementRef<AsElement>>,
+) {
+  return (
+    // @ts-ignore
+    <StyledIcon {...props} ref={ref}>
+      {typeof icon === 'function' ? createElement(icon) : icon}
+    </StyledIcon>
+  );
+});

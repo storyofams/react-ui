@@ -34,7 +34,7 @@ const variants = {
 
 type CustomProps = {
   isLoading?: boolean;
-  to?: string;
+  to?: string | undefined;
   variant?: keyof typeof variants;
 } & SystemProps;
 

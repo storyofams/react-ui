@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Flex } from '~components';
-import theme from '~styles/theme';
 
 export default {
   component: Flex,
