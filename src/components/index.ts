@@ -8,3 +8,4 @@ export * from './common/Icon';
 export * from './common/Spinner';
 export * from './common/Stack';
 export * from './common/Text';
+export * from './common/Toggle';

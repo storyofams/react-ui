@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react';
-import { Box, BoxProps } from 'rebass/styled-components';
+import { Box } from '~components/common/Box';
+import { css } from '~lib/css';
+import { SystemProps } from '~types/system';
 
 const styles = {
   position: 'relative',
@@ -60,7 +62,7 @@ const styles = {
   },
 };
 
-export interface ToggleProps extends Omit<BoxProps, 'onChange'> {
+export interface ToggleProps extends Omit<SystemProps, 'onChange'> {
   checked?: boolean;
   disabled?: boolean;
   onChange?(isToggled: boolean): void;
@@ -69,7 +71,7 @@ export interface ToggleProps extends Omit<BoxProps, 'onChange'> {
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ checked, disabled, onChange, ...props }, ref) => {
     return (
-      <Box sx={styles} as="label" {...props}>
+      <Box css={css(styles)} as="label" {...props}>
         <input
           ref={ref}
           onChange={(e) => onChange(e.target.checked)}
