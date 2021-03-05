@@ -25,7 +25,6 @@ export const parameters = {
   },
 };
 
-
 Object.defineProperty(nextImage, 'default', {
   configurable: true,
   value: (props) => {

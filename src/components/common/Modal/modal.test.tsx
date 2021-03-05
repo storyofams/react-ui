@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 
-import { fireEvent, render, screen } from '~lib';
+import { fireEvent, render, screen } from '~lib/test-utils';
 
 import { Modal } from '.';
 

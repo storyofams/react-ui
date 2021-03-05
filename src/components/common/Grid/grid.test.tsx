@@ -3,22 +3,19 @@ import { axe } from 'jest-axe';
 import 'jest-styled-components';
 
 import { Grid } from '~components';
-import { render } from '~lib/test-utils';
+import { render, screen } from '~lib/test-utils';
 import theme from '~styles/theme';
 
 test('[Grid] should not fail accessibility testing', async () => {
   const { container } = render(<Grid rowSize={1} />);
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test('handles the rowGap prop when not provided', async () => {
-  const { getByTestId } = render(<Grid data-testid="grid" rowSize={1} />);
+  render(<Grid data-testid="grid" rowSize={1} />);
 
-  const element = getByTestId('grid').firstChild;
-
-  expect(element).toHaveStyleRule('margin-top', '0');
+  expect(screen.getByTestId('grid').firstChild).toHaveStyle('margin-top: 0');
 });
 
 test('handles the rowGap prop when provided', async () => {
@@ -26,34 +23,28 @@ test('handles the rowGap prop when provided', async () => {
     <Grid data-testid="grid" rowSize={1} rowGap={1} />,
   );
 
-  const element = getByTestId('grid').firstChild;
-
-  expect(element).toHaveStyleRule('margin-top', `-${theme.space[1]}px`);
+  expect(getByTestId('grid').firstChild).toHaveStyle(
+    `margin-top: -${theme.space[1]}px`,
+  );
 });
 
 test('handles the columnGap prop when not provided', async () => {
-  const { getByTestId } = render(<Grid data-testid="grid" rowSize={1} />);
+  render(<Grid data-testid="grid" rowSize={1} />);
 
-  const element = getByTestId('grid').firstChild;
-
-  expect(element).toHaveStyleRule('margin-left', '0');
+  expect(screen.getByTestId('grid').firstChild).toHaveStyle('margin-left: 0');
 });
 
 test('handles the columnGap prop when provided', async () => {
-  const { getByTestId } = render(
-    <Grid data-testid="grid" rowSize={1} columnGap={1} />,
+  render(<Grid data-testid="grid" rowSize={1} columnGap={1} />);
+
+  expect(screen.getByTestId('grid').firstChild).toHaveStyle(
+    `margin-left: -${theme.space[1]}px`,
   );
-
-  const element = getByTestId('grid').firstChild;
-
-  expect(element).toHaveStyleRule('margin-left', `-${theme.space[1]}px`);
 });
 
 test('handles the rowSize prop', async () => {
-  const { getByTestId } = render(<Grid data-testid="grid" rowSize={1} />);
+  render(<Grid data-testid="grid" rowSize={1} />);
 
-  const element = getByTestId('grid').firstChild;
-
-  expect(element).toHaveStyleRule('margin-left', '0');
-  expect(element).toHaveStyleRule('margin-top', '0');
+  expect(screen.getByTestId('grid').firstChild).toHaveStyle('margin-left: 0');
+  expect(screen.getByTestId('grid').firstChild).toHaveStyle('margin-top: 0');
 });
