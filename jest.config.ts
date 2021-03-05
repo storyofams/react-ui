@@ -18,4 +18,5 @@ export default {
     __dirname, // the root directory
   ],
   setupFilesAfterEnv: ['./jest.setup.ts'],
+  coverageDirectory: './coverage',
 } as Config.InitialOptions;
