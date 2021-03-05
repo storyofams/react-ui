@@ -22,9 +22,8 @@ test('[CategoryLink] should not fail accessibility testing', async () => {
   const { container } = render(
     <CategoryLink href="/">Category link</CategoryLink>,
   );
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 test('[MenuLink] should not fail accessibility testing', async () => {
   const { container } = render(<MenuLink href="/">MenuLink</MenuLink>);

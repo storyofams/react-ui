@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { Tag } from '~components';
-import { fireEvent, render, RGBToHex } from '~lib/test-utils';
+import { fireEvent, render, screen, RGBToHex } from '~lib/test-utils';
 import theme from '~styles/theme';
 
 test('[Tag] should not fail accessibility testing', async () => {
@@ -13,10 +13,10 @@ test('[Tag] should not fail accessibility testing', async () => {
 
 test('receives change events', async () => {
   const onChange = jest.fn();
-  const { getByTestId } = render(
-    <Tag data-testid="tag" checked={false} onChange={onChange} />,
-  );
-  const tag: any = getByTestId('tag');
+
+  render(<Tag data-testid="tag" checked={false} onChange={onChange} />);
+
+  const tag: any = screen.getByTestId('tag');
 
   expect(tag.checked).toBeFalsy();
 
@@ -28,12 +28,12 @@ test('receives change events', async () => {
 
 test('handles styling for unchecked', async () => {
   const onChange = jest.fn();
-  const { getByTestId } = render(
-    <Tag data-testid="tag" checked={false} onChange={onChange} />,
-  );
-  const tag: any = getByTestId('tag');
 
-  let style = window.getComputedStyle(tag);
+  render(<Tag data-testid="tag" checked={false} onChange={onChange} />);
+
+  const tag: any = screen.getByTestId('tag');
+
+  const style = window.getComputedStyle(tag);
   const colorUnchecked = RGBToHex(style.color);
   const backgroundColorUnchecked = RGBToHex(style.backgroundColor);
 
@@ -44,10 +44,10 @@ test('handles styling for unchecked', async () => {
 
 test('handles styling for checked', async () => {
   const onChange = jest.fn();
-  const { getByTestId } = render(
-    <Tag data-testid="tag" checked={true} onChange={onChange} />,
-  );
-  const tag: any = getByTestId('tag');
+
+  render(<Tag data-testid="tag" checked={true} onChange={onChange} />);
+
+  const tag: any = screen.getByTestId('tag');
 
   const style = window.getComputedStyle(tag);
   const colorChecked = RGBToHex(style.color);
