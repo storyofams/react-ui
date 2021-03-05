@@ -1,12 +1,8 @@
-import React, { ReactElement, ElementType } from 'react';
-import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
-import styled from 'styled-components';
-import { variant } from 'styled-system';
+import React, { FC } from 'react';
 
-import { system } from '~lib';
+import { Box } from '~components/common/Box';
+
 import { SystemProps } from '~types/system';
-
-const _defaultElement = 'div';
 
 const variants = {
   center: {
@@ -19,24 +15,6 @@ type CustomProps = {
   variant: keyof typeof variants;
 } & SystemProps;
 
-type Props<
-  AsElement extends ElementType = typeof _defaultElement
-> = PolymorphicPropsWithoutRef<CustomProps, AsElement>;
-
-const Polymorph = styled.div`
-  font-family: inherit;
-
-  display: flex;
-
-  ${variant({ variants })}
-  ${(props) => props.css}
-  ${system}
-`;
-
-export const Flex = <AsElement extends ElementType = typeof _defaultElement>(
-  props: Props<AsElement>,
-): ReactElement | null => {
-  /** @todo figure out why return type is misbehaving */
-  // @ts-ignore
-  return <Polymorph {...props} />;
+export const Flex: FC<CustomProps> = ({ ...rest }) => {
+  return <Box {...rest} display="flex" />;
 };

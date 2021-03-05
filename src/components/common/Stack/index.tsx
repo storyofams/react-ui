@@ -1,23 +1,24 @@
 import React, { FC, CSSProperties } from 'react';
-import { Box, BoxProps } from 'rebass/styled-components';
 import { ResponsiveValue } from 'styled-system';
 
+import { Box } from '~components/common/Box';
+import { css } from '~lib/css';
 import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
+import { SystemProps } from '~types/system';
 
 type CSS = CSSProperties;
 
-export interface StackProps extends BoxProps {
+type CustomProps = SystemProps & {
   space: ResponsiveValue<CSS['margin']>;
   role?: string;
   flexDirection?: ResponsiveValue<CSS['flexDirection']>;
-}
+};
 
-export const Stack: FC<StackProps> = ({
+export const Stack: FC<CustomProps> = ({
   space,
   flexDirection,
   role,
-  sx,
-  ...props
+  ...rest
 }) => {
   const commonDirectionProp = flexDirection || 'row';
 
@@ -37,14 +38,13 @@ export const Stack: FC<StackProps> = ({
 
   return (
     <Box
+      {...rest}
       display="flex"
-      sx={{
-        '&& > * + *': spacingProp,
-        flexDirection: commonDirectionProp,
-        ...sx,
-      }}
+      flexDirection={commonDirectionProp}
       role={role}
-      {...props}
+      css={css({
+        '&& > * + *': spacingProp,
+      })}
     />
   );
 };

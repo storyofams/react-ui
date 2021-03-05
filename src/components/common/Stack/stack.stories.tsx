@@ -8,14 +8,12 @@ export default {
   component: Stack,
   title: 'components/Stack',
   args: {
-    sx: {
-      borderRadius: 'xs',
-    },
+    borderRadius: 'xs',
     size: '40px',
-    bg: 'primary500',
+    backgroundColor: 'primary400',
   },
   argTypes: {
-    bg: { control: { type: 'select', options: theme.colors } },
+    backgroundColor: { control: { type: 'select', options: theme.colors } },
     borderRadius: { control: { type: 'select', options: theme.radii } },
   },
 };

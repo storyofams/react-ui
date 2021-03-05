@@ -47,12 +47,12 @@ export const Icon: PolymorphicForwardRefExoticComponent<
 > = forwardRef(function Icon<
   AsElement extends ElementType = typeof _defaultElement
 >(
-  { icon, ...props }: PolymorphicPropsWithoutRef<Props, AsElement>,
+  { icon, ...rest }: PolymorphicPropsWithoutRef<Props, AsElement>,
   ref: ForwardedRef<ElementRef<AsElement>>,
 ) {
   return (
     // @ts-ignore
-    <StyledIcon {...props} ref={ref}>
+    <StyledIcon {...rest} ref={ref}>
       {typeof icon === 'function' ? createElement(icon) : icon}
     </StyledIcon>
   );
