@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 
-import { Button, Box, Icon, Text } from '~components';
+import { Box } from '~components/common/Box';
+import { Button } from '~components/common/Button';
+import { Icon } from '~components/common/Icon';
 import { ChevronRight, House } from '~components/common/Icon/library';
+import { Text } from '~components/common/Text';
 import { css } from '~lib/css';
 import { SystemProps } from '~types/system';
 

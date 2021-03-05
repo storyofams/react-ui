@@ -4,7 +4,7 @@ import { Box } from '~components/common/Box';
 
 export default {
   component: Box,
-  title: 'components/box',
+  title: 'components/Box',
 };
 
 export const Basic = (args) => (

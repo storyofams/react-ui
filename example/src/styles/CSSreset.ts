@@ -48,6 +48,20 @@ const themeStyles = ({ theme }: { theme: DefaultTheme }) => css`
 
 const CSSreset = createGlobalStyle(
   ({ theme }) => css`
+    html,
+    body,
+    #__next {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+
+      overflow: hidden;
+      overflow-y: auto;
+
+      display: flex;
+      flex-direction: column;
+    }
+
     html {
       line-height: 1.15;
       -webkit-text-size-adjust: 100%;
