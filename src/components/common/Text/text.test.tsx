@@ -8,7 +8,7 @@ const text =
   'Et vitae doloribus nemo quasi vel amet. Debitis delectus officiis distinctio modi tempore adipisci architecto ipsam. Tempora ut est molestias voluptatem mollitia. Maxime quos sapiente sunt deleniti enim ipsam.';
 
 test('[Text] should not fail accessibility testing', async () => {
-  const { container } = render(<Text as="p" />);
+  const { container } = render(<Text />);
 
   expect(await axe(container)).toHaveNoViolations();
 });

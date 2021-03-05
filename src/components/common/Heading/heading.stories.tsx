@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Box, Text } from '~components';
+import { Box, Heading } from '~components';
 
 export default {
-  component: Text,
-  title: 'components/Text',
+  component: Heading,
+  title: 'components/Heading',
   args: {
     children: 'text',
     plg: 'Paragraph/Large',
@@ -28,9 +28,9 @@ const texts = [
 export const Basic = (args) => (
   <Box display="flex" maxWidth="400px" flexDirection="column">
     {texts.map(({ key, fontWeight }) => (
-      <Text variant={key} {...args} fontWeight={fontWeight}>
+      <Heading variant={key} {...args} fontWeight={fontWeight}>
         {args[fontWeight ? `${key}Strong` : key]}
-      </Text>
+      </Heading>
     ))}
   </Box>
 );
