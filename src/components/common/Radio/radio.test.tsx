@@ -36,15 +36,11 @@ test('receives change events', async () => {
     }),
   ).toHaveAttribute('aria-checked', 'false');
 
-  screen.debug();
-
   userEvent.click(
     screen.getByRole('radio', {
       name: /one/i,
     }),
   );
-
-  screen.debug();
 
   expect(
     screen.getByRole('radio', {
