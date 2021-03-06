@@ -18,3 +18,4 @@ export * from './common/Tag';
 export * from './common/Text';
 export * from './common/Textarea';
 export * from './common/Toggle';
+export * from './common/Radio';

@@ -6,7 +6,6 @@ import {
   Box,
   Button,
   css,
-  Flex,
   Heading,
   Icon,
   Text,
@@ -34,7 +33,7 @@ const Home = () => {
 
         <Button as="a" variant="link" href="/new-page" color="grey200">
           click me
-          <Icon icon={BadgeError} ml="1/2" size={24} />
+          <Icon icon={BadgeError} ml="1/2" fontSize={2} />
         </Button>
 
         <Button as="a" to="/new-page">
