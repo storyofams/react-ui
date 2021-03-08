@@ -7,30 +7,26 @@ export default {
   title: 'components/Heading',
   args: {
     children: 'text',
-    plg: 'Paragraph/Large',
-    pmd: 'Paragraph/Normal',
-    psm: 'Paragraph/Small',
-    plgStrong: 'Paragraph/LargeStrong',
-    pmdStrong: 'Paragraph/NormalStrong',
-    psmStrong: 'Paragraph/SmallStrong',
+    h1: 'Headings/H1',
+    h2: 'Headings/H2',
+    h3: 'Headings/H3',
+    h4: 'Headings/H4',
+    h5: 'Headings/H5',
   },
 };
 
 const texts = [
-  { key: 'plg' },
-  { key: 'plg', fontWeight: 'bold' },
-  { key: 'pmd' },
-  { key: 'pmd', fontWeight: 'bold' },
-  { key: 'psm' },
-  { key: 'psm', fontWeight: 'bold' },
+  { key: 'h1' },
+  { key: 'h2' },
+  { key: 'h3' },
+  { key: 'h4' },
+  { key: 'h5' },
 ];
 
 export const Basic = (args) => (
   <Box display="flex" maxWidth="400px" flexDirection="column">
-    {texts.map(({ key, fontWeight }) => (
-      <Heading variant={key} {...args} fontWeight={fontWeight}>
-        {args[fontWeight ? `${key}Strong` : key]}
-      </Heading>
+    {texts.map(({ key }) => (
+      <Heading variant={key} {...args} />
     ))}
   </Box>
 );

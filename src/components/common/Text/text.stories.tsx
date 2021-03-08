@@ -28,9 +28,7 @@ const texts = [
 export const Basic = (args) => (
   <Box display="flex" maxWidth="400px" flexDirection="column">
     {texts.map(({ key, fontWeight }) => (
-      <Text variant={key} {...args} fontWeight={fontWeight}>
-        {args[fontWeight ? `${key}Strong` : key]}
-      </Text>
+      <Text variant={key} fontWeight={fontWeight} {...args} />
     ))}
   </Box>
 );
