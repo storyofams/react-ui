@@ -4,7 +4,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import clear from 'rollup-plugin-clear';
 import filesize from 'rollup-plugin-filesize';
 import external from 'rollup-plugin-peer-deps-external';
-import svg from 'rollup-plugin-svg';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import ttypescript from 'ttypescript';
@@ -53,7 +52,6 @@ export default {
       include: ['src/**/*'],
       exclude: ['node_modules/**'],
     }),
-    svg(),
     terser(),
     filesize(),
   ],

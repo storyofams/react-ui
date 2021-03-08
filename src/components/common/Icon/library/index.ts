@@ -1,47 +1,22 @@
-const Arrow = require('./arrow.svg');
-const BadgeError = require('./badge-error.svg');
-const Calendar = require('./calendar.svg');
-const Checkout = require('./checkout.svg');
-const ChevronDown = require('./chevron-bottom.svg');
-const ChevronLeft = require('./chevron-left.svg');
-const ChevronRight = require('./chevron-right.svg');
-const ChevronUp = require('./chevron-top.svg');
-const Close = require('./close.svg');
-const Facebook = require('./facebook.svg');
-const Gift = require('./gift.svg');
-const Heart = require('./heart.svg');
-const Help = require('./help.svg');
-const House = require('./house.svg');
-const Instagram = require('./instagram.svg');
-const Play = require('./play.svg');
-const Search = require('./search.svg');
-const Star = require('./star.svg');
-const Twitter = require('./twitter.svg');
-const Volume = require('./volume.svg');
-const ZoomIn = require('./zoom-in.svg');
-const ZoomOut = require('./zoom-out.svg');
-
-export {
-  Arrow,
-  BadgeError,
-  Calendar,
-  Checkout,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  Close,
-  Facebook,
-  Gift,
-  Heart,
-  Help,
-  House,
-  Instagram,
-  Play,
-  Search,
-  Star,
-  Twitter,
-  Volume,
-  ZoomIn,
-  ZoomOut,
-};
+export { default as Arrow } from './arrow';
+export { default as BadgeError } from './badge-error';
+export { default as Calendar } from './calendar';
+export { default as Checkout } from './checkout';
+export { default as ChevronDown } from './chevron-bottom';
+export { default as ChevronLeft } from './chevron-left';
+export { default as ChevronRight } from './chevron-right';
+export { default as ChevronUp } from './chevron-top';
+export { default as Close } from './close';
+export { default as Facebook } from './facebook';
+export { default as Gift } from './gift';
+export { default as Heart } from './heart';
+export { default as Help } from './help';
+export { default as House } from './house';
+export { default as Instagram } from './instagram';
+export { default as Play } from './play';
+export { default as Search } from './search';
+export { default as Star } from './star';
+export { default as Twitter } from './twitter';
+export { default as Volume } from './volume';
+export { default as ZoomIn } from './zoom-in';
+export { default as ZoomOut } from './zoom-out';
