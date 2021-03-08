@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Radio, RadioGroup } from '~components';
+import { RadioGroup } from '~components';
+
+const options = [
+  { value: '1', label: 'One' },
+  { value: '2', label: 'Two' },
+  { value: '3', label: 'Three' },
+];
 
 export default {
-  component: Radio,
+  component: RadioGroup,
   title: 'components/Radio',
   args: {
-    children: 'one',
+    name: 'Storybook radio',
     value: '1',
+    options,
   },
 };
 
-export const Basic = (args) => {
-  const [val, setVal] = useState<string>();
-
-  return (
-    <RadioGroup space={1} flexDirection="column" value={val} onChange={setVal}>
-      <Radio value="1">one</Radio>
-      <Radio value="2">two</Radio>
-      <Radio value="3">three</Radio>
-    </RadioGroup>
-  );
-};
+export const Basic = (args) => (
+  <RadioGroup space={1} flexDirection="column" {...args} />
+);

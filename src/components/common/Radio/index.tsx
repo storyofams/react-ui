@@ -1,122 +1,121 @@
 import React, { FC, CSSProperties } from 'react';
-import * as RadixRadioGroup from '@radix-ui/react-radio-group';
+import { pick, omit } from '@styled-system/props';
 import { useId } from 'react-id-generator';
 import styled from 'styled-components';
 import { ResponsiveValue } from 'styled-system';
 
-import { system } from '~lib';
-import { Box } from '~components/common/Box';
+import {
+  InputWrapper,
+  InputWrapperProps,
+} from '~components/common/InputWrapper';
 import { Stack } from '~components/common/Stack';
 import { Text } from '~components/common/Text';
 
-import type { SystemProps } from '~types/system';
+// const StyledRadio = styled(RadixRadioGroup.Item)`
+//   appearance: none;
+//   background-color: transparent;
+//   padding: 0;
+//   border: none;
 
-const StyledRadio = styled(RadixRadioGroup.Item)`
-  appearance: none;
-  background-color: transparent;
-  padding: 0;
-  border: none;
+//   display: inline-flex;
+//   vertical-align: middle;
 
-  display: inline-flex;
-  vertical-align: middle;
+//   &:focus {
+//     outline: none;
+//     box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
+//       0 0 0 1px ${({ theme }) => theme.colors.primary800};
+//   }
 
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
-      0 0 0 1px ${({ theme }) => theme.colors.primary800};
-  }
+//   ${(props) => props.css}
+//   ${system}
+// `;
 
-  ${(props) => props.css}
-  ${system}
-`;
+// const StyledIndicatorBox = styled(Box)`
+//   border: none;
 
-const StyledIndicatorBox = styled(Box)`
-  border: none;
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   vertical-align: middle;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
+//   width: 20px;
+//   height: 20px;
 
-  width: 20px;
-  height: 20px;
+//   border-radius: 50%;
+//   background-color: ${({ theme }) => theme.colors.primary50};
+//   box-shadow: inset 0 0 0 2px ${({ theme }) => theme.colors.primary800};
+// `;
 
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.primary50};
-  box-shadow: inset 0 0 0 2px ${({ theme }) => theme.colors.primary800};
-`;
+// const StyledIndicator = styled(RadixRadioGroup.Indicator)`
+//   appearance: none;
 
-const StyledIndicator = styled(RadixRadioGroup.Indicator)`
-  appearance: none;
+//   width: 12px;
+//   height: 12px;
 
-  width: 12px;
-  height: 12px;
+//   border-radius: 50%;
+//   background-color: ${({ theme }) => theme.colors.primary800};
 
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.primary800};
+//   ${(props) => props.css}
+//   ${system}
+// `;
 
-  ${(props) => props.css}
-  ${system}
-`;
+const StyledRadio = styled.input``;
+
+const Radio = ({ value, label, ...rest }) => {
+  const autoId = useId();
+  const id = `radio-button=${autoId}`;
+
+  return (
+    <Text as="label" htmlFor={id} key={id}>
+      <StyledRadio id={id} value={value} type="radio" {...rest} />
+      {label}
+    </Text>
+  );
+};
 
 type CSS = CSSProperties;
 
 type RadioGroupProps = {
-  onChange(e: string): void;
-  value: string;
+  id?: string;
+  name: string;
+  options: { label?: string; value: string | number }[];
   space: ResponsiveValue<CSS['margin']>;
   flexDirection?: ResponsiveValue<CSS['flexDirection']>;
-};
+} & InputWrapperProps;
 
 export const RadioGroup: FC<RadioGroupProps> = ({
-  onChange,
-  value,
-  children,
-  ...rest
-}) => {
-  return (
-    <RadixRadioGroup.Root
-      {...rest}
-      as={Stack}
-      value={value}
-      onValueChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-        onChange(e.target.value)
-      }
-    >
-      {children}
-    </RadixRadioGroup.Root>
-  );
-};
-
-type RadioProps = {
-  value: string;
-  id?: string;
-} & SystemProps;
-
-export const Radio: FC<RadioProps> = ({
-  value,
-  children,
-  id: initialId = undefined,
+  error,
+  options,
+  space,
+  flexDirection,
+  id: initialId,
+  label,
+  status = undefined,
+  statusMessage = undefined,
   ...rest
 }) => {
   const autoId = useId();
-  const id = initialId || `radio=${autoId}`;
+  const id = initialId || `radio-group=${autoId}`;
 
   return (
-    <StyledRadio value={value} {...rest} id={id}>
-      <StyledIndicatorBox>
-        <StyledIndicator />
-      </StyledIndicatorBox>
-      <Text
-        as="span"
-        fontSize={2}
-        lineHeight="medium"
-        fontWeight="semiBold"
-        color="grey700"
-        ml={1}
-      >
-        {children}
-      </Text>
-    </StyledRadio>
+    <InputWrapper
+      status={status}
+      statusMessage={statusMessage}
+      error={error}
+      label={label}
+      id={id}
+      {...pick(rest)}
+    >
+      <Stack space={space} flexDirection={flexDirection} role="radiogroup">
+        {options.map((option, i) => (
+          <Radio
+            value={option.value}
+            label={option?.label ?? option?.value}
+            key={i}
+            {...omit(rest)}
+          />
+        ))}
+      </Stack>
+    </InputWrapper>
   );
 };

@@ -28,8 +28,6 @@
     "storybook": "start-storybook -s ./public/static -p 6006"
   },
   "peerDependencies": {
-    "@radix-ui/react-checkbox": "0.0.7",
-    "@radix-ui/react-radio-group": "0.0.8",
     "@reach/alert": "0.12.1",
     "@reach/checkbox": "0.13.2",
     "@reach/dialog": "0.13.2",
@@ -62,11 +60,9 @@
     "@babel/preset-typescript": "7.13.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "@radix-ui/react-checkbox": "0.0.7",
-    "@radix-ui/react-radio-group": "0.0.8",
     "@reach/alert": "^0.12.1",
     "@reach/dialog": "^0.13.2",
-    "@rebass/forms": "^4.0.6",
+    "@reach/checkbox": "0.13.2",
     "@rollup/plugin-babel": "5.2.3",
     "@rollup/plugin-commonjs": "17.1.0",
     "@rollup/plugin-node-resolve": "11.1.1",

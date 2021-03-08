@@ -39,7 +39,6 @@ const StyledInput = styled.input`
   appearance: none;
   display: inline-block;
 
-  text-align: center;
   text-decoration: none;
 
   ${(props) => props.css}
