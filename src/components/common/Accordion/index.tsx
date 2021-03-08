@@ -42,15 +42,13 @@ export const Accordion: FC<AccordionProps> = ({
           {title}
         </Text>
         <Icon
-          size={24}
-          css={{
-            transform: open ? 'rotate(180deg)' : 'none',
-            transition: 'transform 0.2s ease-in-out',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          fontSize={3}
           icon={ChevronDown}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          transform={open ? 'rotate(180deg)' : 'none'}
+          transition="transform 0.2s ease-in-out"
         />
       </Flex>
 
