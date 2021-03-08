@@ -7,9 +7,9 @@ import { Icon } from '~components';
 import * as icons from '~components/common/Icon/library';
 
 const allIcons = (require as any)
-  .context('./library', false, /\.svg$/)
+  .context('./library', false, /\.tsx$/)
   .keys()
-  .map((k) => k.replace('./', '').replace('.svg', ''));
+  .map((k) => k.replace('./', '').replace('.tsx', ''));
 
 export default {
   component: Icon,
