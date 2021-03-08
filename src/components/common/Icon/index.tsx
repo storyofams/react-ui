@@ -6,6 +6,8 @@ import React, {
   ElementRef,
   isValidElement,
   ReactNode,
+  ReactSVGElement,
+  ReactElement,
 } from 'react';
 import type {
   PolymorphicForwardRefExoticComponent,
@@ -20,7 +22,7 @@ import { SystemProps } from '~types/system';
 const _defaultElement = 'div';
 
 type CustomProps = {
-  icon: ReactNode;
+  icon: ReactElement | ReactNode;
   className?: string;
 } & SystemProps;
 
@@ -51,12 +53,11 @@ export const Icon: PolymorphicForwardRefExoticComponent<
   { icon, ...rest }: PolymorphicPropsWithoutRef<Props, AsElement>,
   ref: ForwardedRef<ElementRef<AsElement>>,
 ) {
-  console.log(typeof icon);
-  console.log(icon);
   return (
     // @ts-ignore
     <StyledIcon {...rest} ref={ref}>
-      {isValidElement(icon) ? icon : createElement(icon)}
+      {/* @ts-ignore */}
+      {isValidElement<ReactSVGElement>(icon) ? icon : createElement(icon)}
     </StyledIcon>
   );
 });

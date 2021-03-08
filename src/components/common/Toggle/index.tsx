@@ -3,7 +3,7 @@ import { Box } from '~components/common/Box';
 import { css } from '~lib/css';
 import { SystemProps } from '~types/system';
 
-const styles = {
+const styles = css({
   position: 'relative',
   display: 'inline-block',
   width: '40px',
@@ -60,7 +60,7 @@ const styles = {
     cursor: 'not-allowed',
     opacity: 0.6,
   },
-};
+});
 
 export interface ToggleProps extends Omit<SystemProps, 'onChange'> {
   checked?: boolean;
@@ -71,7 +71,7 @@ export interface ToggleProps extends Omit<SystemProps, 'onChange'> {
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ checked, disabled, onChange, ...props }, ref) => {
     return (
-      <Box css={css(styles)} as="label" {...props}>
+      <Box css={styles} as="label" {...props}>
         <input
           ref={ref}
           onChange={(e) => onChange(e.target.checked)}

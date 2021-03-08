@@ -119,7 +119,7 @@ export const ModalBase: FC<ModalProps & SystemProps> = ({
               exit={{ opacity: 1 }}
             >
               <CloseButton onClick={close} aria-label="Close modal">
-                <Icon icon={Close} size={12} color="grey600" />
+                <Icon icon={Close} fontSize={1.75} color="grey600" />
               </CloseButton>
 
               {children}

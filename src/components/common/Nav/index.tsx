@@ -5,7 +5,6 @@ import { Button } from '~components/common/Button';
 import { Icon } from '~components/common/Icon';
 import { ChevronRight, House } from '~components/common/Icon/library';
 import { Text } from '~components/common/Text';
-import { css } from '~lib/css';
 import { SystemProps } from '~types/system';
 
 export interface BreadcrumbProps extends SystemProps {
@@ -13,20 +12,13 @@ export interface BreadcrumbProps extends SystemProps {
 }
 
 export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
-  <Box
-    css={css({
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-    })}
-    {...props}
-  >
+  <Box display="flex" flexDirection="row" alignItems="center" {...props}>
     <Button as="a" to="/" aria-current="step" color="grey400">
       <Icon icon={<House />} size={16} mr={0.5} />
     </Button>
     {links.map(({ title, href }, index) => (
       <div key={`${title}-${index}`}>
-        <Icon icon={<ChevronRight />} color="grey400" size={16} mr={0.5} />
+        <Icon icon={ChevronRight} color="grey400" fontSize={2} mr={0.5} />
         {index === links.length - 1 ? (
           <Text color="grey400" mr={1} fontSize={1.5} aria-current="step">
             {title}

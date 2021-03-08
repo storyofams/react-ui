@@ -15,7 +15,7 @@ import type {
 } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
-import { css, system } from '~lib';
+import { system } from '~lib';
 import { Box } from '~components/common/Box';
 import { Icon } from '~components/common/Icon';
 import {
@@ -85,18 +85,16 @@ export const Input: PolymorphicForwardRefExoticComponent<
         />
         {icon && (
           <Icon
+            display="flex"
+            alignItems="center"
+            position="absolute"
+            pointerEvents="none"
+            right={1.5}
+            top={0}
+            bottom={0}
+            opacity={disabled ? 0.6 : 1}
             color="grey800"
             icon={icon}
-            css={css({
-              position: 'absolute',
-              pointerEvents: 'none',
-              right: 1.5,
-              top: 0,
-              bottom: 0,
-              display: 'flex',
-              alignItems: 'center',
-              opacity: disabled ? 0.6 : 1,
-            })}
           />
         )}
       </Box>
