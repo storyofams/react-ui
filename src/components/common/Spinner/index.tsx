@@ -1,6 +1,12 @@
-import React from 'react';
-import { Flex } from 'rebass/styled-components';
+import React, { FC } from 'react';
 import styled, { keyframes } from 'styled-components';
+
+import { Flex } from '~components/common/Flex';
+import { SystemProps } from '~types/system';
+
+type CustomProps = SystemProps & {
+  size?: number;
+};
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -36,9 +42,13 @@ const Container = styled.div<{ color?: string; size: number }>`
   }
 `;
 
-export const Spinner = ({ color = '', size = 80, ...props }) => {
+export const Spinner: FC<CustomProps> = ({
+  color = '',
+  size = 24,
+  ...rest
+}) => {
   return (
-    <Flex variant="center" {...props}>
+    <Flex variant="center" {...rest}>
       <Container color={color} size={size}>
         <div />
         <div />

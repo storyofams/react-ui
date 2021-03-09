@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/themes/light.css';
-import { BoxProps } from 'rebass/styled-components';
+// import 'flatpickr/dist/themes/light.css';
 import styled from 'styled-components';
 
-import { Input } from '~/components';
-import { Calendar } from '../Icon/library';
+import { Calendar } from '~components/common/Icon/library';
+import { Input } from '~components/common/Input';
+import { SystemProps } from '~types/system';
 
 const OPTIONS = {
   altInput: true,
@@ -21,7 +21,7 @@ const OPTIONS = {
     '<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00009 0L0.590088 1.41L5.17009 6L0.590088 10.59L2.00009 12L8.00009 6L2.00009 0Z" fill="currentColor"/></svg>',
 };
 
-export interface DatePickerProps extends BoxProps {
+export interface DatePickerProps extends SystemProps {
   value: string;
   onChange: (val) => void;
   className?: string;
@@ -294,5 +294,3 @@ export const DatePicker = styled(DatePickerComponent)`
     }
   }
 `;
-
-export default DatePicker;

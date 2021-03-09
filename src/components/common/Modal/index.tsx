@@ -5,13 +5,17 @@ import {
 } from '@reach/dialog';
 import { pick, omit } from '@styled-system/props';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Box, BoxProps, Text } from 'rebass/styled-components';
 import styled from 'styled-components';
-import { Icon } from '~components';
-import { Close } from '~components/common/Icon/library';
 
-const MotionOverlay = motion.custom(ReachDialogOverlay);
-const MotionDialog = motion.custom(ReachDialogContent);
+import { Box } from '~components/common/Box';
+import { Flex } from '~components/common/Flex';
+import { Icon } from '~components/common/Icon';
+import { Close } from '~components/common/Icon/library';
+import { Text } from '~components/common/Text';
+import type { SystemProps } from '~types/system';
+
+const MotionOverlay = motion(ReachDialogOverlay);
+const MotionDialog = motion(ReachDialogContent);
 
 const DialogOverlay = styled(MotionOverlay)`
   position: fixed;
@@ -33,7 +37,7 @@ const DialogOverlay = styled(MotionOverlay)`
   }
 `;
 
-const DialogContent = styled(MotionDialog)<BoxProps>`
+const DialogContent = styled(MotionDialog)<SystemProps>`
   position: relative;
   flex: 1;
   padding: 0;
@@ -86,9 +90,9 @@ type ModalProps = {
   header?: ReactNode;
   footer?: ReactNode;
   children?: ReactNode;
-};
+} & SystemProps;
 
-export const ModalBase: FC<ModalProps & BoxProps> = ({
+export const ModalBase: FC<ModalProps> = ({
   children,
   ariaLabel,
   isOpen,
@@ -115,7 +119,7 @@ export const ModalBase: FC<ModalProps & BoxProps> = ({
               exit={{ opacity: 1 }}
             >
               <CloseButton onClick={close} aria-label="Close modal">
-                <Icon icon={<Close />} size={12} color="grey600" />
+                <Icon icon={Close} fontSize={1.75} color="grey600" />
               </CloseButton>
 
               {children}
@@ -127,7 +131,7 @@ export const ModalBase: FC<ModalProps & BoxProps> = ({
   );
 };
 
-export const Modal: FC<ModalProps & BoxProps> = ({
+export const Modal: FC<ModalProps> = ({
   children,
   header,
   footer,
@@ -140,11 +144,9 @@ export const Modal: FC<ModalProps & BoxProps> = ({
           display="flex"
           mb={4}
           pb={2}
-          sx={{
-            alignItems: 'center',
-            borderBottom: '1px',
-            borderColor: 'grey200',
-          }}
+          alignItems="center"
+          borderBottom="1px"
+          borderColor="grey200"
         >
           <Text fontWeight="bold" fontSize={3}>
             {header}
@@ -166,13 +168,9 @@ export const Modal: FC<ModalProps & BoxProps> = ({
       </Box>
 
       {footer && (
-        <Box
-          display="flex"
-          mt={5}
-          sx={{ alignItems: 'center', justifyContent: 'flex-end' }}
-        >
+        <Flex alignItems="center" justifyContent="flex-end" mt={5}>
           {footer}
-        </Box>
+        </Flex>
       )}
     </ModalBase>
   );

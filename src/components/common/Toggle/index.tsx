@@ -1,7 +1,9 @@
 import React, { forwardRef } from 'react';
-import { Box, BoxProps } from 'rebass/styled-components';
+import { Text } from '~components/common/Text';
+import { css } from '~lib/css';
+import { SystemProps } from '~types/system';
 
-const styles = {
+const styles = css({
   position: 'relative',
   display: 'inline-block',
   width: '40px',
@@ -58,9 +60,9 @@ const styles = {
     cursor: 'not-allowed',
     opacity: 0.6,
   },
-};
+});
 
-export interface ToggleProps extends Omit<BoxProps, 'onChange'> {
+export interface ToggleProps extends Omit<SystemProps, 'onChange'> {
   checked?: boolean;
   disabled?: boolean;
   onChange?(isToggled: boolean): void;
@@ -69,7 +71,7 @@ export interface ToggleProps extends Omit<BoxProps, 'onChange'> {
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ checked, disabled, onChange, ...props }, ref) => {
     return (
-      <Box sx={styles} as="label" {...props}>
+      <Text css={styles} as="label" variant="label" {...props}>
         <input
           ref={ref}
           onChange={(e) => onChange(e.target.checked)}
@@ -79,7 +81,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           aria-label="toggle"
         />
         <span className="slider" />
-      </Box>
+      </Text>
     );
   },
 );

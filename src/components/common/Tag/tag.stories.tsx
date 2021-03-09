@@ -14,7 +14,7 @@ export const Basic = (args) => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <Stack space={0} maxWidth="400px" sx={{ flexDirection: 'column' }}>
+    <Stack space={0} maxWidth="400px" flexDirection="column">
       <Tag checked={checked} onChange={() => setChecked(!checked)}>
         Tag Label
       </Tag>

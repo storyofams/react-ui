@@ -2,9 +2,10 @@ import {DocsPage, DocsContainer} from '@storybook/addon-docs/blocks'
 import * as nextImage from 'next/image';
 import { Box } from 'rebass/styled-components';
 
-import ProviderDecorator from "./ProviderDecorator";
+import ProviderDecorator from './ProviderDecorator';
 import { viewPorts } from './viewports';
-import "../public/static/fonts/stylesheet.css";
+
+import '../public/static/fonts/stylesheet.css';
 import 'flatpickr/dist/themes/light.css'
 
 export const decorators = [ProviderDecorator]
@@ -24,7 +25,6 @@ export const parameters = {
     },
   },
 };
-
 
 Object.defineProperty(nextImage, 'default', {
   configurable: true,

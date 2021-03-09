@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Box, BoxProps } from 'rebass/styled-components';
-
 import styled from 'styled-components';
+
+import { Box } from '~components/common/Box';
+import { SystemProps } from '~types/system';
 
 const TagComponent = styled(Box)(({ theme, checked }) => ({
   width: 'max-content',
@@ -23,7 +24,7 @@ const TagComponent = styled(Box)(({ theme, checked }) => ({
   },
 }));
 
-export interface TagProps extends BoxProps {
+export interface TagProps extends SystemProps {
   checked: boolean;
   onChange: () => void;
 }

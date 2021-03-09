@@ -1,50 +1,54 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import { axe } from 'jest-axe';
-
-import { Icon } from '~components';
-import { render } from '~lib';
 import 'jest-styled-components';
 
+import { Icon } from '~components';
+import { Heart } from '~components/common/Icon/library';
+import { render, screen, userEvent } from '~lib/test-utils';
+
 test('[Icon] should not fail accessibility testing', async () => {
-  const { container } = render(<Icon icon={createElement('div')} />);
-  const results = await axe(container);
+  const { container } = render(<Icon icon={Heart} />);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
-test('handles the iconAs with iconAs', async () => {
-  const { getByTestId } = render(
-    <Icon icon={'heart' as any} data-testid="icon" iconAs="h1" />,
-  );
-  const element = getByTestId('icon');
-  expect(element.nodeName).toBe('H1');
+test('renders without crashing', async () => {
+  render(<Icon icon={Heart} data-testid="icon" />);
+
+  expect(screen.getByTestId('icon')).toBeInTheDocument();
 });
 
-test('handles the iconAs with href', async () => {
-  const { getByTestId } = render(
+test('renders as `a` tag', async () => {
+  render(
     <Icon
-      icon={'heart' as any}
+      as="a"
+      icon={Heart}
       data-testid="icon"
       href="https://www.example.com"
     />,
   );
-  const element = getByTestId('icon');
-  expect(element.nodeName).toBe('A');
+
+  expect(screen.getByTestId('icon')).toBeInTheDocument();
+  expect(screen.getByTestId('icon').tagName.toLowerCase()).toEqual('a');
 });
 
-test('handles the iconAs with onClick', async () => {
-  const onClick = jest.fn();
-  const { getByTestId } = render(
-    <Icon icon={'heart' as any} data-testid="icon" onClick={onClick} />,
+test('renders as `button` tag', async () => {
+  const handleClick = jest.fn();
+  render(
+    <Icon icon={Heart} as="button" onClick={handleClick} data-testid="icon" />,
   );
-  const element = getByTestId('icon');
-  expect(element.nodeName).toBe('BUTTON');
+
+  expect(screen.getByTestId('icon')).toBeInTheDocument();
+  expect(screen.getByTestId('icon').tagName.toLowerCase()).toEqual('button');
+
+  userEvent.click(screen.getByTestId('icon'));
+
+  expect(handleClick).toHaveBeenCalledTimes(1);
 });
 
-test('handles the iconAs with default', async () => {
-  const { getByTestId } = render(
-    <Icon icon={'heart' as any} data-testid="icon" />,
-  );
-  const element = getByTestId('icon');
-  expect(element.nodeName).toBe('DIV');
+test('renders functions as elements', async () => {
+  const handleClick = jest.fn();
+  render(<Icon icon={Heart} onClick={handleClick} data-testid="icon" />);
+
+  expect(screen.getByTestId('icon')).toBeInTheDocument();
 });

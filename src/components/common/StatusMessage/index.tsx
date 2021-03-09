@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import Alert from '@reach/alert';
-import { Text, BoxProps, TextProps } from 'rebass/styled-components';
+
+import { Box } from '~components/common/Box';
+import { SystemProps } from '~types/system';
 
 export type status = 'default' | 'success' | 'warning' | 'error';
 
-export interface StatusMessageProps extends BoxProps, TextProps {
+export interface StatusMessageProps extends SystemProps {
   status: status | Boolean;
   type?: 'polite' | 'assertive';
 }
@@ -18,14 +20,16 @@ export const StatusMessage: FC<StatusMessageProps> = ({
   ...props
 }) => {
   return (
-    <Text
-      color={status !== 'default' && status ? `${status}600` : `grey900`}
+    <Box
+      color={
+        (status !== 'default' && status ? `${status}600` : `grey900`) as any
+      }
       fontSize={1.75}
       fontWeight="medium"
       mt={0.25}
       {...props}
     >
       <Alert type={type}>{children}</Alert>
-    </Text>
+    </Box>
   );
 };

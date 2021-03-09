@@ -1,14 +1,62 @@
-import React, { FC } from 'react';
-import {
-  Text as RebassText,
-  TextProps as RebassTextProps,
-  BoxProps,
-} from 'rebass/styled-components';
+import React, { ReactElement, ElementType } from 'react';
+import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
+import styled from 'styled-components';
+import { variant } from 'styled-system';
 
-export interface TextProps extends BoxProps, RebassTextProps {}
+import { system } from '~lib';
+import { SystemProps } from '~types/system';
 
-export const Text: FC<TextProps> = ({ children, ...props }) => (
-  <RebassText {...props}>{children}</RebassText>
-);
+const _defaultElement = 'p';
 
-export default Text;
+const variants = {
+  plg: {
+    fontSize: [1.75, 2.5],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  pmd: {
+    fontSize: [1.75, 2],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  psm: {
+    fontSize: [1.25, 1.5],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  label: {
+    lineHeight: 'high',
+    fontWeight: 'semiBold',
+    color: 'grey700',
+
+    cursor: 'pointer',
+
+    '&[disabled=""]': {
+      cursor: 'not-allowed',
+      opacity: 0.6,
+    },
+  },
+};
+
+type CustomProps = {
+  as?: 'p' | 'span' | 'blockquote' | 'strong' | 'em' | 'pre' | 'label';
+  variant?: keyof typeof variants;
+} & SystemProps;
+
+type Props<
+  AsElement extends ElementType = typeof _defaultElement
+> = PolymorphicPropsWithoutRef<CustomProps, AsElement>;
+
+const Polymorph = styled.p`
+  ${variant({ variants })}
+  ${(props) => props.css}
+  ${system}
+`;
+
+export const Text = <AsElement extends ElementType = typeof _defaultElement>(
+  props: Props<AsElement>,
+): ReactElement | null => {
+  /** @todo figure out why return type is misbehaving */
+  // @ts-ignore
+  return <Polymorph {...props} />;
+};
