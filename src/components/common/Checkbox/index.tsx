@@ -17,11 +17,13 @@ const StyledCheckbox = styled(CustomCheckbox)`
   padding: 0;
   border: none;
 
+  position: relative;
+
   display: inline-flex;
   vertical-align: middle;
 
-  /*  */
-  /* color: ${({ theme }) => theme.colors.primary800}; */
+  width: 20px;
+  height: 20px;
 
   &:focus {
     outline: none;
@@ -32,6 +34,35 @@ const StyledCheckbox = styled(CustomCheckbox)`
   &:disabled {
     cursor: not-allowed;
     opacity: 0.6;
+  }
+
+  &[data-reach-custom-checkbox] {
+    input {
+      position: relative;
+      width: 100%;
+      appearance: none;
+      outline: none;
+      background: ${({ theme }) => theme.colors.primary50};
+      border-radius: ${({ theme }) => theme.radii.sm};
+      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
+        0 0 0 1px ${({ theme }) => theme.colors.primary800};
+    }
+  }
+
+  &[data-reach-custom-checkbox][data-state='checked'] {
+    input {
+      background: ${({ theme }) => theme.colors.primary800};
+    }
+
+    input:before {
+      content: '✔';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      color: ${({ theme }) => theme.colors.white};
+    }
   }
 
   ${(props) => props.css}
