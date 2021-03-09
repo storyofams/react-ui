@@ -13,9 +13,9 @@
     "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\""
   },
   "dependencies": {
-    "@radix-ui/react-checkbox": "^0.0.7",
-    "@radix-ui/react-radio-group": "^0.0.8",
     "@reach/alert": "^0.13.2",
+    "@reach/checkbox": "0.13.2",
+    "@reach/dialog": "0.13.2",
     "@storyofams/react-helpers": "0.3.6",
     "@storyofams/react-ui": "link:..",
     "@styled-system/css": "^5.1.4",
@@ -32,7 +32,6 @@
     "react-id-generator": "^3.0.1",
     "react-lazyload": "^2.6.5",
     "react-select": "^3.0.8",
-    "rebass": "^4.0.7",
     "styled-components": "^5.1.1",
     "styled-system": "^5.1.5",
     "swr": "^0.1.16",

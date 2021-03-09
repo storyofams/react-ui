@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { NextSeo } from 'next-seo';
+import styled from 'styled-components';
 import {
   BadgeError,
   Box,
@@ -10,6 +11,10 @@ import {
   Icon,
   Text,
 } from '@storyofams/react-ui';
+
+const Footer = styled(Box)`
+  color: ${(p) => p.theme.colors.primary500};
+`;
 
 const Home = () => {
   return (
@@ -40,6 +45,17 @@ const Home = () => {
           click me
         </Button>
       </Box>
+      <Footer
+        height={24}
+        minWidth="100%"
+        backgroundColor="error100"
+        css={css({
+          border: '1px solid',
+          borderColor: 'primary500',
+        })}
+      >
+        <Text>Test</Text>
+      </Footer>
     </>
   );
 };

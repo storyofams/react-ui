@@ -77,3 +77,11 @@ test('should close when pressing esc', () => {
   fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
   expect(screen.queryByText(/modal-content/i)).toBeNull();
 });
+
+const CustomHeader = () => <div>custom-header</div>;
+
+test('should render with custom header', () => {
+  render(<Basic isInitiallyOpen={true} header={<CustomHeader />} />);
+
+  expect(screen.queryByText(/custom-header/i)).toBeDefined();
+});

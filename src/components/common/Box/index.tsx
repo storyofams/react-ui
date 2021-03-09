@@ -1,4 +1,4 @@
-import React, { ReactElement, ElementType } from 'react';
+import React, { ElementType } from 'react';
 import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
@@ -22,7 +22,7 @@ const Polymorph = styled.div`
 
 export const Box = <AsElement extends ElementType = typeof _defaultElement>(
   props: Props<AsElement>,
-): ReactElement | null => {
+) => {
   /** @todo figure out why return type is misbehaving */
   // @ts-ignore
   return <Polymorph {...props} />;

@@ -78,7 +78,7 @@ export type SystemProps<T = undefined> = T extends {}
 
 export interface BaseProps<
   AsElementType extends React.ElementType = React.ElementType
-> extends System {
+> extends SystemProps {
   as?: AsElementType;
   ref?: React.Ref<Element>;
 }
