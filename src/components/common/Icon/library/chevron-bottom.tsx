@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import * as React from 'react';
 
 function ChevronBottom(props: React.SVGProps<SVGSVGElement>) {

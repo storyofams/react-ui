@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import * as React from 'react';
 
 function ZoomOut(props: React.SVGProps<SVGSVGElement>) {

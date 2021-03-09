@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import * as React from 'react';
 
 function Twitter(props: React.SVGProps<SVGSVGElement>) {

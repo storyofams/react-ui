@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export { default as Arrow } from './arrow';
 export { default as BadgeError } from './badge-error';
 export { default as Calendar } from './calendar';

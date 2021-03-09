@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import * as React from 'react';
 
 function Heart(props: React.SVGProps<SVGSVGElement>) {

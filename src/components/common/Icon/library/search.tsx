@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import * as React from 'react';
 
 function Search(props: React.SVGProps<SVGSVGElement>) {
