@@ -19,9 +19,9 @@ import {
 
 /**
  * DISCLAIMER:
- * This file is straight up copy from (https://github.com/styled-system/styled-system/blob/master/packages/css/src/index.js)
+ * This file is a copy of the original (https://github.com/styled-system/styled-system/blob/master/packages/css/src/index.js)
  *
- * The only adjustment that has been made is the typings in the css function, the rest is just inferred from usage (and could/should be improved :p)
+ * The only adjustment that has been made is the typings in the css function as I couldn't get a declaration file to override a the SystemStyleObject
  */
 
 // based on https://github.com/developit/dlv

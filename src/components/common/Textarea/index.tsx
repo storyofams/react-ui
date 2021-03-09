@@ -35,6 +35,45 @@ type Props<
 
 /** we could probably just make this variant of Input with as="textarea"  */
 const StyledTextarea = styled.textarea`
+  appearance: none;
+
+  min-height: 38px;
+
+  border-radius: ${({ theme }) => theme.radii.xs};
+  border-color: ${({ theme }) => theme.colors.grey300};
+
+  transition: border-color 0.18s ease-in-out, background-color 0.18s ease-in-out;
+  resize: vertical;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.grey400};
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary800};
+  }
+
+  &:active,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.primary50};
+    border-color: ${({ theme }) => theme.colors.primary800};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    &:hover {
+      border-color: ${({ theme }) => theme.colors.grey300};
+    }
+  }
+
+  &[required=''] {
+    background-color: ${({ theme }) => theme.colors.error50};
+    border-color: ${({ theme }) => theme.colors.error600};
+    color: ${({ theme }) => theme.colors.error600};
+  }
+
   ${(props) => props.css}
   ${system}
 `;
@@ -59,9 +98,17 @@ export const Textarea: PolymorphicForwardRefExoticComponent<
       status={status}
       statusMessage={statusMessage}
       error={error}
+      alignItems="flex-start"
       {...pick(props)}
     >
-      <StyledTextarea id={id} ref={ref} {...omit(props)} />
+      <StyledTextarea
+        id={id}
+        ref={ref}
+        py={0.75}
+        px={2}
+        fontSize={[2, 1.75]}
+        {...omit(props)}
+      />
     </InputWrapper>
   );
 });

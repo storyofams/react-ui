@@ -11,10 +11,12 @@ export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Primary.args = {
   variant: 'primary',
+  size: 'small',
 };
 
 export const Secondary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Secondary.args = {
   variant: 'secondary',
+  size: 'small',
 };

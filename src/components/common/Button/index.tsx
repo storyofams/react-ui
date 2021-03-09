@@ -20,15 +20,93 @@ import { SystemProps } from '~types/system';
 
 const _defaultElement = 'button';
 
+const sizes = {
+  small: {
+    fontSize: 1.5,
+  },
+  medium: {
+    fontSize: 2,
+    lineHeight: 'medium',
+  },
+  large: {
+    fontSize: 2.5,
+    px: 4,
+    lineHeight: 'high',
+  },
+};
+
 const variants = {
   primary: {
-    backgroundColor: 'primary500',
+    px: 3,
+    py: 1.5,
+    bg: 'primary600',
+    color: 'primary50',
+    fontWeight: 'bold',
+    fontSize: 1.5,
+    lineHeight: 'medium',
+
+    '&:hover': {
+      bg: 'primary700',
+      color: 'primary50',
+    },
+
+    '&:active': {
+      bg: 'primary600',
+      boxShadow: '0px 0px 0px 4px #BAE6FD',
+      color: 'primary50',
+    },
+
+    '&:disabled': { cursor: 'not-allowed', opacity: 0.25 },
   },
   secondary: {
-    backgroundColor: 'secondary500',
+    px: 3,
+    py: 1.5,
+    bg: 'primary200',
+    color: 'primary700',
+    fontWeight: 'bold',
+    fontSize: 1.5,
+    lineHeight: 'medium',
+
+    '&:hover': {
+      bg: 'primary300',
+      color: 'primary800',
+    },
+
+    '&:active': {
+      color: 'primary700',
+      bg: 'primary200',
+      boxShadow: '0px 0px 0px 4px #E0F2FE',
+    },
+
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.25,
+    },
   },
   link: {
-    textDecoration: 'underline',
+    color: 'grey900',
+    fontWeight: 'medium',
+    userSelect: 'none',
+
+    '&::before': {
+      content: JSON.stringify(''),
+      position: 'absolute',
+      bottom: '-2px',
+      left: '50%',
+      right: '50%',
+      height: '2px',
+      bg: 'primary700',
+      transition: 'left 0.18s ease-in-out, right 0.18s ease-in-out',
+    },
+
+    '&:hover, &:active': {
+      color: 'primary700',
+
+      '&::before': {
+        left: 0,
+        right: 0,
+      },
+    },
   },
 };
 
@@ -36,6 +114,7 @@ type CustomProps = {
   isLoading?: boolean;
   to?: string | undefined;
   variant?: keyof typeof variants;
+  size?: keyof typeof sizes;
 } & SystemProps;
 
 type Props<
@@ -43,20 +122,24 @@ type Props<
 > = PolymorphicPropsWithRef<CustomProps, T>;
 
 const StyledButton = styled.button`
+  position: relative;
+
   appearance: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: inherit;
 
   text-align: center;
   text-decoration: none;
 
-  padding-top: ${({ theme }) => theme.space['2']}px;
-  padding-bottom: ${({ theme }) => theme.space['2']}px;
-
-  padding-right: ${({ theme }) => theme.space['3']}px;
-  padding-left: ${({ theme }) => theme.space['3']}px;
-
   border: 0;
-  border-radius: ${({ theme }) => theme.radii.xs};
+  border-radius: ${({ theme }) => theme.radii.sm};
+
+  transition: background-color 0.18s ease-in-out, box-shadow 0.18s,
+    border-color 0.18s ease-in-out, color 0.18s ease-in-out,
+    opacity 0.18s ease-in-out;
 
   &:hover {
     opacity: 0.75;
@@ -76,6 +159,7 @@ const StyledButton = styled.button`
   }
 
   ${variant({ variants })}
+  ${variant({ prop: 'size', variants: sizes })}
   ${(props) => props.css}
   ${system}
 `;
