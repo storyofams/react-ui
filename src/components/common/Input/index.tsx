@@ -39,7 +39,39 @@ const StyledInput = styled.input`
   appearance: none;
   display: inline-block;
 
+  min-height: 38px;
+
+  transition: border-color 0.18s ease-in-out, background-color 0.18s ease-in-out;
+
   text-decoration: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.grey400};
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary800};
+  }
+
+  &:active,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.primary50};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    &:hover {
+      border-color: ${({ theme }) => theme.colors.grey300};
+    }
+  }
+
+  &:required {
+    background-color: ${({ theme }) => theme.colors.error50};
+    border-color: ${({ theme }) => theme.colors.error600};
+    color: ${({ theme }) => theme.colors.error600};
+  }
 
   ${(props) => props.css}
   ${system}
@@ -81,6 +113,12 @@ export const Input: PolymorphicForwardRefExoticComponent<
           ref={ref}
           pr={icon && 5}
           disabled={disabled}
+          py={0.75}
+          px={2}
+          borderColor="grey300"
+          borderRadius="xs"
+          color="grey700"
+          fontSize={[2, 1.75]}
           {...omit(props)}
         />
         {icon && (

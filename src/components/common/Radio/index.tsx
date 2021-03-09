@@ -11,62 +11,27 @@ import {
 import { Stack } from '~components/common/Stack';
 import { Text } from '~components/common/Text';
 
-// const StyledRadio = styled(RadixRadioGroup.Item)`
-//   appearance: none;
-//   background-color: transparent;
-//   padding: 0;
-//   border: none;
+const StyledRadio = styled.input`
+  margin-right: ${({ theme }) => theme.space['0.5']}px;
 
-//   display: inline-flex;
-//   vertical-align: middle;
+  color: ${({ theme }) => theme.colors.primary800};
 
-//   &:focus {
-//     outline: none;
-//     box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
-//       0 0 0 1px ${({ theme }) => theme.colors.primary800};
-//   }
+  &input:checked + & {
+    display: 'block';
+  }
 
-//   ${(props) => props.css}
-//   ${system}
-// `;
-
-// const StyledIndicatorBox = styled(Box)`
-//   border: none;
-
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-//   vertical-align: middle;
-
-//   width: 20px;
-//   height: 20px;
-
-//   border-radius: 50%;
-//   background-color: ${({ theme }) => theme.colors.primary50};
-//   box-shadow: inset 0 0 0 2px ${({ theme }) => theme.colors.primary800};
-// `;
-
-// const StyledIndicator = styled(RadixRadioGroup.Indicator)`
-//   appearance: none;
-
-//   width: 12px;
-//   height: 12px;
-
-//   border-radius: 50%;
-//   background-color: ${({ theme }) => theme.colors.primary800};
-
-//   ${(props) => props.css}
-//   ${system}
-// `;
-
-const StyledRadio = styled.input``;
+  &input:disabled ~ & {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+`;
 
 const Radio = ({ value, label, ...rest }) => {
   const autoId = useId();
   const id = `radio-button=${autoId}`;
 
   return (
-    <Text as="label" htmlFor={id} key={id}>
+    <Text as="label" variant="label" htmlFor={id} key={id}>
       <StyledRadio id={id} value={value} type="radio" {...rest} />
       {label}
     </Text>

@@ -20,10 +20,18 @@ const StyledCheckbox = styled(CustomCheckbox)`
   display: inline-flex;
   vertical-align: middle;
 
+  /*  */
+  /* color: ${({ theme }) => theme.colors.primary800}; */
+
   &:focus {
     outline: none;
     box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
       0 0 0 1px ${({ theme }) => theme.colors.primary800};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 
   ${(props) => props.css}
@@ -56,15 +64,8 @@ export const Checkbox = forwardRef<CustomCheckboxProps, CheckboxProps>(
         error={error}
         {...pick(rest)}
       >
-        <Text
-          as="label"
-          htmlFor={id}
-          fontSize={2}
-          lineHeight="medium"
-          fontWeight="semiBold"
-          color="grey700"
-        >
-          <StyledCheckbox {...omit(rest)} id={id} ref={ref} mr={1} />
+        <Text as="label" htmlFor={id} fontSize={2} variant="label">
+          <StyledCheckbox {...omit(rest)} id={id} ref={ref} mr={0.5} />
           {label}
         </Text>
       </InputWrapper>

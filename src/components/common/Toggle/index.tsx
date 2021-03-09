@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Box } from '~components/common/Box';
+import { Text } from '~components/common/Text';
 import { css } from '~lib/css';
 import { SystemProps } from '~types/system';
 
@@ -71,7 +71,7 @@ export interface ToggleProps extends Omit<SystemProps, 'onChange'> {
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ checked, disabled, onChange, ...props }, ref) => {
     return (
-      <Box css={styles} as="label" {...props}>
+      <Text css={styles} as="label" variant="label" {...props}>
         <input
           ref={ref}
           onChange={(e) => onChange(e.target.checked)}
@@ -81,7 +81,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           aria-label="toggle"
         />
         <span className="slider" />
-      </Box>
+      </Text>
     );
   },
 );

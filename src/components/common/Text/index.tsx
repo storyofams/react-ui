@@ -24,6 +24,18 @@ const variants = {
     fontWeight: 'regular',
     lineHeight: 'high',
   },
+  label: {
+    lineHeight: 'high',
+    fontWeight: 'semiBold',
+    color: 'grey700',
+
+    cursor: 'pointer',
+
+    '&[disabled=""]': {
+      cursor: 'not-allowed',
+      opacity: 0.6,
+    },
+  },
 };
 
 type CustomProps = {

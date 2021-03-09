@@ -15,7 +15,7 @@ import type {
 } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
-import { system } from '~lib';
+import { system, css } from '~lib';
 import {
   InputWrapper,
   InputWrapperProps,
@@ -98,7 +98,6 @@ export const Textarea: PolymorphicForwardRefExoticComponent<
       status={status}
       statusMessage={statusMessage}
       error={error}
-      alignItems="flex-start"
       {...pick(props)}
     >
       <StyledTextarea
@@ -106,6 +105,7 @@ export const Textarea: PolymorphicForwardRefExoticComponent<
         ref={ref}
         py={0.75}
         px={2}
+        ml={1}
         fontSize={[2, 1.75]}
         {...omit(props)}
       />

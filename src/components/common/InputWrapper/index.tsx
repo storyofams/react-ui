@@ -31,7 +31,7 @@ export const InputWrapper: FC<InputWrapperProps & { id?: string }> = ({
   return (
     <Box {...pick(props)}>
       {label && (
-        <Text as="label" mb={1} htmlFor={id}>
+        <Text as="label" mb={1} htmlFor={id} variant="label">
           {label}
         </Text>
       )}
