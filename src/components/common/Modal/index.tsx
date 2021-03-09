@@ -12,7 +12,7 @@ import { Flex } from '~components/common/Flex';
 import { Icon } from '~components/common/Icon';
 import { Close } from '~components/common/Icon/library';
 import { Text } from '~components/common/Text';
-import type { SystemProps } from '../../../types/system';
+import type { SystemProps } from '~types/system';
 
 const MotionOverlay = motion(ReachDialogOverlay);
 const MotionDialog = motion(ReachDialogContent);
@@ -90,9 +90,9 @@ type ModalProps = {
   header?: ReactNode;
   footer?: ReactNode;
   children?: ReactNode;
-};
+} & SystemProps;
 
-export const ModalBase: FC<ModalProps & SystemProps> = ({
+export const ModalBase: FC<ModalProps> = ({
   children,
   ariaLabel,
   isOpen,
@@ -131,7 +131,7 @@ export const ModalBase: FC<ModalProps & SystemProps> = ({
   );
 };
 
-export const Modal: FC<ModalProps & SystemProps> = ({
+export const Modal: FC<ModalProps> = ({
   children,
   header,
   footer,
