@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { variant } from 'styled-system';
+import { ResponsiveValue, variant } from 'styled-system';
 
 import { Box } from '~components/common/Box';
 import { SystemProps } from '~types/system';
@@ -19,8 +19,8 @@ const sizes = {
 };
 
 type CustomProps = SystemProps & {
-  variant?: keyof typeof variants;
-  sizes?: keyof typeof sizes;
+  variant?: ResponsiveValue<keyof typeof variants>;
+  sizes?: ResponsiveValue<keyof typeof sizes>;
 };
 
 const StyledFlex = styled(Box)<CustomProps>`
