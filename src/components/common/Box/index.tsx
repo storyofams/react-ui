@@ -1,5 +1,13 @@
-import React, { ElementType } from 'react';
-import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
+import React, {
+  ElementRef,
+  ElementType,
+  ForwardedRef,
+  forwardRef,
+} from 'react';
+import type {
+  PolymorphicPropsWithoutRef,
+  PolymorphicForwardRefExoticComponent,
+} from 'react-polymorphic-types';
 import styled from 'styled-components';
 
 import { system } from '~lib';
@@ -20,10 +28,15 @@ const Polymorph = styled.div`
   ${system}
 `;
 
-export const Box = <AsElement extends ElementType = typeof _defaultElement>(
-  props: Props<AsElement>,
-) => {
-  /** @todo figure out why return type is misbehaving */
+export const Box: PolymorphicForwardRefExoticComponent<
+  CustomProps,
+  typeof _defaultElement
+> = forwardRef(function Box<
+  AsElement extends ElementType = typeof _defaultElement
+>(
+  props: PolymorphicPropsWithoutRef<Props, AsElement>,
+  ref: ForwardedRef<ElementRef<AsElement>>,
+) {
   // @ts-ignore
-  return <Polymorph {...props} />;
-};
+  return <Polymorph {...props} ref={ref} />;
+});
