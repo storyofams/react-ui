@@ -11,7 +11,7 @@ import type {
   PolymorphicPropsWithRef,
 } from 'react-polymorphic-types';
 import styled from 'styled-components';
-import { variant } from 'styled-system';
+import { ResponsiveValue, variant } from 'styled-system';
 
 import { system } from '~lib';
 import { Box } from '~components/common/Box';
@@ -89,7 +89,7 @@ const variants = {
     userSelect: 'none',
 
     '&::before': {
-      content: JSON.stringify(''),
+      content: "''",
       position: 'absolute',
       bottom: '-2px',
       left: '50%',
@@ -113,8 +113,8 @@ const variants = {
 type CustomProps = {
   isLoading?: boolean;
   to?: string | undefined;
-  variant?: keyof typeof variants;
-  size?: keyof typeof sizes;
+  variant?: ResponsiveValue<keyof typeof variants>;
+  sizes?: ResponsiveValue<keyof typeof sizes>;
 } & SystemProps;
 
 type Props<
@@ -159,7 +159,7 @@ const StyledButton = styled.button`
   }
 
   ${variant({ variants })}
-  ${variant({ prop: 'size', variants: sizes })}
+  ${variant({ prop: 'sizes', variants: sizes })}
   ${(props) => props.css}
   ${system}
 `;

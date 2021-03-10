@@ -1,7 +1,7 @@
 import React, { ReactElement, ElementType } from 'react';
 import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
 import styled from 'styled-components';
-import { variant } from 'styled-system';
+import { variant, ResponsiveValue } from 'styled-system';
 
 import { system } from '~lib';
 import { SystemProps } from '~types/system';
@@ -38,7 +38,7 @@ const variants = {
 
 type CustomProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  variant?: keyof typeof variants;
+  variant?: ResponsiveValue<keyof typeof variants>;
 } & SystemProps;
 
 type Props<

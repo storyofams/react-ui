@@ -40,6 +40,7 @@ const StyledInput = styled.input`
   display: inline-block;
 
   min-height: 38px;
+  width: 100%;
 
   transition: border-color 0.18s ease-in-out, background-color 0.18s ease-in-out;
 
@@ -67,11 +68,11 @@ const StyledInput = styled.input`
     }
   }
 
-  &:required {
+  /* &[required=''] {
     background-color: ${({ theme }) => theme.colors.error50};
     border-color: ${({ theme }) => theme.colors.error600};
     color: ${({ theme }) => theme.colors.error600};
-  }
+  } */
 
   ${(props) => props.css}
   ${system}
