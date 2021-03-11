@@ -1,6 +1,6 @@
 {
   "name": "@storyofams/react-ui",
-  "description": "Collection of ui components build with Rebass to create a resilient front-end applications with React.",
+  "description": "Collection of UI components built with styled-system & styled-components to create a resilient front-end with Next.js.",
   "version": "0.0.0-development",
   "license": "MIT",
   "main": "dist/index.js",
@@ -28,7 +28,7 @@
     "storybook": "start-storybook -s ./public/static -p 6006"
   },
   "peerDependencies": {
-    "@reach/alert": "0.12.1",
+    "@reach/alert": "0.13.2",
     "@reach/checkbox": "0.13.2",
     "@reach/dialog": "0.13.2",
     "@storyofams/react-helpers": "0.3.6",
