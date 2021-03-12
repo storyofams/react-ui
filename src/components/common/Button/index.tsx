@@ -121,7 +121,14 @@ type Props<
   T extends ElementType = typeof _defaultElement
 > = PolymorphicPropsWithRef<CustomProps, T>;
 
-const StyledButton = styled.button`
+const StyledButton = styled(Box)
+  .withConfig({
+    shouldForwardProp: (prop) => !['sizes'].includes(prop),
+  })
+  .attrs((props) => ({
+    // @ts-ignore
+    as: props?.as ?? 'button',
+  }))`
   position: relative;
 
   appearance: none;

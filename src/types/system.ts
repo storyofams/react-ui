@@ -76,9 +76,4 @@ export type SystemProps<T = undefined> = T extends {}
   ? System & Omit<Omit<T, 'color'>, 'css' | 'ref'>
   : System;
 
-export interface BaseProps<
-  AsElementType extends React.ElementType = React.ElementType
-> extends SystemProps {
-  as?: AsElementType;
-  ref?: React.Ref<Element>;
-}
+export interface BaseProps extends SystemProps {}

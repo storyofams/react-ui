@@ -14,7 +14,11 @@ Primary.args = {
   size: 'small',
 };
 
-export const Secondary = (args) => <Button {...args}>Lorem Ipsum</Button>;
+export const Secondary = (args) => (
+  <Button sizes={['large', 'medium', 'small']} {...args}>
+    Lorem Ipsum
+  </Button>
+);
 
 Secondary.args = {
   variant: 'secondary',

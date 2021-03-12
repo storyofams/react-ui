@@ -49,18 +49,22 @@ export const _customSystem: Config = {
 
 const customSystem = styledSystem(_customSystem);
 
+const all = compose(
+  layout,
+  color,
+  space,
+  background,
+  border,
+  grid,
+  position,
+  shadow,
+  typography,
+  flexbox,
+  customSystem, // add our custom system on top of everything
+);
+
+export const allPropNames = all.propNames;
+
 export const system = (props: SystemProps) => css`
-  ${compose(
-    layout,
-    color,
-    space,
-    background,
-    border,
-    grid,
-    position,
-    shadow,
-    typography,
-    flexbox,
-    customSystem, // add our custom system on top of everything
-  )(props)}
+  ${all(props)}
 `;
