@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box } from 'rebass/styled-components';
 
-import { Stack } from '~components';
+import { Stack, Box } from '~components';
 import theme from '~styles/theme';
 
 export default {

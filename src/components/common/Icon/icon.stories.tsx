@@ -1,8 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Box, Flex, Text } from 'rebass/styled-components';
 
-import { Icon } from '~components';
+import { Box, Flex, Text, Icon } from '~components';
 
 import * as icons from '~components/common/Icon/library';
 
@@ -33,7 +32,7 @@ export const Library = () => (
         py={2}
         justifyContent="center"
         alignItems="center"
-        sx={{ borderBottom: '1px solid #D9D9D9' }}
+        borderBottom="1px solid #D9D9D9"
       >
         <Box width="75%">Name</Box>
         <Box width="25%">Icon</Box>
@@ -42,7 +41,7 @@ export const Library = () => (
         <Flex
           justifyContent="center"
           alignItems="center"
-          sx={{ borderBottom: '1px solid #D9D9D9' }}
+          borderBottom="1px solid #D9D9D9"
           key={icon}
           py={2}
         >

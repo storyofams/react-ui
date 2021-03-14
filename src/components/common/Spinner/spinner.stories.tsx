@@ -1,7 +1,6 @@
 import React from 'react';
-import { Flex } from 'rebass/styled-components';
 
-import { Spinner } from '~components';
+import { Spinner, Flex } from '~components';
 import theme from '~styles/theme';
 
 export default {
