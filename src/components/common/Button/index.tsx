@@ -16,6 +16,7 @@ import { ResponsiveValue, variant } from 'styled-system';
 import { system } from '~lib';
 import { Box } from '~components/common/Box';
 import { Spinner } from '~components/common/Spinner';
+import { allPropNames } from '~lib/system';
 import { SystemProps } from '~types/system';
 
 const _defaultElement = 'button';
@@ -114,21 +115,18 @@ type CustomProps = {
   isLoading?: boolean;
   to?: string | undefined;
   variant?: ResponsiveValue<keyof typeof variants>;
-  sizes?: ResponsiveValue<keyof typeof sizes>;
+  buttonSize?: ResponsiveValue<keyof typeof sizes>;
 } & SystemProps;
 
 type Props<
   T extends ElementType = typeof _defaultElement
 > = PolymorphicPropsWithRef<CustomProps, T>;
 
-const StyledButton = styled(Box)
-  .withConfig({
-    shouldForwardProp: (prop) => !['sizes'].includes(prop),
-  })
-  .attrs((props) => ({
-    // @ts-ignore
-    as: props?.as ?? 'button',
-  }))`
+const StyledButton = styled(_defaultElement).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) =>
+    ['buttonSize', ...allPropNames].indexOf(prop) === -1 &&
+    defaultValidatorFn(prop),
+})`
   position: relative;
 
   appearance: none;
@@ -166,7 +164,7 @@ const StyledButton = styled(Box)
   }
 
   ${variant({ variants })}
-  ${variant({ prop: 'sizes', variants: sizes })}
+  ${variant({ prop: 'buttonSize', variants: sizes })}
   ${(props) => props.css}
   ${system}
 `;
