@@ -9,20 +9,3 @@ test('[Button] should not fail accessibility testing', async () => {
 
   expect(await axe(container)).toHaveNoViolations();
 });
-
-// Isolated Polymorph playground
-// const Polymorphs = () => (
-//   <>
-//     {/** Box as `a` does not accept the `form` prop */}
-//     {/** @ts-expect-error */}
-//     <Box as="a" form="form" />
-
-//     {/** Box as `button` does not accept the `href` prop */}
-//     {/** @ts-expect-error */}
-//     <Box as="button" href="/" />
-//   </>
-// );
-
-// test('Polymorphism', () => {
-//   render(<Polymorphs />);
-// });
