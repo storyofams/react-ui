@@ -74,6 +74,28 @@ Setting up requires adding a theme that should comply with the theme definition 
 
 Have a look at [the latest storybook deployment](https://react-ui-git-dev.storyofams.vercel.app/) to view all the components. Most likely you'll find what you need there and won't even have to look further.
 
+### Icons
+
+We export a list of commonly used icons to get started quickly which you can view [here](https://react-ui-git-dev-storyofams.vercel.app/?path=/story/components-icon--library). Besides the icons we provide you can also supply your own icons to the Icon component as a React component. This recommended way of adding icons is through svgs. The easiest way to get svgs loaded into your application is by using [svgr](https://react-svgr.com/).
+
+### Css
+
+Thanks to styled-system we get access to a `css` function. This css function can be used when you don't quite want to wrap a whole new styled-component, but you do need some specific css selectors to make it look pretty 🥰
+
+To utilize the full potential of typescript we've re-exported the css function for you but added some autocomplete for values that live in your theme. This means that;
+```ts
+import { css as styledSystemCss } from '@styled-system/css'
+import { css as reactUiCss } from '@storyofams/react-ui'
+
+css={styledSystemCss({
+  backgroundColor: 'red' // autocompleted
+})}
+
+css={reactUiCss({
+  backgroundColor: 'red' // autocompleted
+  backgroundColor: 'primary500' // autocompleted
+})}
+```
 ### Custom components
 
 For those components that just require extra customization or that really can't do without those few extra lines of css you can extend the Box component.
@@ -106,6 +128,10 @@ export const CustomComponent = (({ customProp, ...rest}): CustomBoxProps) => {
 
 ## Gotchas
 Following are some things to take note of when using the library.
+
+> I'm seeing a lot of properties on the dom but no actual styling is applied?
+
+  This is a know issue when using a component that uses a forwardingRef. Our current setup requires the `as` prop to enable autocomplete on certain HTML properties, since that components accepts an `as` property but is also forwarding a ref to another styled-component (which again accepts `as`) (you'll need to forward the `as`)[https://styled-components.com/docs/api#forwardedas-prop]. We're looking into the misconfiguration that is happening between those properties and why it's causing the properties to be passed to the dom rather than being used for styling.
 
 > Some things do not have color am I going colourblind?
 

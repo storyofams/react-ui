@@ -1,6 +1,6 @@
 {
   "name": "@storyofams/react-ui",
-  "description": "Collection of UI components built with styled-system & styled-components to create a resilient front-end with Next.js.",
+  "description": "Collection of UI components built with styled-system & styled-components to create a resilient front-end experience for Next.js 🚀",
   "version": "0.0.0-development",
   "license": "MIT",
   "main": "dist/index.js",
