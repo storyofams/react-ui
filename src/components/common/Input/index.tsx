@@ -42,6 +42,8 @@ const StyledInput = styled.input`
   min-height: 38px;
   width: 100%;
 
+  border: 1px solid ${({ theme }) => theme.colors.grey300};
+
   transition: border-color 0.18s ease-in-out, background-color 0.18s ease-in-out;
 
   text-decoration: none;
@@ -50,13 +52,10 @@ const StyledInput = styled.input`
     color: ${({ theme }) => theme.colors.grey400};
   }
 
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.primary800};
-  }
-
+  &:hover,
   &:active,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.primary50};
+    border-color: ${({ theme }) => theme.colors.primary800};
   }
 
   &:disabled {
@@ -116,7 +115,6 @@ export const Input: PolymorphicForwardRefExoticComponent<
           disabled={disabled}
           py={0.75}
           px={2}
-          borderColor="grey300"
           borderRadius="xs"
           color="grey700"
           fontSize={[2, 1.75]}

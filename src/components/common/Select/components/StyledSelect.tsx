@@ -52,7 +52,7 @@ const StyledSelect = styled(ReactSelect).attrs({
           box-shadow: none;
 
           .react-select__placeholder {
-            color: ${theme.colors.grey700};
+            color: ${theme.colors.white};
           }
         }
       }
@@ -88,8 +88,8 @@ const StyledSelect = styled(ReactSelect).attrs({
 
         & {
           &--is-selected,
-          &--is-focused {
-            background-color: ${theme.colors.primary50};
+          &--is-focused,
+          &--is-active {
             color: ${theme.colors.primary800};
           }
         }
@@ -112,9 +112,9 @@ const Select: FC<SelectProps> = (props) => {
         ...t,
         colors: {
           ...t.colors,
-          primary25: theme.colors.primary500,
-          primary50: theme.colors.primary500,
-          primary: theme.colors.primary500,
+          primary25: theme.colors.primary50,
+          primary50: theme.colors.primary200,
+          primary: theme.colors.primary100,
         },
       })}
       {...props}

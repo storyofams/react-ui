@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Flatpickr from 'react-flatpickr';
 // import 'flatpickr/dist/themes/light.css';
 import styled from 'styled-components';
@@ -29,12 +29,12 @@ export interface DatePickerProps extends SystemProps {
   name?: string;
 }
 
-const DatePickerComponent: FC<DatePickerProps> = ({
+const DatePickerComponent = ({
   value,
   onChange,
   className,
   inputProps,
-}) => (
+}: DatePickerProps) => (
   <Flatpickr
     value={value}
     onChange={onChange}
