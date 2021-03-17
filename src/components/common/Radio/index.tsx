@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { pick, omit } from '@styled-system/props';
 import { useId } from 'react-id-generator';
 import styled from 'styled-components';
@@ -12,7 +12,6 @@ import { Stack } from '~components/common/Stack';
 import { Text } from '~components/common/Text';
 
 const StyledRadio = styled.input`
-  margin-right: ${({ theme }) => theme.space['0.5']}px;
   appearance: none;
   outline: none;
   border: none;
@@ -22,12 +21,13 @@ const StyledRadio = styled.input`
   width: 20px;
   height: 20px;
 
+  margin-right: ${({ theme }) => theme.space[1]}px;
+
   border-radius: 50%;
+  border: 2px solid ${({ theme }) => theme.colors.primary800};
   background: ${({ theme }) => theme.colors.primary50};
   transition: border-shadow 0.18s ease-in-out,
-    background-color 0.18s ease-in-out;
-
-  box-shadow: inset 0 0 0 2px ${({ theme }) => theme.colors.primary800};
+    background-color 0.18s ease-in-out, 0.18s box-shadow ease-in-out;
 
   &:checked {
     &::before {
@@ -46,13 +46,19 @@ const StyledRadio = styled.input`
     }
   }
 
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary200};
+  }
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.6;
   }
 `;
 
-const Radio = ({ value, label, ...rest }) => {
+const Radio = ({ value, label, disabled, ...rest }) => {
   const autoId = useId();
   const id = `radio-button=${autoId}`;
 
@@ -60,12 +66,21 @@ const Radio = ({ value, label, ...rest }) => {
     <Text
       as="label"
       variant="label"
+      fontSize={2}
       htmlFor={id}
       key={id}
       display="flex"
       alignItems="center"
+      opacity={disabled ? 0.6 : 1}
+      cursor={disabled ? 'not-allowed' : 'pointer'}
     >
-      <StyledRadio id={id} value={value} type="radio" {...rest} />
+      <StyledRadio
+        id={id}
+        value={value}
+        type="radio"
+        disabled={disabled}
+        {...rest}
+      />
       {label}
     </Text>
   );
@@ -79,9 +94,10 @@ type RadioGroupProps = {
   options: { label?: string; value: string | number }[];
   space: ResponsiveValue<CSS['margin']>;
   flexDirection?: ResponsiveValue<CSS['flexDirection']>;
+  disabled?: boolean;
 } & InputWrapperProps;
 
-export const RadioGroup: FC<RadioGroupProps> = ({
+export const RadioGroup = ({
   error,
   options,
   space,
@@ -90,10 +106,11 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   label,
   status = undefined,
   statusMessage = undefined,
+  disabled = false,
   ...rest
-}) => {
+}: RadioGroupProps) => {
   const autoId = useId();
-  const id = initialId || `radio-group=${autoId}`;
+  const id = initialId || `radio-group-${autoId}`;
 
   return (
     <InputWrapper
@@ -110,6 +127,7 @@ export const RadioGroup: FC<RadioGroupProps> = ({
             value={option.value}
             label={option?.label ?? option?.value}
             key={i}
+            disabled={disabled}
             {...omit(rest)}
           />
         ))}
