@@ -19,8 +19,8 @@ test('it renders without crashing', () => {
 test('handles props', async () => {
   render(<Spinner data-testid="spinner" color="transparent" size={80} />);
   const element = screen.getByTestId('spinner');
-  const spinnerContainer: Record<string, any> = element.firstChild;
+  const spinnerContainer: any = element.firstChild;
 
-  expect(spinnerContainer).toHaveAttribute('color', 'transparent');
+  expect(window.getComputedStyle(element).color).toBe('rgba(255, 255, 255, 0)');
   expect(spinnerContainer).toHaveAttribute('size', '80');
 });
