@@ -63,5 +63,3 @@ export const Accordion = ({ title, children, ...props }: AccordionProps) => {
     </Box>
   );
 };
-
-export default Accordion;

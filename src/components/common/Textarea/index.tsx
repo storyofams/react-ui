@@ -15,7 +15,7 @@ import type {
 } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
-import { system, css } from '~lib';
+import { system } from '~lib';
 import {
   InputWrapper,
   InputWrapperProps,

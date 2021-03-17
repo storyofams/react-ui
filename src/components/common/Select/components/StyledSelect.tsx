@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import ReactSelect, { Props } from 'react-select';
 import styled, { css, useTheme } from 'styled-components';
 
@@ -102,7 +102,7 @@ interface SelectProps extends Props {
   theme?: any;
 }
 
-const Select: FC<SelectProps> = (props) => {
+export const Select = ({ props }: SelectProps) => {
   const theme = useTheme(); // react-select and styled-components both need a theme so it needs to be renamed
 
   return (
