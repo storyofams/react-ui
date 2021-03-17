@@ -3,6 +3,7 @@ import { CustomCheckbox, CustomCheckboxProps } from '@reach/checkbox';
 import { pick, omit } from '@styled-system/props';
 import { useId } from 'react-id-generator';
 import styled from 'styled-components';
+
 import { Box } from '~components/common/Box';
 import {
   InputWrapper,
