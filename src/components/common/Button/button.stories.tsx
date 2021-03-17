@@ -24,3 +24,25 @@ Secondary.args = {
   variant: 'secondary',
   size: 'small',
 };
+
+export const Link = (args) => (
+  <Button sizes={['large', 'medium', 'small']} {...args}>
+    Lorem Ipsum
+  </Button>
+);
+
+Link.args = {
+  variant: 'link',
+  size: 'small',
+};
+
+export const Underline = (args) => (
+  <Button sizes={['large', 'medium', 'small']} {...args}>
+    Lorem Ipsum
+  </Button>
+);
+
+Underline.args = {
+  variant: 'underline',
+  size: 'small',
+};

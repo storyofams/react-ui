@@ -15,8 +15,8 @@ export const Basic = (args) => (
   <Stack space={1} maxWidth="400px" flexDirection="column">
     <Accordion {...args} />
     <Accordion title="This is an accordeon line">
-      <Text>HI</Text>
-      <Text>HI</Text>
+      <Text>This is some accordeon content</Text>
+      <Text>This is some accordeon content</Text>
     </Accordion>
   </Stack>
 );
