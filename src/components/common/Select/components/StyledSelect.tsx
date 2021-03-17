@@ -102,7 +102,7 @@ interface SelectProps extends Props {
   theme?: any;
 }
 
-export const Select = ({ props }: SelectProps) => {
+const Select = (props: SelectProps) => {
   const theme = useTheme(); // react-select and styled-components both need a theme so it needs to be renamed
 
   return (

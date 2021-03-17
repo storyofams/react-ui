@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Alert from '@reach/alert';
 
 import { Box } from '~components/common/Box';
@@ -9,16 +9,17 @@ export type status = 'default' | 'success' | 'warning' | 'error';
 export interface StatusMessageProps extends SystemProps {
   status: status | Boolean;
   type?: 'polite' | 'assertive';
+  children: string;
 }
 // this component alerts screen readers when its rendered.
 // should be used together with a formfield + react-hook-form
 
-export const StatusMessage: FC<StatusMessageProps> = ({
+export const StatusMessage = ({
   status,
   type,
   children,
   ...props
-}) => {
+}: StatusMessageProps) => {
   return (
     <Box
       color={

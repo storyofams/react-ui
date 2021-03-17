@@ -45,7 +45,7 @@ export const Basic = () => {
 
   return (
     <>
-      <Box p={5}>
+      <Box>
         <Button variant="primary" onClick={openModal}>
           Open modal
         </Button>
@@ -84,7 +84,7 @@ export const LongText = () => {
 
   return (
     <div>
-      <Box p={5}>
+      <Box>
         <Button variant="primary" onClick={openModal}>
           Open modal
         </Button>
