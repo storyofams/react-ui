@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import { Box } from '~components/common/Box';
 import { Flex } from '~components/common/Flex';
@@ -9,13 +9,10 @@ import { SystemProps } from '~types/system';
 
 export interface AccordionProps extends SystemProps {
   title: string;
+  children: ReactNode | string;
 }
 
-export const Accordion: FC<AccordionProps> = ({
-  title,
-  children,
-  ...props
-}) => {
+export const Accordion = ({ title, children, ...props }: AccordionProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -43,22 +40,25 @@ export const Accordion: FC<AccordionProps> = ({
           mt={0.75}
         />
       </Flex>
-
-      <Box maxHeight={open ? '500px' : 0} transition="max-height ease 0.3s">
-        {typeof children === 'string' ? (
-          <Text
-            variant="psm"
-            color="grey500"
-            pt={1.5}
-            pb={2.5}
-            transition="opacity ease 0.25s"
-            opacity={open ? 1 : 0}
-          >
-            {children}
-          </Text>
-        ) : (
-          children
-        )}
+      <Box
+        maxHeight={open ? '500px' : 0}
+        transition="max-height ease 0.3s"
+        overflow="hidden"
+      >
+        <Box
+          pt={1.5}
+          pb={2.5}
+          transition="opacity ease 0.25s"
+          opacity={open ? 1 : 0}
+        >
+          {typeof children === 'string' ? (
+            <Text variant="psm" color="grey500">
+              {children}
+            </Text>
+          ) : (
+            children
+          )}
+        </Box>
       </Box>
     </Box>
   );
