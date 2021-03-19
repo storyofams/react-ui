@@ -26,12 +26,10 @@
     "types": ["jest", "node"]
   },
   "exclude": [
-    "node_modules",
-    "src/lib/test-utils.tsx",
-    "build",
+    "coverage",
     "dist",
     "example",
-    "rollup.config.js",
+    "node_modules"
   ],
   "include": ["**/*.ts", "**/*.tsx"]
 }

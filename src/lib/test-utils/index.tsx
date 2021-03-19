@@ -1,13 +1,9 @@
-import React, { FC } from 'react';
-
+import React, { ReactNode } from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { toHaveNoViolations } from 'jest-axe';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '~styles/theme';
-
-expect.extend(toHaveNoViolations);
 
 function RGBToHex(rgb: string) {
   // Choose correct separator
@@ -27,7 +23,7 @@ function RGBToHex(rgb: string) {
 }
 
 // provide a local theme
-const Providers: FC = ({ children }) => {
+const Providers = ({ children }: { children?: ReactNode }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
