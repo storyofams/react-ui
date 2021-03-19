@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Box } from '~components/common/Box';
 import { Button } from '~components/common/Button';
+import { Flex } from '~components/common/Flex';
 import { Icon } from '~components/common/Icon';
 import { ChevronRight, House } from '~components/common/Icon/library';
 import { Text } from '~components/common/Text';
@@ -11,14 +12,19 @@ export interface BreadcrumbProps extends SystemProps {
   links: Array<{ title: string; href: string }>;
 }
 
-export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
+export const Breadcrumb = ({ links, ...props }: BreadcrumbProps) => (
   <Box display="flex" flexDirection="row" alignItems="center" {...props}>
-    <Button as="a" to="/" aria-current="step" color="grey400">
+    <Button as="a" to="/" aria-current="step" color="grey400" variant="link">
       <Icon icon={<House />} size={16} mr={0.5} />
     </Button>
     {links.map(({ title, href }, index) => (
-      <div key={`${title}-${index}`}>
-        <Icon icon={ChevronRight} color="grey400" fontSize={2} mr={0.5} />
+      <Flex key={`${title}-${index}`}>
+        <Icon
+          icon={ChevronRight}
+          color="grey400"
+          fontSize={'8px' as any}
+          mr={0.5}
+        />
         {index === links.length - 1 ? (
           <Text color="grey400" mr={1} fontSize={1.5} aria-current="step">
             {title}
@@ -31,23 +37,12 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ links, ...props }) => (
             fontSize={1.5}
             to={href}
             aria-current="step"
+            variant="link"
           >
             {title}
           </Button>
         )}
-      </div>
+      </Flex>
     ))}
   </Box>
-);
-
-export const MenuLink: FC<{ href: string }> = ({ children, ...props }) => (
-  <Button variant="link" {...props}>
-    {children}
-  </Button>
-);
-
-export const CategoryLink: FC<{ href: string }> = ({ children, ...props }) => (
-  <Button variant="link" {...props}>
-    {children}
-  </Button>
 );

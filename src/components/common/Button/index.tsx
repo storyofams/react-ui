@@ -49,6 +49,7 @@ const variants = {
     '&:hover': {
       bg: 'primary700',
       color: 'primary50',
+      opacity: 1,
     },
 
     '&:active': {
@@ -71,6 +72,7 @@ const variants = {
     '&:hover': {
       bg: 'primary300',
       color: 'primary800',
+      opacity: 1,
     },
 
     '&:active': {
@@ -85,6 +87,14 @@ const variants = {
     },
   },
   link: {
+    color: 'grey700',
+
+    '&:hover, &:active': {
+      color: 'primary700',
+      opacity: 1,
+    },
+  },
+  underline: {
     color: 'grey900',
     fontWeight: 'medium',
     userSelect: 'none',
@@ -102,6 +112,7 @@ const variants = {
 
     '&:hover, &:active': {
       color: 'primary700',
+      opacity: 1,
 
       '&::before': {
         left: 0,
@@ -152,7 +163,7 @@ const StyledButton = styled(_defaultElement).withConfig({
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   &:active {

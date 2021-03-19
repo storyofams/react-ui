@@ -25,7 +25,9 @@ const variants = {
     lineHeight: 'high',
   },
   label: {
-    lineHeight: 'high',
+    display: 'flex',
+
+    lineHeight: 'medium',
     fontWeight: 'semiBold',
     color: 'grey700',
 

@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { Flex } from '~components/common/Flex';
 import { SystemProps } from '~types/system';
 
-type CustomProps = SystemProps & {
+type SpinnerProps = SystemProps & {
   size?: number;
 };
 
@@ -19,7 +19,7 @@ const Container = styled.div<{ color?: string; size: number }>`
 
   width: ${(p) => p.size}px;
   height: ${(p) => p.size}px;
-  color: ${(p) => (p.color ? p.theme.colors[p.color] : p.color)};
+  color: inherit;
 
   div {
     position: absolute;
@@ -42,14 +42,14 @@ const Container = styled.div<{ color?: string; size: number }>`
   }
 `;
 
-export const Spinner: FC<CustomProps> = ({
-  color = '',
+export const Spinner = ({
+  color = 'primary500',
   size = 24,
   ...rest
-}) => {
+}: SpinnerProps) => {
   return (
-    <Flex variant="center" {...rest}>
-      <Container color={color} size={size}>
+    <Flex color={color} variant="center" {...rest}>
+      <Container size={size}>
         <div />
         <div />
         <div />

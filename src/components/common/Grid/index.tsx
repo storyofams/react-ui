@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ReactNode } from 'react';
 import { ResponsiveValue } from 'styled-system';
 
 import { Box } from '~components/common/Box';
@@ -11,15 +11,16 @@ export interface CustomProps extends SystemProps {
   rowSize: ResponsiveValue<number>;
   rowGap?: ResponsiveValue<number>;
   columnGap?: ResponsiveValue<number>;
+  children?: ReactNode;
 }
 
-export const Grid: FC<CustomProps> = ({
+export const Grid = ({
   rowSize,
   rowGap = 0,
   columnGap = 0,
   children,
   ...props
-}) => {
+}: CustomProps) => {
   return (
     <Box {...props}>
       <Flex

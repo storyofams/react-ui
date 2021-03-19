@@ -10,7 +10,7 @@ export * from './common/Icon';
 export * from './common/Input';
 export * from './common/InputWrapper';
 export * from './common/Modal';
-export * from './common/Nav';
+export * from './common/Breadcrumb';
 export * from './common/Radio';
 export * from './common/Select';
 export * from './common/Spinner';

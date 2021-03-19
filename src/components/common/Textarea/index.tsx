@@ -15,7 +15,7 @@ import type {
 } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
-import { system, css } from '~lib';
+import { system } from '~lib';
 import {
   InputWrapper,
   InputWrapperProps,
@@ -36,7 +36,9 @@ type Props<
 /** we could probably just make this variant of Input with as="textarea"  */
 const StyledTextarea = styled.textarea`
   appearance: none;
+  display: block;
 
+  width: 100%;
   min-height: 38px;
 
   border-radius: ${({ theme }) => theme.radii.xs};
@@ -105,7 +107,6 @@ export const Textarea: PolymorphicForwardRefExoticComponent<
         ref={ref}
         py={0.75}
         px={2}
-        ml={1}
         fontSize={[2, 1.75]}
         {...omit(props)}
       />

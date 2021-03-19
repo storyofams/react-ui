@@ -23,18 +23,8 @@ const StyledCheckbox = styled(CustomCheckbox)`
   vertical-align: middle;
 
   width: 20px;
+  min-width: 20px;
   height: 20px;
-
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
-      0 0 0 1px ${({ theme }) => theme.colors.primary800};
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
 
   &[data-reach-custom-checkbox] {
     input {
@@ -43,25 +33,45 @@ const StyledCheckbox = styled(CustomCheckbox)`
       appearance: none;
       outline: none;
       background: ${({ theme }) => theme.colors.primary50};
-      border-radius: ${({ theme }) => theme.radii.sm};
-      box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.primary800},
-        0 0 0 1px ${({ theme }) => theme.colors.primary800};
+      border-radius: ${({ theme }) => theme.radii.xs};
+      border: 2px solid ${({ theme }) => theme.colors.primary800};
+      transition: 0.18s box-shadow ease-in-out;
+
+      &:before {
+        content: '';
+
+        position: absolute;
+        top: 1px;
+        left: 5px;
+        width: 6px;
+        height: 12px;
+
+        display: none;
+
+        border-right: 2px solid;
+        border-bottom: 2px solid;
+        border-color: ${(p) => p.theme.colors.white};
+
+        transform: rotate(40deg);
+
+        transition: border-color 0.15s;
+      }
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        outline: none;
+        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary200};
+      }
     }
   }
 
   &[data-reach-custom-checkbox][data-state='checked'] {
     input {
       background: ${({ theme }) => theme.colors.primary800};
-    }
 
-    input:before {
-      content: '✔';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      display: block;
-      color: ${({ theme }) => theme.colors.white};
+      &:before {
+        display: block;
+      }
     }
   }
 
@@ -71,6 +81,7 @@ const StyledCheckbox = styled(CustomCheckbox)`
 
 type CheckboxProps = {
   id?: string;
+  disabled?: boolean;
 } & InputWrapperProps;
 
 export const Checkbox = forwardRef<CustomCheckboxProps, CheckboxProps>(
@@ -81,6 +92,7 @@ export const Checkbox = forwardRef<CustomCheckboxProps, CheckboxProps>(
       statusMessage = false,
       error,
       id: givenId,
+      disabled,
       ...rest
     },
     ref,
@@ -95,8 +107,21 @@ export const Checkbox = forwardRef<CustomCheckboxProps, CheckboxProps>(
         error={error}
         {...pick(rest)}
       >
-        <Text as="label" htmlFor={id} fontSize={2} variant="label">
-          <StyledCheckbox {...omit(rest)} id={id} ref={ref} mr={0.5} />
+        <Text
+          as="label"
+          htmlFor={id}
+          fontSize={2}
+          variant="label"
+          opacity={disabled ? 0.6 : 1}
+          cursor={disabled ? 'not-allowed' : 'pointer'}
+        >
+          <StyledCheckbox
+            id={id}
+            ref={ref}
+            mr={1}
+            disabled={disabled}
+            {...omit(rest)}
+          />
           {label}
         </Text>
       </InputWrapper>

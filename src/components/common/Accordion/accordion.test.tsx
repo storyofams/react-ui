@@ -24,18 +24,18 @@ test('renders string content', () => {
 
   const element = screen.getByTestId('accordion');
   const contentBox = screen.getByText(content).parentElement;
-  const textBox = screen.getByText(content);
+  const contentBoxParent = contentBox.parentElement;
 
-  expect(window.getComputedStyle(textBox).opacity).toBe('0');
-  expect(window.getComputedStyle(contentBox).maxHeight).toBe('0');
-
-  userEvent.click(element);
-  expect(window.getComputedStyle(textBox).opacity).toBe('1');
-  expect(window.getComputedStyle(contentBox).maxHeight).toBe('500px');
+  expect(window.getComputedStyle(contentBox).opacity).toBe('0');
+  expect(window.getComputedStyle(contentBoxParent).maxHeight).toBe('0');
 
   userEvent.click(element);
-  expect(window.getComputedStyle(textBox).opacity).toBe('0');
-  expect(window.getComputedStyle(contentBox).maxHeight).toBe('0');
+  expect(window.getComputedStyle(contentBox).opacity).toBe('1');
+  expect(window.getComputedStyle(contentBoxParent).maxHeight).toBe('500px');
+
+  userEvent.click(element);
+  expect(window.getComputedStyle(contentBox).opacity).toBe('0');
+  expect(window.getComputedStyle(contentBoxParent).maxHeight).toBe('0');
 });
 
 test('renders custom content', () => {
@@ -47,7 +47,7 @@ test('renders custom content', () => {
 
   const element = screen.getByTestId('accordion');
   const contentBox = screen.getByTestId('accordion-custom-content')
-    .parentElement;
+    .parentElement.parentElement;
 
   expect(window.getComputedStyle(contentBox).maxHeight).toBe('0');
 

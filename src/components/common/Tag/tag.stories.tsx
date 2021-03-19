@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Stack, Tag } from '~components';
+import { Tag } from '~components';
 
 export default {
   component: Tag,
   title: 'components/Tag',
   args: {
-    children: 'text',
+    label: 'label text',
+    statusMessage: 'status text',
+    status: 'error',
+    disabled: false,
   },
+  argTypes: {
+    status: {
+      control: {
+        type: 'select',
+        options: ['default', 'success', 'warning', 'error'],
+      },
+    },
+  },
+  parameters: { controls: { hideNoControlsWarning: true } },
 };
 
-export const Basic = (args) => {
-  const [checked, setChecked] = useState(false);
-
-  return (
-    <Stack space={0} maxWidth="400px" flexDirection="column">
-      <Tag checked={checked} onChange={() => setChecked(!checked)}>
-        Tag Label
-      </Tag>
-    </Stack>
-  );
-};
+export const Basic = (args) => <Tag {...args} />;

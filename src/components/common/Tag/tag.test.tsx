@@ -1,59 +1,28 @@
 import React from 'react';
 import { axe } from 'jest-axe';
+import { resetId } from 'react-id-generator';
 
 import { Tag } from '~components';
-import { fireEvent, render, screen, RGBToHex } from '~lib/test-utils';
-import theme from '~styles/theme';
+import { screen, render } from '~lib/test-utils';
 
 test('[Tag] should not fail accessibility testing', async () => {
-  const { container } = render(<Tag checked={false} onChange={() => null} />);
+  const { container } = render(<Tag label="label" />);
 
   expect(await axe(container)).toHaveNoViolations();
 });
 
-test('receives change events', async () => {
-  const onChange = jest.fn();
+test('handles the id prop when an id has been provided', async () => {
+  const id = 'testid';
 
-  render(<Tag data-testid="tag" checked={false} onChange={onChange} />);
+  render(<Tag label="label" id={id} />);
 
-  const tag: any = screen.getByTestId('tag');
-
-  expect(tag.checked).toBeFalsy();
-
-  fireEvent.click(tag, { target: { checked: true } });
-
-  expect(tag.checked).toBeTruthy();
-  expect(onChange).toBeCalled();
+  expect(screen.getByRole('checkbox')).toHaveAttribute('id', id);
 });
 
-test('handles styling for unchecked', async () => {
-  const onChange = jest.fn();
+test('handles the id prop when no id has been provided', async () => {
+  resetId();
 
-  render(<Tag data-testid="tag" checked={false} onChange={onChange} />);
+  render(<Tag label="label" />);
 
-  const tag: any = screen.getByTestId('tag');
-
-  const style = window.getComputedStyle(tag);
-  const colorUnchecked = RGBToHex(style.color);
-  const backgroundColorUnchecked = RGBToHex(style.backgroundColor);
-
-  expect(colorUnchecked).toBe(theme.colors.grey700.toLowerCase());
-  expect(backgroundColorUnchecked).toBe(theme.colors.primary100.toLowerCase());
-  expect(style.borderColor).toBe(theme.colors.primary100.toLowerCase());
-});
-
-test('handles styling for checked', async () => {
-  const onChange = jest.fn();
-
-  render(<Tag data-testid="tag" checked={true} onChange={onChange} />);
-
-  const tag: any = screen.getByTestId('tag');
-
-  const style = window.getComputedStyle(tag);
-  const colorChecked = RGBToHex(style.color);
-  const backgroundColorChecked = RGBToHex(style.backgroundColor);
-
-  expect(colorChecked).toBe(theme.colors.white.toLowerCase());
-  expect(backgroundColorChecked).toBe(theme.colors.primary700.toLowerCase());
-  expect(style.borderColor).toBe(theme.colors.primary700.toLowerCase());
+  expect(screen.getByRole('checkbox')).toHaveAttribute('id', 'tag-id1');
 });

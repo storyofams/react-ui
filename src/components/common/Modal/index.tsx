@@ -1,4 +1,4 @@
-import React, { ReactNode, FC } from 'react';
+import React, { ReactNode } from 'react';
 import {
   DialogOverlay as ReachDialogOverlay,
   DialogContent as ReachDialogContent,
@@ -92,12 +92,12 @@ type ModalProps = {
   children?: ReactNode;
 } & SystemProps;
 
-export const ModalBase: FC<ModalProps> = ({
+export const ModalBase = ({
   children,
   ariaLabel,
   isOpen,
   close,
-}) => {
+}: ModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -131,47 +131,40 @@ export const ModalBase: FC<ModalProps> = ({
   );
 };
 
-export const Modal: FC<ModalProps> = ({
-  children,
-  header,
-  footer,
-  ...props
-}) => {
-  return (
-    <ModalBase {...omit(props)}>
-      {typeof header === 'string' ? (
-        <Box
-          display="flex"
-          mb={4}
-          pb={2}
-          alignItems="center"
-          borderBottom="1px"
-          borderColor="grey200"
-        >
-          <Text fontWeight="bold" fontSize={3}>
-            {header}
-          </Text>
-        </Box>
-      ) : (
-        header
-      )}
-
+export const Modal = ({ children, header, footer, ...props }: ModalProps) => (
+  <ModalBase {...omit(props)}>
+    {typeof header === 'string' ? (
       <Box
-        flex={1}
-        pr={1.5}
-        width="100%"
-        overflowY="auto"
-        fontSize={2}
-        {...pick(props)}
+        display="flex"
+        mb={4}
+        pb={2}
+        alignItems="center"
+        borderBottom="1px"
+        borderColor="grey200"
       >
-        {children}
+        <Text fontWeight="bold" fontSize={3}>
+          {header}
+        </Text>
       </Box>
+    ) : (
+      header
+    )}
 
-      {footer && (
-        <Flex alignItems="center" justifyContent="flex-end" mt={5}>
-          {footer}
-        </Flex>
-      )}
-    </ModalBase>
-  );
-};
+    <Box
+      flex={1}
+      pr={1.5}
+      width="100%"
+      overflowY="auto"
+      fontSize={2}
+      {...pick(props)}
+    >
+      {children}
+    </Box>
+
+    {footer && (
+      <Flex alignItems="center" justifyContent="flex-end" mt={5}>
+        {footer}
+      </Flex>
+    )}
+  </ModalBase>
+);
