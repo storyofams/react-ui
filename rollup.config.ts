@@ -1,7 +1,6 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import clear from 'rollup-plugin-clear';
 import filesize from 'rollup-plugin-filesize';
 import external from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
@@ -9,6 +8,8 @@ import typescript from 'rollup-plugin-typescript2';
 import ttypescript from 'ttypescript';
 
 import pkg from './package.json';
+
+const clear = require('rollup-plugin-clear');
 
 const extensions = ['.tsx', '.ts'];
 

@@ -1,6 +1,6 @@
 import type { Config } from '@jest/types';
 
-export default {
+const config: Config.InitialOptions = {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   transform: {
@@ -17,7 +17,8 @@ export default {
     'src/lib', // a utility folder
     __dirname, // the root directory
   ],
-
   setupFilesAfterEnv: ['./jest.setup.ts'],
   coverageDirectory: './coverage',
-} as Config.InitialOptions;
+};
+
+export default config;
