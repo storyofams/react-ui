@@ -38,11 +38,13 @@ jobs:
       - name: Install modules
         run: yarn
 
-      - name: Run tests
+      - name: Run ts-coverage
         run: yarn ts-coverage -o coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
+          flags: typescript
+          name: typescript
           # project specific codecov token
           token: ${{ secrets.CODECOV_TOKEN }}
