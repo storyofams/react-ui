@@ -17,7 +17,7 @@ import { system } from '~lib';
 import { Box } from '~components/common/Box';
 import { Spinner } from '~components/common/Spinner';
 import { allPropNames } from '~lib/system';
-import { SystemProps } from '~types/system';
+import { SystemProps } from '~lib/system-props';
 
 const _defaultElement = 'button';
 
@@ -127,16 +127,12 @@ type CustomProps = {
   to?: string | undefined;
   variant?: ResponsiveValue<keyof typeof variants>;
   buttonSize?: ResponsiveValue<keyof typeof sizes>;
+  disabled?: boolean;
 } & SystemProps;
 
-type Props<
-  T extends ElementType = typeof _defaultElement
-> = PolymorphicPropsWithRef<CustomProps, T>;
-
-const StyledButton = styled(_defaultElement).withConfig({
+const StyledButton = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
-    ['buttonSize', ...allPropNames].indexOf(prop) === -1 &&
-    defaultValidatorFn(prop),
+    ['buttonSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
 })`
   position: relative;
 
@@ -176,53 +172,57 @@ const StyledButton = styled(_defaultElement).withConfig({
 
   ${variant({ variants })}
   ${variant({ prop: 'buttonSize', variants: sizes })}
-  ${(props) => props.css}
-  ${system}
 `;
 
 export const Button: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
-> = forwardRef(function Button<
-  AsElement extends ElementType = typeof _defaultElement
->(
-  props: PolymorphicPropsWithoutRef<Props, AsElement>,
-  ref: ForwardedRef<ElementRef<AsElement>>,
-) {
-  if (props?.isLoading) {
-    return (
-      // @ts-ignore
-      <StyledButton
-        {...props}
-        ref={ref}
-        position="relative"
-        aria-disabled
-        data-is-loading
-      >
-        <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
+> = forwardRef(
+  <AsElement extends ElementType = typeof _defaultElement>(
+    /** @todo fix this typing */
+    props: any,
+    ref: ForwardedRef<ElementRef<AsElement>>,
+  ) => {
+    if (props?.isLoading) {
+      return (
+        <StyledButton
+          {...props}
+          as={props?.as ?? _defaultElement}
+          ref={ref}
+          position="relative"
+          data-is-loading
+          aria-disabled
+          disabled
         >
-          <Spinner />
-        </Box>
-        <Box display="flex" color="transparent">
-          {props?.children}
-        </Box>
-      </StyledButton>
-    );
-  }
+          <Box
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+          >
+            <Spinner />
+          </Box>
+          <Box display="flex" color="transparent">
+            {props?.children}
+          </Box>
+        </StyledButton>
+      );
+    }
 
-  if (props?.to) {
+    if (props?.to) {
+      return (
+        <Link href={props.to} passHref>
+          <StyledButton
+            {...props}
+            ref={ref}
+            as={props?.as ?? _defaultElement}
+          />
+        </Link>
+      );
+    }
+
     return (
-      <Link href={props.to} passHref>
-        {/* @ts-ignore */}
-        <StyledButton {...props} ref={ref} />
-      </Link>
+      <StyledButton {...props} ref={ref} as={props?.as ?? _defaultElement} />
     );
-  }
-
-  // @ts-ignore
-  return <StyledButton {...props} ref={ref} />;
-});
+  },
+);

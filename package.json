@@ -49,7 +49,8 @@
     "styled-system": "5.1.5"
   },
   "dependencies": {
-    "react-polymorphic-types": "1.0.3"
+    "react-polymorphic-types": "1.0.3",
+    "system-props": "^0.18.0"
   },
   "devDependencies": {
     "@babel/cli": "7.13.0",

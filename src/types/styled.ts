@@ -1,4 +1,5 @@
 import 'styled-components';
+import 'system-props';
 
 export type Breakpoints = {
   sm?: string;
@@ -7,7 +8,12 @@ export type Breakpoints = {
   xl?: string;
 };
 
+type StyledTheme = typeof import('../styles/theme').default;
+
 declare module 'styled-components' {
-  type Theme = typeof import('../styles/theme').default;
-  export interface DefaultTheme extends Theme {}
+  export interface DefaultTheme extends StyledTheme {}
+}
+
+declare module 'system-props' {
+  export interface Theme extends StyledTheme {}
 }
