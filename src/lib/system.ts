@@ -33,6 +33,7 @@ type BaseProps = AllSystemProps &
 type Pseudo = PseudoProps<BaseProps>;
 
 export interface SystemProps extends BaseProps, Pseudo {
+  /** @todo properly type this to force the css function */
   css?: any;
   color?: string & ColorProps['color'];
 }
