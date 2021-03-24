@@ -12,8 +12,8 @@ import React, {
 import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
-import { Box } from '~components';
 import { SystemProps } from '~lib';
+import { Box } from '~components/common/Box';
 
 const _defaultElement = 'div';
 

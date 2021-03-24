@@ -20,26 +20,24 @@ export const Grid = ({
   columnGap = 0,
   children,
   ...props
-}: CustomProps) => {
-  return (
-    <Box {...props}>
-      <Flex
-        flexWrap="wrap"
-        ml={modifyResponsiveValue(columnGap, (val) => -val)}
-        mt={modifyResponsiveValue(rowGap, (val) => -val)}
-        css={css({
-          '& > *': {
-            flex: modifyResponsiveValue(
-              rowSize,
-              (size) => `0 1 ${(1 / size) * 100}%`,
-            ),
-            pl: columnGap,
-            pt: rowGap,
-          },
-        })}
-      >
-        {children}
-      </Flex>
-    </Box>
-  );
-};
+}: CustomProps) => (
+  <Box {...props}>
+    <Flex
+      flexWrap="wrap"
+      ml={modifyResponsiveValue(columnGap, (val) => -val)}
+      mt={modifyResponsiveValue(rowGap, (val) => -val)}
+      css={css({
+        '& > *': {
+          flex: modifyResponsiveValue(
+            rowSize,
+            (size) => `0 1 ${(1 / size) * 100}%`,
+          ),
+          pl: columnGap,
+          pt: rowGap,
+        },
+      })}
+    >
+      {children}
+    </Flex>
+  </Box>
+);

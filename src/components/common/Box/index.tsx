@@ -15,5 +15,3 @@ export const Box = styled('div').withConfig({
   ${(props) => props.css}
   ${system}
 `;
-
-export const CustomBox = (props: BoxProps) => <Box {...props} />;
