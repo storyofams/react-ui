@@ -1,69 +1,66 @@
-import { css } from 'styled-components';
+import * as CSS from 'csstype';
 import {
-  system as styledSystem,
+  AllSystemProps,
+  createSystem,
+  PseudoProps,
+  SystemProp,
   background,
-  border,
-  color,
-  flexbox,
-  grid,
-  layout,
-  position,
-  shadow,
-  space,
   typography,
-  compose,
-  Config,
-} from 'styled-system';
-import { SystemProps } from '~types/system';
+  ColorProps,
+  position,
+  flexbox,
+  shadow,
+  border,
+  layout,
+  color,
+  space,
+  grid,
+} from 'system-props';
 
-export const _customSystem: Config = {
-  textDecoration: { property: 'textDecoration' },
-  overflowX: true,
-  overflowY: true,
-  textTransform: true,
-  animation: true,
-  appearance: true,
+const extraProps = {
   transform: true,
-  transformOrigin: true,
-  visibility: true,
-  whiteSpace: true,
-  userSelect: true,
-  pointerEvents: true,
-  wordBreak: true,
-  overflowWrap: true,
-  textOverflow: true,
-  boxSizing: true,
-  cursor: true,
-  resize: true,
+  textDecoration: true,
   transition: true,
-  listStyleType: true,
-  listStylePosition: true,
-  listStyleImage: true,
-  objectFit: true,
-  objectPosition: true,
-  outline: true,
-  float: true,
-  willChange: true,
-};
+  cursor: true,
+  pointerEvents: true,
+} as const;
 
-const customSystem = styledSystem(_customSystem);
+type BaseProps = AllSystemProps &
+  {
+    [k in keyof typeof extraProps]?: SystemProp<CSS.Properties[k]>;
+  };
 
-const all = compose(
-  layout,
-  color,
-  space,
-  background,
-  border,
-  grid,
-  position,
-  shadow,
-  typography,
-  flexbox,
-  customSystem, // add our custom system on top of everything
-);
+type Pseudo = PseudoProps<BaseProps>;
 
-export const allPropNames = all.propNames;
+export interface SystemProps extends BaseProps, Pseudo {
+  css?: any;
+  color?: string & ColorProps['color'];
+}
 
-export const system = (props: SystemProps) => css`
-  ${all(props)}
-`;
+export const shouldForwardExtraProp = (prop: string) =>
+  [
+    'transform',
+    'transition',
+    'textDecoration',
+    'cursor',
+    'pointerEvents',
+  ].indexOf(prop) === -1;
+
+const _system = createSystem({
+  strict: false,
+  tokenPrefix: 'noprefix',
+});
+
+export const system = _system({
+  ...color,
+  ...border,
+  ...background,
+  ...flexbox,
+  ...grid,
+  ...shadow,
+  ...position,
+  ...layout,
+  ...space,
+  ...typography,
+  ...extraProps,
+});

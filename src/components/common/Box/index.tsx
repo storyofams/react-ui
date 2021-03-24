@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { shouldForwardProp } from 'system-props';
-import { system, SystemProps, shouldForwardExtraProp } from '~lib/system-props';
+import { system, shouldForwardExtraProp, SystemProps } from '~lib/system';
 
-export interface BoxProps extends SystemProps {}
+type BoxProps = SystemProps & {};
 
 export const Box = styled('div').withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
@@ -16,8 +16,4 @@ export const Box = styled('div').withConfig({
   ${system}
 `;
 
-type CustomBoxProps = SystemProps & {
-  myOwnProp: boolean;
-};
-
-export const CustomBox = styled(Box)<CustomBoxProps>``;
+export const CustomBox = (props: BoxProps) => <Box {...props} />;

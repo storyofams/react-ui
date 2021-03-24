@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
 import styled from 'styled-components';
 import { ResponsiveValue, variant } from 'styled-system';
 
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
-import { SystemProps } from '~types/system';
 
 const variants = {
   center: {
@@ -23,11 +22,10 @@ type CustomProps = SystemProps & {
   sizes?: ResponsiveValue<keyof typeof sizes>;
 };
 
-const StyledFlex = styled(Box)<CustomProps>`
-  ${variant({ prop: 'sizes', variants: sizes })}
+export const Flex = styled(Box).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) =>
+    ['flexSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
+})<CustomProps>`
+  ${variant({ prop: 'flexSize', variants: sizes })}
   ${variant({ variants })}
 `;
-
-export const Flex: FC<CustomProps> = (props) => (
-  <StyledFlex display="flex" {...props} />
-);

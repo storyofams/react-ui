@@ -8,19 +8,15 @@ import React, {
 
 import { pick, omit } from '@styled-system/props';
 import { useId } from 'react-id-generator';
-import type {
-  PolymorphicForwardRefExoticComponent,
-  PolymorphicPropsWithoutRef,
-  PolymorphicPropsWithRef,
-} from 'react-polymorphic-types';
+import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
 
-import { system } from '~lib';
+import type { SystemProps } from '~lib';
+import { Box } from '~components/common/Box';
 import {
   InputWrapper,
   InputWrapperProps,
 } from '~components/common/InputWrapper';
-import type { SystemProps } from '~types/system';
 
 const _defaultElement = 'input';
 
@@ -29,12 +25,8 @@ type CustomProps = {
 } & SystemProps &
   InputWrapperProps;
 
-type Props<
-  T extends ElementType = typeof _defaultElement
-> = PolymorphicPropsWithRef<CustomProps, T>;
-
 /** we could probably just make this variant of Input with as="textarea"  */
-const StyledTextarea = styled.textarea`
+const StyledTextarea = styled(Box)`
   appearance: none;
   display: block;
 
@@ -75,41 +67,39 @@ const StyledTextarea = styled.textarea`
     border-color: ${({ theme }) => theme.colors.error600};
     color: ${({ theme }) => theme.colors.error600};
   }
-
-  ${(props) => props.css}
-  ${system}
 `;
 
 export const Textarea: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
-> = forwardRef(function Input<
-  AsElement extends ElementType = typeof _defaultElement
->(
-  props: PolymorphicPropsWithoutRef<Props, AsElement>,
-  ref: ForwardedRef<ElementRef<AsElement>>,
-) {
-  const { label, status, statusMessage, error, id: givenId } = props;
-  const autoId = useId();
-  const id = givenId || `textarea-${autoId}`;
+> = forwardRef(
+  <AsElement extends ElementType = typeof _defaultElement>(
+    props: any,
+    ref: ForwardedRef<ElementRef<AsElement>>,
+  ) => {
+    const { label, status, statusMessage, error, id: givenId } = props;
+    const autoId = useId();
+    const id = givenId || `textarea-${autoId}`;
 
-  return (
-    <InputWrapper
-      id={id}
-      label={label}
-      status={status}
-      statusMessage={statusMessage}
-      error={error}
-      {...pick(props)}
-    >
-      <StyledTextarea
+    return (
+      <InputWrapper
         id={id}
-        ref={ref}
-        py={0.75}
-        px={2}
-        fontSize={[2, 1.75]}
-        {...omit(props)}
-      />
-    </InputWrapper>
-  );
-});
+        label={label}
+        status={status}
+        statusMessage={statusMessage}
+        error={error}
+        {...pick(props)}
+      >
+        <StyledTextarea
+          id={id}
+          ref={ref}
+          py={0.75}
+          px={2}
+          fontSize={[2, 1.75]}
+          as={props?.as ?? _defaultElement}
+          {...omit(props)}
+        />
+      </InputWrapper>
+    );
+  },
+);

@@ -5,19 +5,13 @@ import React, {
   ElementRef,
 } from 'react';
 import Link from 'next/link';
-import type {
-  PolymorphicForwardRefExoticComponent,
-  PolymorphicPropsWithoutRef,
-  PolymorphicPropsWithRef,
-} from 'react-polymorphic-types';
+import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
 import { ResponsiveValue, variant } from 'styled-system';
 
-import { system } from '~lib';
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { Spinner } from '~components/common/Spinner';
-import { allPropNames } from '~lib/system';
-import { SystemProps } from '~lib/system-props';
 
 const _defaultElement = 'button';
 
