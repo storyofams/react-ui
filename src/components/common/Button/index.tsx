@@ -3,7 +3,6 @@ import React, {
   ElementType,
   ForwardedRef,
   ElementRef,
-  ReactNode,
 } from 'react';
 import Link from 'next/link';
 import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
@@ -123,9 +122,6 @@ type CustomProps = {
   variant?: ResponsiveValue<keyof typeof variants>;
   buttonSize?: ResponsiveValue<keyof typeof sizes>;
   disabled?: boolean;
-  children: ReactNode;
-  /** @todo should have proper typings here */
-  as?: any;
 } & SystemProps;
 
 const StyledButton = styled(Box).withConfig({
@@ -178,7 +174,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
 > = forwardRef(
   <AsElement extends ElementType = typeof _defaultElement>(
     /** @todo fix this typing */
-    props: CustomProps,
+    props: any,
     ref: ForwardedRef<ElementRef<AsElement>>,
   ) => {
     if (props?.isLoading) {
