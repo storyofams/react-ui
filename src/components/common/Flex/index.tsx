@@ -26,6 +26,8 @@ export const Flex = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
     ['flexSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
 })<CustomProps>`
+  display: flex;
+
   ${variant({ prop: 'flexSize', variants: sizes })}
   ${variant({ variants })}
 `;
