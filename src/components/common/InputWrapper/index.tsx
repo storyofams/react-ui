@@ -10,7 +10,7 @@ import { Text } from '~components/common/Text';
 
 export interface InputWrapperProps extends SystemProps {
   statusMessage?: string;
-  id: string;
+  id?: string;
   label?: string;
   status?: status;
   error?: string;
@@ -26,7 +26,7 @@ export const InputWrapper: FC<InputWrapperProps & { id?: string }> = ({
   ...props
 }) => {
   const autoId = useId();
-  const id = givenId || `inputWrapper-${autoId}`;
+  const id = givenId || `input-${autoId}`;
 
   return (
     <Box {...pick(props)}>

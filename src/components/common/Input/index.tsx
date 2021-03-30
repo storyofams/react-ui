@@ -23,6 +23,7 @@ const _defaultElement = 'input';
 
 type CustomProps = {
   icon?: ReactElement;
+  id?: string;
 } & SystemProps &
   InputWrapperProps;
 
