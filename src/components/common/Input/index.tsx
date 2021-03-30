@@ -105,7 +105,7 @@ export const Input: PolymorphicForwardRefExoticComponent<
             borderRadius="xs"
             color="grey700"
             fontSize={[2, 1.75]}
-            as={props?.as ?? _defaultElement}
+            as={_defaultElement}
             {...omit(props)}
           />
           {icon && (

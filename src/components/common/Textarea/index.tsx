@@ -74,7 +74,7 @@ export const Textarea: PolymorphicForwardRefExoticComponent<
   typeof _defaultElement
 > = forwardRef(
   <AsElement extends ElementType = typeof _defaultElement>(
-    props: any,
+    props: CustomProps,
     ref: ForwardedRef<ElementRef<AsElement>>,
   ) => {
     const { label, status, statusMessage, error, id: givenId } = props;
@@ -96,7 +96,7 @@ export const Textarea: PolymorphicForwardRefExoticComponent<
           py={0.75}
           px={2}
           fontSize={[2, 1.75]}
-          as={props?.as ?? _defaultElement}
+          as={_defaultElement}
           {...omit(props)}
         />
       </InputWrapper>

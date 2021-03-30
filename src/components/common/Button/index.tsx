@@ -3,6 +3,7 @@ import React, {
   ElementType,
   ForwardedRef,
   ElementRef,
+  ReactNode,
 } from 'react';
 import Link from 'next/link';
 import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
@@ -116,13 +117,14 @@ const variants = {
   },
 };
 
-type CustomProps = {
+type CustomProps = SystemProps & {
   isLoading?: boolean;
   to?: string | undefined;
   variant?: ResponsiveValue<keyof typeof variants>;
   buttonSize?: ResponsiveValue<keyof typeof sizes>;
   disabled?: boolean;
-} & SystemProps;
+  children: ReactNode;
+};
 
 const StyledButton = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
@@ -173,15 +175,15 @@ export const Button: PolymorphicForwardRefExoticComponent<
   typeof _defaultElement
 > = forwardRef(
   <AsElement extends ElementType = typeof _defaultElement>(
-    /** @todo fix this typing */
-    props: any,
+    props: CustomProps,
     ref: ForwardedRef<ElementRef<AsElement>>,
   ) => {
     if (props?.isLoading) {
       return (
         <StyledButton
+          as={_defaultElement}
           {...props}
-          as={props?.as ?? _defaultElement}
+          /** @ts-ignore */
           ref={ref}
           position="relative"
           data-is-loading
@@ -207,16 +209,22 @@ export const Button: PolymorphicForwardRefExoticComponent<
       return (
         <Link href={props.to} passHref>
           <StyledButton
+            as={_defaultElement}
             {...props}
+            /** @ts-ignore */
             ref={ref}
-            as={props?.as ?? _defaultElement}
           />
         </Link>
       );
     }
 
     return (
-      <StyledButton {...props} ref={ref} as={props?.as ?? _defaultElement} />
+      <StyledButton
+        as={_defaultElement}
+        {...props}
+        /** @ts-ignore */
+        ref={ref}
+      />
     );
   },
 );

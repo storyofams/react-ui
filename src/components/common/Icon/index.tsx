@@ -42,8 +42,7 @@ export const Icon: PolymorphicForwardRefExoticComponent<
     ref: ForwardedRef<ElementRef<AsElement>>,
   ) => {
     return (
-      <StyledIcon {...rest} ref={ref}>
-        {/* @ts-ignore */}
+      <StyledIcon as={_defaultElement} {...rest} ref={ref}>
         {isValidElement<ReactSVGElement>(icon) ? icon : createElement(icon)}
       </StyledIcon>
     );
