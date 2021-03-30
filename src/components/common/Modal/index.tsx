@@ -7,12 +7,12 @@ import { pick, omit } from '@styled-system/props';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 
+import type { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { Flex } from '~components/common/Flex';
 import { Icon } from '~components/common/Icon';
 import { Close } from '~components/common/Icon/library';
 import { Text } from '~components/common/Text';
-import type { SystemProps } from '~types/system';
 
 const MotionOverlay = motion(ReachDialogOverlay);
 const MotionDialog = motion(ReachDialogContent);

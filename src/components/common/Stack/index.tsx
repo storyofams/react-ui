@@ -1,10 +1,10 @@
 import React, { FC, CSSProperties } from 'react';
 import { ResponsiveValue } from 'styled-system';
 
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { css } from '~lib/css';
 import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
-import { SystemProps } from '~types/system';
 
 type CSS = CSSProperties;
 

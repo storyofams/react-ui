@@ -1,12 +1,8 @@
-import React, { ReactElement, ElementType } from 'react';
-import type { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
 import styled from 'styled-components';
 import { variant, ResponsiveValue } from 'styled-system';
 
-import { system } from '~lib';
-import { SystemProps } from '~types/system';
-
-const _defaultElement = 'h1';
+import { SystemProps } from '~lib';
+import { Box } from '~components/common/Box';
 
 const variants = {
   h1: {
@@ -41,20 +37,6 @@ type CustomProps = {
   variant?: ResponsiveValue<keyof typeof variants>;
 } & SystemProps;
 
-type Props<
-  AsElement extends ElementType = typeof _defaultElement
-> = PolymorphicPropsWithoutRef<CustomProps, AsElement>;
-
-const Polymorph = styled.h1`
+export const Heading = styled(Box)<CustomProps>`
   ${variant({ variants })}
-  ${(props) => props.css}
-  ${system}
 `;
-
-export const Heading = <AsElement extends ElementType = typeof _defaultElement>(
-  props: Props<AsElement>,
-): ReactElement | null => {
-  /** @todo figure out why return type is misbehaving */
-  // @ts-ignore
-  return <Polymorph {...props} />;
-};

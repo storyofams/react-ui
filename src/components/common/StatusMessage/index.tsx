@@ -1,8 +1,8 @@
 import React from 'react';
 import Alert from '@reach/alert';
 
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
-import { SystemProps } from '~types/system';
 
 export type status = 'default' | 'success' | 'warning' | 'error';
 

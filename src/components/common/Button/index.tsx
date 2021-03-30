@@ -3,21 +3,16 @@ import React, {
   ElementType,
   ForwardedRef,
   ElementRef,
+  ReactNode,
 } from 'react';
 import Link from 'next/link';
-import type {
-  PolymorphicForwardRefExoticComponent,
-  PolymorphicPropsWithoutRef,
-  PolymorphicPropsWithRef,
-} from 'react-polymorphic-types';
+import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
 import { ResponsiveValue, variant } from 'styled-system';
 
-import { system } from '~lib';
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { Spinner } from '~components/common/Spinner';
-import { allPropNames } from '~lib/system';
-import { SystemProps } from '~types/system';
 
 const _defaultElement = 'button';
 
@@ -122,21 +117,18 @@ const variants = {
   },
 };
 
-type CustomProps = {
+type CustomProps = SystemProps & {
   isLoading?: boolean;
   to?: string | undefined;
   variant?: ResponsiveValue<keyof typeof variants>;
   buttonSize?: ResponsiveValue<keyof typeof sizes>;
-} & SystemProps;
+  disabled?: boolean;
+  children: ReactNode;
+};
 
-type Props<
-  T extends ElementType = typeof _defaultElement
-> = PolymorphicPropsWithRef<CustomProps, T>;
-
-const StyledButton = styled(_defaultElement).withConfig({
+const StyledButton = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
-    ['buttonSize', ...allPropNames].indexOf(prop) === -1 &&
-    defaultValidatorFn(prop),
+    ['buttonSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
 })`
   position: relative;
 
@@ -176,53 +168,63 @@ const StyledButton = styled(_defaultElement).withConfig({
 
   ${variant({ variants })}
   ${variant({ prop: 'buttonSize', variants: sizes })}
-  ${(props) => props.css}
-  ${system}
 `;
 
 export const Button: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
-> = forwardRef(function Button<
-  AsElement extends ElementType = typeof _defaultElement
->(
-  props: PolymorphicPropsWithoutRef<Props, AsElement>,
-  ref: ForwardedRef<ElementRef<AsElement>>,
-) {
-  if (props?.isLoading) {
-    return (
-      // @ts-ignore
-      <StyledButton
-        {...props}
-        ref={ref}
-        position="relative"
-        aria-disabled
-        data-is-loading
-      >
-        <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
+> = forwardRef(
+  <AsElement extends ElementType = typeof _defaultElement>(
+    props: CustomProps,
+    ref: ForwardedRef<ElementRef<AsElement>>,
+  ) => {
+    if (props?.isLoading) {
+      return (
+        <StyledButton
+          as={_defaultElement}
+          {...props}
+          /** @ts-ignore */
+          ref={ref}
+          position="relative"
+          data-is-loading
+          aria-disabled
+          disabled
         >
-          <Spinner />
-        </Box>
-        <Box display="flex" color="transparent">
-          {props?.children}
-        </Box>
-      </StyledButton>
-    );
-  }
+          <Box
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+          >
+            <Spinner />
+          </Box>
+          <Box display="flex" color="transparent">
+            {props?.children}
+          </Box>
+        </StyledButton>
+      );
+    }
 
-  if (props?.to) {
+    if (props?.to) {
+      return (
+        <Link href={props.to} passHref>
+          <StyledButton
+            as={_defaultElement}
+            {...props}
+            /** @ts-ignore */
+            ref={ref}
+          />
+        </Link>
+      );
+    }
+
     return (
-      <Link href={props.to} passHref>
-        {/* @ts-ignore */}
-        <StyledButton {...props} ref={ref} />
-      </Link>
+      <StyledButton
+        as={_defaultElement}
+        {...props}
+        /** @ts-ignore */
+        ref={ref}
+      />
     );
-  }
-
-  // @ts-ignore
-  return <StyledButton {...props} ref={ref} />;
-});
+  },
+);

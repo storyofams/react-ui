@@ -1,11 +1,11 @@
 import React, { ReactNode, useState } from 'react';
 
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { Flex } from '~components/common/Flex';
 import { Icon } from '~components/common/Icon';
 import { ChevronDown } from '~components/common/Icon/library';
 import { Text } from '~components/common/Text';
-import { SystemProps } from '~types/system';
 
 export interface AccordionProps extends SystemProps {
   title: string;
@@ -20,7 +20,6 @@ export const Accordion = ({ title, children, ...props }: AccordionProps) => {
       <Flex
         justifyContent="space-between"
         alignItems="flex-start"
-        /** @ts-ignore this is an indication of whats wrong with the return type of the polymorph */
         onClick={() => setOpen(!open)}
         pb={1}
         cursor="pointer"
