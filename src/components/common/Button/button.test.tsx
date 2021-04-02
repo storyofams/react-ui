@@ -43,7 +43,11 @@ test('forwards ref', () => {
 });
 
 test('handles `isLoading` prop', () => {
-  render(<Button data-testid="loading-btn" isLoading />);
+  render(
+    <Button data-testid="loading-btn" isLoading>
+      loading
+    </Button>,
+  );
 
   expect(screen.getByRole('button')).toHaveAttribute('data-is-loading', 'true');
 });

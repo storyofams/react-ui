@@ -3,9 +3,9 @@ import Flatpickr from 'react-flatpickr';
 // import 'flatpickr/dist/themes/light.css';
 import styled from 'styled-components';
 
+import { SystemProps } from '~lib';
 import { Calendar } from '~components/common/Icon/library';
 import { Input } from '~components/common/Input';
-import { SystemProps } from '~types/system';
 
 const OPTIONS = {
   altInput: true,

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button } from '~components';
 
 export default {
@@ -7,7 +5,11 @@ export default {
   title: 'components/Button',
 };
 
-export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;
+export const Primary = (args) => (
+  <Button {...args} disabled>
+    Lorem Ipsum
+  </Button>
+);
 
 Primary.args = {
   variant: 'primary',
@@ -37,7 +39,7 @@ Link.args = {
 };
 
 export const Underline = (args) => (
-  <Button sizes={['large', 'medium', 'small']} {...args}>
+  <Button as="a" sizes={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );

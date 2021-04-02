@@ -3,14 +3,14 @@ import React, { FC } from 'react';
 import { pick } from '@styled-system/props';
 import { useId } from 'react-id-generator';
 
+import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { status, StatusMessage } from '~components/common/StatusMessage';
 import { Text } from '~components/common/Text';
-import { SystemProps } from '~types/system';
 
 export interface InputWrapperProps extends SystemProps {
   statusMessage?: string;
-  /** please add a label for accesibility purposes */
+  id?: string;
   label?: string;
   status?: status;
   error?: string;

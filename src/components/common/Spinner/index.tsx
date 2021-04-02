@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import { SystemProps } from '~lib';
 import { Flex } from '~components/common/Flex';
-import { SystemProps } from '~types/system';
 
 type SpinnerProps = SystemProps & {
   size?: number;

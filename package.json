@@ -19,7 +19,8 @@
     "commit": "./node_modules/cz-customizable/standalone.js",
     "lint": "eslint --ext .ts --ext .tsx ./src",
     "now-build": "build-storybook -c .storybook -o storybook-static",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pinst --disable && npm run build",
+    "postpublish": "pinst --enable",
     "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
     "semantic-release": "semantic-release",
     "storybook": "start-storybook -s ./public/static -p 6006",
@@ -50,7 +51,8 @@
     "styled-system": "5.1.5"
   },
   "dependencies": {
-    "react-polymorphic-types": "1.0.3"
+    "react-polymorphic-types": "1.0.3",
+    "system-props": "^0.18.0"
   },
   "devDependencies": {
     "@babel/cli": "7.13.0",
@@ -129,6 +131,7 @@
     "lint-staged": "10.5.3",
     "mrm": "^2.6.0",
     "next": "10.0.5",
+    "pinst": "^2.1.6",
     "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
