@@ -21,7 +21,7 @@
       "~*": ["src/*"]
     },
     "plugins": [{"transform": "@zerollup/ts-transform-paths"}],
-    "target": "es5",
+    "target": "esnext",
     "typeRoots": ["./node_modules/@types"],
     "types": ["jest", "node"]
   },
