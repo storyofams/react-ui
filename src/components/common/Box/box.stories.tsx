@@ -1,4 +1,3 @@
-/* eslint-disable mdx/no-unescaped-entities */
 import React from 'react';
 
 import { Box } from '~components/common/Box';
