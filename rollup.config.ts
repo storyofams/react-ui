@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import filesize from 'rollup-plugin-filesize';
 import external from 'rollup-plugin-peer-deps-external';
+import rename from 'rollup-plugin-rename';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import ttypescript from 'ttypescript';
@@ -49,8 +50,11 @@ export default {
     babel({
       extensions,
       babelHelpers: 'runtime',
-      include: ['src/**/*'],
       exclude: ['node_modules/**'],
+    }),
+    rename({
+      include: ['**/*.js'],
+      map: (name) => name.replace('node_modules/', 'external/'),
     }),
     terser(),
     filesize(),
