@@ -1,6 +1,7 @@
 import {DocsPage, DocsContainer} from '@storybook/addon-docs/blocks'
 import * as nextImage from 'next/image';
-import { Box } from 'rebass/styled-components';
+
+import { Box } from '../src/components/common/Box';
 
 import ProviderDecorator from './ProviderDecorator';
 import { viewPorts } from './viewports';
