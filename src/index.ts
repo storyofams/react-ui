@@ -7,6 +7,6 @@ export * from './lib/modifyResponsiveValue';
 export { default as css } from './lib/css';
 
 export type { SystemProps } from './lib/system';
-export { system } from './lib/system';
+export * from './lib/system';
 
 export { default as theme } from './styles/theme';
