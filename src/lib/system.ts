@@ -23,6 +23,7 @@ const extraProps = {
   transition: true,
   cursor: true,
   pointerEvents: true,
+  whiteSpace: true,
 } as const;
 
 type BaseProps = AllSystemProps &
@@ -44,6 +45,7 @@ export const shouldForwardExtraProp = (prop: string) =>
     'textDecoration',
     'cursor',
     'pointerEvents',
+    'whiteSpace',
   ].indexOf(prop) === -1;
 
 const _system = createSystem({
