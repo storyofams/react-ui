@@ -43,6 +43,7 @@ export const shouldForwardExtraProp = (prop: string) =>
     'transform',
     'transition',
     'textDecoration',
+    'textTransform',
     'cursor',
     'pointerEvents',
     'whiteSpace',
