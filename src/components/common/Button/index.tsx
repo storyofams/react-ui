@@ -228,3 +228,8 @@ export const Button: PolymorphicForwardRefExoticComponent<
     );
   },
 );
+
+(Button as any).config = {
+  variant: variants,
+  buttonSize: sizes,
+};
