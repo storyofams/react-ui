@@ -18,12 +18,12 @@ const CustomButton = styled(Button, {
   },
 
   variants: {
-    /** `variant` is the name for the default variants */
+    // `variant` is the name for the default variants
     variant: {
       // we can override default keys as well
       primary: {
         // spread the original variant (if desired)
-        ...(Button as any).config.variant.primary,
+        ...Button.config.variant.primary,
         backgroundColor: 'black',
       },
       custom: {

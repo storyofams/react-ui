@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 import { default as _styled } from 'styled-components';
 import { variant } from 'styled-system';
 
@@ -8,13 +6,8 @@ type OptionProps = {
   variants?: { [key: string]: { [key: string]: any } };
 };
 
-const transformVariants = (newVariants, defaultVariants) => {
-  return [
-    ...Object.keys(newVariants),
-    ...Object.keys(defaultVariants).filter(
-      (f) => Object.keys(newVariants).indexOf(f) === -1,
-    ),
-  ].map((variantKey) =>
+const mergeVariants = (keys, newVariants, defaultVariants) =>
+  keys.map((variantKey) =>
     variant({
       prop: variantKey,
       variants: {
@@ -23,15 +16,23 @@ const transformVariants = (newVariants, defaultVariants) => {
       },
     }),
   );
-};
 
-export const styled = (component: string | ReactNode, options: OptionProps) => {
-  const { variants, baseStyles } = options;
+export const styled = <Component extends unknown>(
+  component: Component,
+  { variants, baseStyles }: OptionProps,
+): Component => {
+  const variantKeys: any[] = [
+    ...Object.keys(variants),
+    ...Object.keys((component as any)?.config).filter(
+      (variantKey) => Object.keys(variants).indexOf(variantKey) === -1,
+    ),
+  ];
 
   return _styled(component as any).withConfig({
-    shouldForwardProp: (prop, defaultValidatorFn) => defaultValidatorFn(prop),
+    shouldForwardProp: (prop, defaultValidatorFn) =>
+      variantKeys.indexOf(prop) === -1 && defaultValidatorFn(prop),
   })`
     ${baseStyles}
-    ${transformVariants(variants, (component as any)?.config)}
+    ${mergeVariants(variantKeys, variants, (component as any)?.config)}
   `;
 };

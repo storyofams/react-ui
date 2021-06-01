@@ -173,7 +173,9 @@ const StyledButton = styled(Box).withConfig({
 export const Button: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
-> = forwardRef(
+> & {
+  config?: { [key: string]: { [key: string]: any } };
+} = forwardRef(
   <AsElement extends ElementType = typeof _defaultElement>(
     props: CustomProps,
     ref: ForwardedRef<ElementRef<AsElement>>,
@@ -229,7 +231,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
   },
 );
 
-(Button as any).config = {
+Button.config = {
   variant: variants,
   buttonSize: sizes,
 };
