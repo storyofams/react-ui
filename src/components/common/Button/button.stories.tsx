@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '~components';
-import { styled } from '~lib/styled';
+import { styled } from '~lib';
 
 export default {
   component: Button,
@@ -9,34 +9,35 @@ export default {
 };
 
 const CustomButton = styled(Button, {
-  baseStyles: {
-    fontSize: 12,
-
-    '&:hover': {
-      fontSize: 14,
-    },
-  },
-
   variants: {
-    // `variant` is the name for the default variants
-    variant: {
-      // we can override default keys as well
-      primary: {
-        // spread the original variant (if desired)
-        ...Button.config.variant.primary,
-        backgroundColor: 'black',
+    custom: {
+      myOwnThing: {
+        fontSize: 21,
+
+        '&:hover': {
+          backgroundColor: 'primary100',
+        },
       },
+    },
+    variant: {
       custom: {
-        backgroundColor: 'blue',
+        fontSize: 14,
       },
     },
   },
 });
 
-export const Custom = (args) => (
-  <CustomButton variant="primary" buttonSize="large">
-    Lorem Ipsum
-  </CustomButton>
+export const test = () => (
+  <>
+    <CustomButton>button</CustomButton>
+    <CustomButton backgroundColor="primary200" variant="custom">
+      button
+    </CustomButton>
+    <CustomButton backgroundColor="primary200" variant="primary">
+      button
+    </CustomButton>
+    <CustomButton variant="custom">button</CustomButton>
+  </>
 );
 
 export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;

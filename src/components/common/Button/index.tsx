@@ -10,7 +10,7 @@ import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-typ
 import styled from 'styled-components';
 import { ResponsiveValue, variant } from 'styled-system';
 
-import { SystemProps } from '~lib';
+import { SystemProps, StyledConfigType } from '~lib';
 import { Box } from '~components/common/Box';
 import { Spinner } from '~components/common/Spinner';
 
@@ -170,12 +170,12 @@ const StyledButton = styled(Box).withConfig({
   ${variant({ prop: 'buttonSize', variants: sizes })}
 `;
 
+/** @ts-expect-error */
 export const Button: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
-> & {
-  config?: { [key: string]: { [key: string]: any } };
-} = forwardRef(
+> &
+  StyledConfigType = forwardRef(
   <AsElement extends ElementType = typeof _defaultElement>(
     props: CustomProps,
     ref: ForwardedRef<ElementRef<AsElement>>,

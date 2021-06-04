@@ -9,4 +9,6 @@ export { default as css } from './lib/css';
 export type { SystemProps } from './lib/system';
 export * from './lib/system';
 
+export * from './lib/styled';
+
 export { default as theme } from './styles/theme';
