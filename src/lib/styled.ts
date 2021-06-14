@@ -1,4 +1,5 @@
-import { ComponentType } from 'react';
+import React from 'react';
+import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import { default as _styled } from 'styled-components';
 import { variant, ResponsiveValue } from 'styled-system';
 
@@ -47,14 +48,45 @@ const mergeVariants = (
     },
   }));
 
+type ComponentWithConfig<P> = React.FunctionComponent<P> & StyledConfigType;
+
+type ComponentProps<
+  Component
+> = Component extends PolymorphicForwardRefExoticComponent<infer P, any>
+  ? P
+  : Component extends React.FunctionComponent<infer P>
+  ? P
+  : Component extends React.ComponentClass<infer P>
+  ? P
+  : never;
+
+type Intersection<
+  T1 extends Record<string | symbol | number, any>,
+  T2 extends Record<string | symbol | number, any>
+> = {
+  [P in keyof T1 | keyof T2 as unknown extends T1[P]
+    ? never
+    : unknown extends T2[P]
+    ? never
+    : P]: T1[P] | T2[P];
+};
+
+type Blend<T, U> = Omit<T, keyof U> & Omit<U, keyof T> & Intersection<T, U>;
+
+type VariantKeys<T> = {
+  [P in keyof T]?: keyof T[P];
+};
+
 export const styled = <
-  Component extends StyledConfigType =
-    | StyledConfigType
-    | never /** this ensures proper usage or it will throw */
+  InheritedProps extends ComponentProps<Component>,
+  Variants extends OptionProps,
+  Component extends ComponentWithConfig<any>
 >(
   component: Component,
-  { variants, baseStyles }: OptionProps,
-) => {
+  { variants, baseStyles }: Variants,
+): React.ComponentType<
+  Blend<InheritedProps, VariantKeys<Variants['variants']>>
+> => {
   const variantKeys = [
     ...Object.keys(variants),
     ...Object.keys(component?.config).filter(
