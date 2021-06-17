@@ -17,19 +17,16 @@ const CustomButton = styled(Button, {
   },
 });
 
-test('returns component with extended variants', async () => {
+test('component with extended variants', () => {
   render(
     <>
-      <CustomButton backgroundColor="primary200" custom="custom">
+      <CustomButton backgroundColor="primary200" custom="myOwnThing">
         button
       </CustomButton>
       <CustomButton backgroundColor="primary200" variant="custom">
         button
       </CustomButton>
+      <CustomButton variant="primary">button</CustomButton>
     </>,
   );
-});
-
-test('allow for `old` variants', async () => {
-  render(<CustomButton variant="">button</CustomButton>);
 });
