@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from '~components';
 import { styled } from '~lib/styled';
 import { render } from '~lib/test-utils';
