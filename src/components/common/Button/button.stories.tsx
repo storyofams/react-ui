@@ -1,15 +1,48 @@
+import React from 'react';
+
 import { Button } from '~components';
+import { styled } from '~lib';
 
 export default {
   component: Button,
   title: 'components/Button',
 };
 
-export const Primary = (args) => (
-  <Button {...args} disabled>
-    Lorem Ipsum
-  </Button>
+const CustomButton = styled(Button, {
+  variants: {
+    custom: {
+      myOwnThing: {
+        fontSize: 21,
+
+        '&:hover': {
+          backgroundColor: 'primary100',
+        },
+      },
+    },
+    variant: {
+      custom: {
+        fontSize: 14,
+      },
+    },
+  },
+});
+
+export const Custom = () => (
+  <>
+    <CustomButton>button</CustomButton>
+    <CustomButton backgroundColor="primary200" variant={['custom']}>
+      button
+    </CustomButton>
+    <CustomButton backgroundColor="primary200" variant="primary">
+      button
+    </CustomButton>
+    <CustomButton variant="custom" custom="myOwnThing">
+      button
+    </CustomButton>
+  </>
 );
+
+export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Primary.args = {
   variant: 'primary',
