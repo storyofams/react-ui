@@ -1,4 +1,4 @@
-import React from 'react';
+import { ComponentType, FunctionComponent, ComponentClass } from 'react';
 import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import { default as _styled } from 'styled-components';
 import { variant, ResponsiveValue } from 'styled-system';
@@ -17,6 +17,34 @@ export type StyledConfigType = {
   };
 };
 
+type ComponentWithConfig<P> = FunctionComponent<P> & StyledConfigType;
+type ComponentProps<
+  Component
+> = Component extends PolymorphicForwardRefExoticComponent<infer P, any>
+  ? P
+  : Component extends FunctionComponent<infer P>
+  ? P
+  : Component extends ComponentClass<infer P>
+  ? P
+  : never;
+
+type Intersection<
+  T1 extends Record<string | symbol | number, any>,
+  T2 extends Record<string | symbol | number, any>
+> = {
+  [P in keyof T1 | keyof T2 as unknown extends T1[P]
+    ? never
+    : unknown extends T2[P]
+    ? never
+    : P]?: T1[P] | T2[P];
+};
+
+type Blend<T, U> = Omit<T, keyof U> & Omit<U, keyof T> & Intersection<T, U>;
+
+type VariantKeys<T> = {
+  [P in keyof T]?: ResponsiveValue<keyof T[P]>;
+};
+
 type OptionProps = {
   readonly baseStyles?: GenericOptionalNestedObjectType;
   readonly variants?: GenericNestedObjectType;
@@ -28,12 +56,6 @@ interface AllVariants {
     readonly [x: string]: GenericObjectType;
   };
 }
-
-type Variants<Variants extends AllVariants[]> = {
-  [Key in Variants[number]['prop']]?: ResponsiveValue<
-    keyof Variants[number]['variants']
-  >;
-};
 
 const mergeVariants = (
   keys: readonly string[],
@@ -48,35 +70,6 @@ const mergeVariants = (
     },
   }));
 
-type ComponentWithConfig<P> = React.FunctionComponent<P> & StyledConfigType;
-
-type ComponentProps<
-  Component
-> = Component extends PolymorphicForwardRefExoticComponent<infer P, any>
-  ? P
-  : Component extends React.FunctionComponent<infer P>
-  ? P
-  : Component extends React.ComponentClass<infer P>
-  ? P
-  : never;
-
-type Intersection<
-  T1 extends Record<string | symbol | number, any>,
-  T2 extends Record<string | symbol | number, any>
-> = {
-  [P in keyof T1 | keyof T2 as unknown extends T1[P]
-    ? never
-    : unknown extends T2[P]
-    ? never
-    : P]: T1[P] | T2[P];
-};
-
-type Blend<T, U> = Omit<T, keyof U> & Omit<U, keyof T> & Intersection<T, U>;
-
-type VariantKeys<T> = {
-  [P in keyof T]?: keyof T[P];
-};
-
 export const styled = <
   InheritedProps extends ComponentProps<Component>,
   Variants extends OptionProps,
@@ -84,9 +77,7 @@ export const styled = <
 >(
   component: Component,
   { variants, baseStyles }: Variants,
-): React.ComponentType<
-  Blend<InheritedProps, VariantKeys<Variants['variants']>>
-> => {
+): ComponentType<Blend<InheritedProps, VariantKeys<Variants['variants']>>> => {
   const variantKeys = [
     ...Object.keys(variants),
     ...Object.keys(component?.config).filter(

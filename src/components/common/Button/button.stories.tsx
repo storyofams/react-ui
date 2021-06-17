@@ -27,16 +27,18 @@ const CustomButton = styled(Button, {
   },
 });
 
-export const test = () => (
+export const Custom = () => (
   <>
     <CustomButton>button</CustomButton>
-    <CustomButton backgroundColor="primary200" variant="custom">
+    <CustomButton backgroundColor="primary200" variant={['custom']}>
       button
     </CustomButton>
     <CustomButton backgroundColor="primary200" variant="primary">
       button
     </CustomButton>
-    <CustomButton variant="custom">button</CustomButton>
+    <CustomButton variant="custom" custom="myOwnThing">
+      button
+    </CustomButton>
   </>
 );
 
