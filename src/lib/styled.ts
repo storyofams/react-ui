@@ -36,13 +36,13 @@ type Intersection<
     ? never
     : unknown extends T2[P]
     ? never
-    : P]?: T1[P] | T2[P];
+    : P]?: ResponsiveValue<T1[P] | T2[P]>;
 };
 
 type Blend<T, U> = Omit<T, keyof U> & Omit<U, keyof T> & Intersection<T, U>;
 
 type VariantKeys<T> = {
-  [P in keyof T]?: ResponsiveValue<keyof T[P]>;
+  [P in keyof T]?: keyof T[P];
 };
 
 type OptionProps = {

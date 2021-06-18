@@ -8,10 +8,10 @@ export default {
   title: 'components/Button',
 };
 
-const CustomButton = styled(Button, {
+const ExtendedButton = styled(Button, {
   variants: {
-    custom: {
-      myOwnThing: {
+    newVariant: {
+      primary: {
         fontSize: 21,
 
         '&:hover': {
@@ -19,26 +19,32 @@ const CustomButton = styled(Button, {
         },
       },
     },
+    buttonSize: {
+      'medium-screen-xl': {
+        fontSize: 2.2,
+        lineHeight: 'medium',
+      },
+    },
     variant: {
-      custom: {
+      customPrimary: {
         fontSize: 14,
       },
     },
   },
 });
 
-export const Custom = () => (
+export const Extended = () => (
   <>
-    <CustomButton>button</CustomButton>
-    <CustomButton backgroundColor="primary200" variant={['custom']}>
+    <ExtendedButton variant="primary">button</ExtendedButton>
+    <ExtendedButton variant="customPrimary" newVariant="primary">
       button
-    </CustomButton>
-    <CustomButton backgroundColor="primary200" variant="primary">
+    </ExtendedButton>
+    <ExtendedButton
+      variant="customPrimary"
+      buttonSize={['large', 'medium', 'medium-screen-xl']}
+    >
       button
-    </CustomButton>
-    <CustomButton variant="custom" custom="myOwnThing">
-      button
-    </CustomButton>
+    </ExtendedButton>
   </>
 );
 

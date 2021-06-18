@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import styled from 'styled-components';
-import { variant, ResponsiveValue } from 'styled-system';
+import { variant } from 'styled-system';
 
-import { SystemProps } from '~lib';
+import { SystemProps, StyledConfigType } from '~lib';
 import { Box } from '~components/common/Box';
 
 const variants = {
@@ -38,9 +39,16 @@ const variants = {
 
 type CustomProps = {
   as?: 'p' | 'span' | 'blockquote' | 'strong' | 'em' | 'pre' | 'label';
-  variant?: ResponsiveValue<keyof typeof variants>;
+  variant?: keyof typeof variants;
 } & SystemProps;
 
-export const Text = styled(Box)<CustomProps>`
+/* @ts-expect-error */
+export const Text: FC<CustomProps> & StyledConfigType = styled(
+  Box,
+)<CustomProps>`
   ${variant({ variants })}
 `;
+
+Text.config = {
+  variant: variants,
+};
