@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { SystemProps, StyledConfigType } from '~lib';
@@ -39,9 +38,8 @@ type CustomProps = {
 } & SystemProps;
 
 /* @ts-expect-error */
-export const Heading: FC<CustomProps> & StyledConfigType = styled(
-  Box,
-)<CustomProps>`
+export const Heading: StyledComponent<'div', DefaultTheme, CustomProps> &
+  StyledConfigType = styled(Box)<CustomProps>`
   ${variant({ variants })}
 `;
 

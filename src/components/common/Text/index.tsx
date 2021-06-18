@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { SystemProps, StyledConfigType } from '~lib';
@@ -40,12 +39,12 @@ const variants = {
 type CustomProps = {
   as?: 'p' | 'span' | 'blockquote' | 'strong' | 'em' | 'pre' | 'label';
   variant?: keyof typeof variants;
+  id?: string;
 } & SystemProps;
 
-/* @ts-expect-error */
-export const Text: FC<CustomProps> & StyledConfigType = styled(
-  Box,
-)<CustomProps>`
+/** @ts-expect-error */
+export const Text: StyledComponent<'div', DefaultTheme, CustomProps> &
+  StyledConfigType = styled(Box)<CustomProps>`
   ${variant({ variants })}
 `;
 

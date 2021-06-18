@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { variant } from 'styled-system';
 
 import { SystemProps, StyledConfigType } from '~lib';
@@ -20,11 +19,12 @@ const sizes = {
 
 type CustomProps = SystemProps & {
   variant?: keyof typeof variants;
-  sizes?: keyof typeof sizes;
+  flexSize?: keyof typeof sizes;
 };
 
 /** @ts-expect-error */
-export const Flex: FC<CustomProps> & StyledConfigType = styled(Box).withConfig({
+export const Flex: StyledComponent<'div', DefaultTheme, CustomProps> &
+  StyledConfigType = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
     ['flexSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
 })<CustomProps>`
@@ -36,5 +36,5 @@ export const Flex: FC<CustomProps> & StyledConfigType = styled(Box).withConfig({
 
 Flex.config = {
   variant: variants,
-  sizes: sizes,
+  flexSize: sizes,
 };

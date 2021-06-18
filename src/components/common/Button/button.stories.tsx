@@ -56,7 +56,7 @@ Primary.args = {
 };
 
 export const Secondary = (args) => (
-  <Button sizes={['large', 'medium', 'small']} {...args}>
+  <Button buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );
@@ -67,7 +67,7 @@ Secondary.args = {
 };
 
 export const Link = (args) => (
-  <Button sizes={['large', 'medium', 'small']} {...args}>
+  <Button buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );
@@ -78,7 +78,7 @@ Link.args = {
 };
 
 export const Underline = (args) => (
-  <Button as="a" sizes={['large', 'medium', 'small']} {...args}>
+  <Button as="a" buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );
