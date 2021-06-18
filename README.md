@@ -21,7 +21,7 @@
 
 ---
 
-A collection of UI components build to create a production grade front-end experience with [Next.js](https://nextjs.org/)
+A collection of UI components build to create a production grade front-end experience with react & [Next.js](https://nextjs.org/)
 
 ---
 
@@ -139,32 +139,46 @@ import { Button, styled } from '@storyofams/react-ui';
 // - variant (primary, secondary, link, underline)
 // - buttonSize (small, medium, large)
 
-const CustomButton = styled(Button, {
+const ExtendedButton = styled(Button, {
   variants: {
-    newVariant: { // new variantsKey
-      custom: {
+    newVariant: {
+      primary: {
+        fontSize: 21,
+
         '&:hover': {
           backgroundColor: 'primary100',
         },
       },
     },
-    variant: { // extend the existing variant variantsKey
-      custom: {
+    buttonSize: {
+      'medium-screen-xl': {
+        fontSize: 2.2,
+        lineHeight: 'medium',
+      },
+    },
+    variant: {
+      icon: {
         fontSize: 14,
-      }
+        border-radius: 9999,
+      },
     },
   },
 });
 
-return (
-  <CustomButton
-    newVariant="custom"
-    buttonSize="small"
-    variant={["custom", "primary"]}
-  >
-    Lorem Ipsum
-  </CustomButton>
-)
+export const Extended = () => (
+  <>
+    <ExtendedButton variant="primary">button</ExtendedButton>
+    <ExtendedButton variant="icon" newVariant="primary">
+      button
+    </ExtendedButton>
+    <ExtendedButton
+      variant="icon"
+      buttonSize={['large', 'medium', 'medium-screen-xl']}
+    >
+      button
+    </ExtendedButton>
+  </>
+);
 ```
 
 ### Css
@@ -172,20 +186,27 @@ Thanks to styled-system we get access to a `css` function. This css function can
 
 To utilize the full potential of typescript we've re-exported the css function for you but added some autocomplete for values that live in your theme.
 
-**example:**
+**comparison:**
 ```ts
-import { css as styledSystemCss } from '@styled-system/css'
-import { css as reactUiCss } from '@storyofams/react-ui'
+import { css } from '@styled-system/css'
 
-css={styledSystemCss({
-  backgroundColor: 'red' // autocompleted
-  backgroundColor: 'primary500' // not-autocompleted
-})}
+<Component
+  css={styledSystemCss({
+    backgroundColor: 'red' // autocompleted
+    backgroundColor: 'primary500' // not-autocompleted
+  })}
+/>
+```
+VS
+```ts
+import { css } from '@storyofams/react-ui'
 
-css={reactUiCss({
-  backgroundColor: 'red' // autocompleted
-  backgroundColor: 'primary500' // autocompleted
-})}
+<Component
+  css={reactUiCss({
+    backgroundColor: 'red'
+    backgroundColor: 'primary500'
+  })}
+/>
 ```
 ### Adding custom props
 For those components that just require extra customization or that really can't do without those few extra lines of css you can extend `systemprops`.
@@ -219,8 +240,12 @@ export const CustomComponent = (({ customProp, ...rest}): CustomBoxProps) => {
 ## Gotchas
 Following are some things to take note of when using the library.
 
-> I'm seeing a lot of properties on the dom but no actual styling is applied?
+> I'm not using next.js, why do I need to install next.js?
 
+  Every project is different, we've found that next.js offers us a rich environment to get up and running fast for small to huge applications. Having that said, using react-ui is not completely depended on Next.js, with the only exception being the button component. This component can act as a link between content for your application and uses the next link since that's what we use most. We are looking into the possibilities to allow to provide a custom Link component to the button.
+
+> I'm seeing a lot of properties on the dom but no actual styling is applied?
+>
   This is a know issue when using a component that uses a forwardingRef. Our current setup requires the `as` prop to enable autocomplete on certain HTML properties, since that components accepts an `as` property but is also forwarding a ref to another styled-component (which again accepts `as`) [you'll need to forward the `as`](https://styled-components.com/docs/api#forwardedas-prop). We're looking into the misconfiguration that is happening between those properties and why it's causing the properties to be passed to the dom rather than being used for styling.
 
 > Some things do not have color am I going colourblind?
