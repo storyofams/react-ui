@@ -8,7 +8,7 @@ import React, {
 import Link from 'next/link';
 import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
-import { ResponsiveValue, variant } from 'styled-system';
+import { variant } from 'styled-system';
 
 import { SystemProps, StyledConfigType } from '~lib';
 import { Box } from '~components/common/Box';
@@ -120,8 +120,8 @@ const variants = {
 type CustomProps = SystemProps & {
   isLoading?: boolean;
   to?: string | undefined;
-  variant?: ResponsiveValue<keyof typeof variants>;
-  buttonSize?: ResponsiveValue<keyof typeof sizes>;
+  variant?: keyof typeof variants;
+  buttonSize?: keyof typeof sizes;
   disabled?: boolean;
   children: ReactNode;
 };
