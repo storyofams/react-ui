@@ -144,7 +144,6 @@ const ExtendedButton = styled(Button, {
     newVariant: {
       primary: {
         fontSize: 21,
-
         '&:hover': {
           backgroundColor: 'primary100',
         },
@@ -159,7 +158,7 @@ const ExtendedButton = styled(Button, {
     variant: {
       icon: {
         fontSize: 14,
-        border-radius: 9999,
+        borderRadius: 9999,
       },
     },
   },
@@ -191,7 +190,7 @@ To utilize the full potential of typescript we've re-exported the css function f
 import { css } from '@styled-system/css'
 
 <Component
-  css={styledSystemCss({
+  css={css({
     backgroundColor: 'red' // autocompleted
     backgroundColor: 'primary500' // not-autocompleted
   })}
@@ -202,9 +201,9 @@ VS
 import { css } from '@storyofams/react-ui'
 
 <Component
-  css={reactUiCss({
-    backgroundColor: 'red'
-    backgroundColor: 'primary500'
+  css={css({
+    backgroundColor: 'red' // autocompleted
+    backgroundColor: 'primary500' // autocompleted
   })}
 />
 ```
