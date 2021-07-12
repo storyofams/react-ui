@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { variant, ResponsiveValue } from 'styled-system';
+import styled, { StyledComponent, DefaultTheme } from 'styled-components';
+import { variant } from 'styled-system';
 
-import { SystemProps } from '~lib';
+import { SystemProps, StyledConfigType } from '~lib';
 import { Box } from '~components/common/Box';
 
 const variants = {
@@ -34,9 +34,15 @@ const variants = {
 
 type CustomProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  variant?: ResponsiveValue<keyof typeof variants>;
+  variant?: keyof typeof variants;
 } & SystemProps;
 
-export const Heading = styled(Box)<CustomProps>`
+/* @ts-expect-error */
+export const Heading: StyledComponent<'div', DefaultTheme, CustomProps> &
+  StyledConfigType = styled(Box)<CustomProps>`
   ${variant({ variants })}
 `;
+
+Heading.config = {
+  variant: variants,
+};

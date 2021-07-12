@@ -1,15 +1,54 @@
+import React from 'react';
+
 import { Button } from '~components';
+import { styled } from '~lib';
 
 export default {
   component: Button,
   title: 'components/Button',
 };
 
-export const Primary = (args) => (
-  <Button {...args} disabled>
-    Lorem Ipsum
-  </Button>
+const ExtendedButton = styled(Button, {
+  variants: {
+    newVariant: {
+      primary: {
+        fontSize: 21,
+
+        '&:hover': {
+          backgroundColor: 'primary100',
+        },
+      },
+    },
+    buttonSize: {
+      'medium-screen-xl': {
+        fontSize: 2.2,
+        lineHeight: 'medium',
+      },
+    },
+    variant: {
+      customPrimary: {
+        fontSize: 14,
+      },
+    },
+  },
+});
+
+export const Extended = () => (
+  <>
+    <ExtendedButton variant="primary">button</ExtendedButton>
+    <ExtendedButton variant="customPrimary" newVariant="primary">
+      button
+    </ExtendedButton>
+    <ExtendedButton
+      variant="customPrimary"
+      buttonSize={['large', 'medium', 'medium-screen-xl']}
+    >
+      button
+    </ExtendedButton>
+  </>
 );
+
+export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Primary.args = {
   variant: 'primary',
@@ -17,7 +56,7 @@ Primary.args = {
 };
 
 export const Secondary = (args) => (
-  <Button sizes={['large', 'medium', 'small']} {...args}>
+  <Button buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );
@@ -28,7 +67,7 @@ Secondary.args = {
 };
 
 export const Link = (args) => (
-  <Button sizes={['large', 'medium', 'small']} {...args}>
+  <Button buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );
@@ -39,7 +78,7 @@ Link.args = {
 };
 
 export const Underline = (args) => (
-  <Button as="a" sizes={['large', 'medium', 'small']} {...args}>
+  <Button as="a" buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );

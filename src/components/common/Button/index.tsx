@@ -8,9 +8,9 @@ import React, {
 import Link from 'next/link';
 import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
-import { ResponsiveValue, variant } from 'styled-system';
+import { variant } from 'styled-system';
 
-import { SystemProps } from '~lib';
+import { SystemProps, StyledConfigType } from '~lib';
 import { Box } from '~components/common/Box';
 import { Spinner } from '~components/common/Spinner';
 
@@ -120,8 +120,8 @@ const variants = {
 type CustomProps = SystemProps & {
   isLoading?: boolean;
   to?: string | undefined;
-  variant?: ResponsiveValue<keyof typeof variants>;
-  buttonSize?: ResponsiveValue<keyof typeof sizes>;
+  variant?: keyof typeof variants;
+  buttonSize?: keyof typeof sizes;
   disabled?: boolean;
   children: ReactNode;
 };
@@ -170,10 +170,12 @@ const StyledButton = styled(Box).withConfig({
   ${variant({ prop: 'buttonSize', variants: sizes })}
 `;
 
+/** @ts-expect-error */
 export const Button: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
-> = forwardRef(
+> &
+  StyledConfigType = forwardRef(
   <AsElement extends ElementType = typeof _defaultElement>(
     props: CustomProps,
     ref: ForwardedRef<ElementRef<AsElement>>,
@@ -228,3 +230,8 @@ export const Button: PolymorphicForwardRefExoticComponent<
     );
   },
 );
+
+Button.config = {
+  variant: variants,
+  buttonSize: sizes,
+};

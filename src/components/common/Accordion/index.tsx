@@ -20,6 +20,7 @@ export const Accordion = ({ title, children, ...props }: AccordionProps) => {
       <Flex
         justifyContent="space-between"
         alignItems="flex-start"
+        as="button"
         onClick={() => setOpen(!open)}
         pb={1}
         cursor="pointer"
