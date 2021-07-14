@@ -26,7 +26,7 @@ const extraProps = {
   whiteSpace: true,
 } as const;
 
-type BaseProps = AllSystemProps &
+type BaseProps = AllSystemProps<'noprefix'> &
   {
     [k in keyof typeof extraProps]?: SystemProp<CSS.Properties[k]>;
   };
