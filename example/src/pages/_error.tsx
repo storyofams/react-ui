@@ -1,3 +1,5 @@
+import { Flex, Text, Heading } from '@storyofams/react-ui';
+
 const getError = ({ res, err }) => {
   let statusCode = 404;
 
@@ -25,10 +27,15 @@ const getContent = ({ statusCode }) => {
 
 const Error = ({ statusCode }) => {
   return (
-    <div>
-      <p>{statusCode}</p>
-      <p>{getContent({ statusCode })}</p>
-    </div>
+    <Flex
+      flexDirection="column"
+      variant="center"
+      color="grey900"
+      sizes="fullWidth"
+    >
+      <Heading variant="h3">{statusCode}</Heading>
+      <Text>{getContent({ statusCode })}</Text>
+    </Flex>
   );
 };
 

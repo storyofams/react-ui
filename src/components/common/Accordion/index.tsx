@@ -1,79 +1,65 @@
-import React, { FC, useState } from 'react';
-import { Box, BoxProps, Flex } from 'rebass/styled-components';
+import React, { ReactNode, useState } from 'react';
 
-import { Icon, Text } from '~components';
-import { ChevronDown } from '../Icon/library';
+import { SystemProps } from '~lib';
+import { Box } from '~components/common/Box';
+import { Flex } from '~components/common/Flex';
+import { Icon } from '~components/common/Icon';
+import { ChevronDown } from '~components/common/Icon/library';
+import { Text } from '~components/common/Text';
 
-export interface AccordionProps extends BoxProps {
+export interface AccordionProps extends SystemProps {
   title: string;
+  children: ReactNode | string;
 }
 
-export const Accordion: FC<AccordionProps> = ({
-  title,
-  children,
-  ...props
-}) => {
+export const Accordion = ({ title, children, ...props }: AccordionProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box
-      sx={{
-        borderBottomWidth: 1,
-        borderBottomStyle: 'solid',
-        borderBottomColor: 'grey600',
-      }}
-    >
+    <Box borderBottom="1px solid" borderBottomColor="grey600">
       <Flex
         justifyContent="space-between"
         alignItems="flex-start"
+        as="button"
         onClick={() => setOpen(!open)}
         pb={1}
-        sx={{
-          cursor: 'pointer',
-        }}
+        cursor="pointer"
         {...props}
       >
         <Text variant="pmd" color="grey700" fontWeight="bold">
           {title}
         </Text>
         <Icon
-          size={24}
-          sx={{
-            transform: open ? 'rotate(180deg)' : 'none',
-            transition: 'transform 0.2s ease-in-out',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          icon={<ChevronDown />}
+          fontSize={1.5}
+          icon={ChevronDown}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          transform={open ? 'rotate(180deg)' : 'none'}
+          transition="transform 0.2s ease-in-out"
+          mt={0.75}
         />
       </Flex>
-
       <Box
-        sx={{
-          maxHeight: open ? '500px' : 0,
-          transition: 'max-height ease 0.5s',
-        }}
+        maxHeight={open ? '500px' : 0}
+        transition="max-height ease 0.3s"
+        overflow="hidden"
       >
-        {typeof children === 'string' ? (
-          <Text
-            variant="psm"
-            color="grey500"
-            pt={1.5}
-            pb={2.5}
-            sx={{
-              transition: 'opacity ease 0.25s',
-              opacity: open ? 1 : 0,
-            }}
-          >
-            {children}
-          </Text>
-        ) : (
-          children
-        )}
+        <Box
+          pt={1.5}
+          pb={2.5}
+          transition="opacity ease 0.25s"
+          opacity={open ? 1 : 0}
+        >
+          {typeof children === 'string' ? (
+            <Text variant="psm" color="grey500">
+              {children}
+            </Text>
+          ) : (
+            children
+          )}
+        </Box>
       </Box>
     </Box>
   );
 };
-
-export default Accordion;

@@ -1,40 +1,50 @@
-import React, { FC, forwardRef, ReactElement } from 'react';
-import { Box, BoxProps } from 'rebass/styled-components';
+import React, {
+  createElement,
+  forwardRef,
+  ElementType,
+  ForwardedRef,
+  ElementRef,
+  isValidElement,
+  ReactNode,
+  ReactSVGElement,
+  ReactElement,
+} from 'react';
+import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
+import styled from 'styled-components';
 
-const styles = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  lineHeight: 1,
-  svg: { verticalAlign: 'middle' },
-};
+import { SystemProps } from '~lib';
+import { Box } from '~components/common/Box';
 
-export interface IconProps extends BoxProps {
-  icon: ReactElement;
-  iconAs?: string;
-  href?: string;
+const _defaultElement = 'div';
+
+type CustomProps = {
+  icon: ReactElement | ReactNode;
   className?: string;
-}
+} & SystemProps;
 
-export const Icon: FC<IconProps> = forwardRef(
-  ({ icon, iconAs, ...props }, ref) => {
-    function getAs(): any {
-      switch (true) {
-        case iconAs !== undefined:
-          return iconAs;
-        case props.href !== undefined:
-          return 'a';
-        case props.onClick !== undefined:
-          return 'button';
-        default:
-          return 'div';
-      }
-    }
+const StyledIcon = styled(Box)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 
+  svg: {
+    vertical-align: middle;
+  }
+`;
+
+export const Icon: PolymorphicForwardRefExoticComponent<
+  CustomProps,
+  typeof _defaultElement
+> = forwardRef(
+  <AsElement extends ElementType = typeof _defaultElement>(
+    { icon, ...rest }: any,
+    ref: ForwardedRef<ElementRef<AsElement>>,
+  ) => {
     return (
-      <Box ref={ref} aria-hidden as={getAs()} sx={styles} {...props}>
-        {icon}
-      </Box>
+      <StyledIcon as={_defaultElement} {...rest} ref={ref}>
+        {isValidElement<ReactSVGElement>(icon) ? icon : createElement(icon)}
+      </StyledIcon>
     );
   },
 );

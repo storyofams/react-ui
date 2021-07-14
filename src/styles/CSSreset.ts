@@ -1,6 +1,6 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css, DefaultTheme } from 'styled-components';
 
-const themeStyles = ({ theme }) => css`
+const themeStyles = ({ theme }: { theme: DefaultTheme }) => css`
   /* typograhpy */
   body.font-loaded {
     font-family: ${theme.fonts.body};

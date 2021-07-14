@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { DatePicker } from '~components';
-import { render } from '~lib';
+import { render, screen } from '~lib/test-utils';
 
 jest.mock('../Icon/library/calendar.svg', () => 'div');
 
@@ -14,13 +14,12 @@ test('[DatePicker] should not fail accessibility testing', async () => {
       inputProps={{ label: 'label', placeholder: 'Placeholder' }}
     />,
   );
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test('adds classnames to allow styling', async () => {
-  const { getByTestId } = render(
+  render(
     <DatePicker
       className="test-class-to-add"
       value={null}
@@ -31,8 +30,8 @@ test('adds classnames to allow styling', async () => {
     />,
   );
 
-  const element = getByTestId('flatpickr-input-container');
+  const element = screen.getByTestId('flatpickr-input-container');
   const flatpickrElement = element.parentNode.nextSibling as any;
 
-  expect(flatpickrElement.classList.contains('test-class-to-add')).toBe(true);
+  expect(flatpickrElement).toHaveClass('test-class-to-add');
 });

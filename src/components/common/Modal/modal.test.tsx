@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import userEvent from '@testing-library/user-event';
+import React, { createElement, useState } from 'react';
+
 import { axe } from 'jest-axe';
 
-import { fireEvent, render, screen } from '~lib';
-
-import { Modal } from '.';
+import { Modal } from '~components/common/Modal';
+import { userEvent, fireEvent, render, screen } from '~lib/test-utils';
 
 jest.mock('../Icon/library/close.svg', () => 'div');
 
@@ -21,10 +20,10 @@ export const Basic = ({ isInitiallyOpen = false, ...args }) => {
       </button>
 
       <Modal
+        header="My header"
         {...args}
         close={() => setIsOpen(false)}
         isOpen={isOpen}
-        header="My header"
         footer={
           <>
             <button onClick={close}>Cancel button</button>
@@ -76,4 +75,15 @@ test('should close when pressing esc', () => {
 
   fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
   expect(screen.queryByText(/modal-content/i)).toBeNull();
+});
+
+test('should render header with custom header', () => {
+  render(
+    <Basic
+      isOpen={true}
+      header={createElement('div', { children: 'custom-header' })}
+    />,
+  );
+
+  expect(screen.queryByText(/custom-header/i)).toBeDefined();
 });

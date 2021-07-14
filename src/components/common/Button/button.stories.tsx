@@ -1,54 +1,89 @@
 import React from 'react';
 
-import { Button, Icon } from '~components';
-import { Heart } from '~components/common/Icon/library';
+import { Button } from '~components';
+import { styled } from '~lib';
 
 export default {
   component: Button,
   title: 'components/Button',
-  args: { isLoading: false, disabled: false, hasIcon: false, size: 'small' },
-  argTypes: {
-    size: {
-      control: {
-        type: 'select',
-        options: ['small', 'medium', 'large'],
+};
+
+const ExtendedButton = styled(Button, {
+  variants: {
+    newVariant: {
+      primary: {
+        fontSize: 21,
+
+        '&:hover': {
+          backgroundColor: 'primary100',
+        },
+      },
+    },
+    buttonSize: {
+      'medium-screen-xl': {
+        fontSize: 2.2,
+        lineHeight: 'medium',
+      },
+    },
+    variant: {
+      customPrimary: {
+        fontSize: 14,
       },
     },
   },
-};
+});
 
-export const Primary = (args) => (
-  <Button {...args} variant={`${args.variant}.${args.size}`}>
-    {args.hasIcon && <Icon icon={<Heart />} sx={{ mr: 1 }} />}
-    Lorem Ipsum
-  </Button>
+export const Extended = () => (
+  <>
+    <ExtendedButton variant="primary">button</ExtendedButton>
+    <ExtendedButton variant="customPrimary" newVariant="primary">
+      button
+    </ExtendedButton>
+    <ExtendedButton
+      variant="customPrimary"
+      buttonSize={['large', 'medium', 'medium-screen-xl']}
+    >
+      button
+    </ExtendedButton>
+  </>
 );
+
+export const Primary = (args) => <Button {...args}>Lorem Ipsum</Button>;
 
 Primary.args = {
   variant: 'primary',
+  size: 'small',
 };
 
 export const Secondary = (args) => (
-  <Button {...args} variant={`${args.variant}.${args.size}`}>
-    {args.hasIcon && <Icon icon={<Heart />} sx={{ mr: 1 }} />}
+  <Button buttonSize={['large', 'medium', 'small']} {...args}>
     Lorem Ipsum
   </Button>
 );
 
 Secondary.args = {
   variant: 'secondary',
+  size: 'small',
 };
 
-export const Link = (args) => <Button {...args}>Lorem Ipsum</Button>;
+export const Link = (args) => (
+  <Button buttonSize={['large', 'medium', 'small']} {...args}>
+    Lorem Ipsum
+  </Button>
+);
 
 Link.args = {
-  href: '/',
   variant: 'link',
+  size: 'small',
 };
 
-export const LinkUnderline = (args) => <Button {...args}>Lorem Ipsum</Button>;
+export const Underline = (args) => (
+  <Button as="a" buttonSize={['large', 'medium', 'small']} {...args}>
+    Lorem Ipsum
+  </Button>
+);
 
-LinkUnderline.args = {
-  href: '/',
-  variant: 'link.underline',
+Underline.args = {
+  variant: 'underline',
+  size: 'small',
 };

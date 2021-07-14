@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box } from 'rebass/styled-components';
 
-import { Grid } from '~components';
+import { Box, Grid } from '~components';
 
 export default {
   component: Grid,
@@ -16,53 +15,23 @@ export const Basic = (args) => (
     </h1>
     <Grid {...args}>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          bg="secondary400"
-          sx={{ borderRadius: 'xs' }}
-        />
+        <Box width="100%" height="40px" bg="secondary400" borderRadius="xs" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
 
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
     </Grid>
   </Box>
@@ -85,52 +54,22 @@ export const Responsive = (args) => (
   <Box>
     <Grid {...args}>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
       <Box>
-        <Box
-          width="100%"
-          height="40px"
-          sx={{ borderRadius: 'xs' }}
-          bg="secondary400"
-        />
+        <Box width="100%" height="40px" borderRadius="xs" bg="secondary400" />
       </Box>
     </Grid>
   </Box>

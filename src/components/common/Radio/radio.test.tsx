@@ -1,52 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { axe } from 'jest-axe';
 
-import { Radio, RadioGroup } from '~components';
-import { fireEvent, render } from '~lib';
+import { RadioGroup } from '~components';
+import { render, screen, fireEvent } from '~lib/test-utils';
 
 test('[Radio] should not fail accessibility testing', async () => {
-  const { container } = render(<Radio value="test">label</Radio>);
-  const results = await axe(container);
-
-  expect(results).toHaveNoViolations();
-});
-
-export const Basic = (args) => {
-  const [val, setVal] = useState(null);
-
-  return (
-    <RadioGroup value={val} onChange={setVal}>
-      <Radio data-testid="radio-1" value="1">
-        one
-      </Radio>
-      <Radio value="2">two</Radio>
-      <Radio data-testid="radio-3" value="3">
-        three
-      </Radio>
-    </RadioGroup>
+  const { container } = render(
+    <RadioGroup
+      space={1}
+      name="test-radio"
+      options={[
+        { label: 'one', value: '1' },
+        { label: 'two', value: '2' },
+      ]}
+    />,
   );
-};
+
+  expect(await axe(container)).toHaveNoViolations();
+});
 
 test('receives change events', async () => {
-  const { getByLabelText, getByTestId } = render(<Basic />);
-  const firstRadio: any = getByLabelText(/one/i);
-
-  expect(firstRadio.checked).toBeFalsy();
-
-  const firstLabel = getByTestId('radio-1');
-  fireEvent.click(firstLabel);
-
-  expect(firstRadio.checked).toBeTruthy();
-});
-
-test('handles non valid element', async () => {
-  const nonValidReactElement = 'Test';
-  const { getByRole } = render(
-    <RadioGroup value={null} onChange={null}>
-      {nonValidReactElement}
-    </RadioGroup>,
+  render(
+    <RadioGroup
+      space={1}
+      name="test-radio"
+      options={[{ label: 'one', value: '1' }, { value: '2' }]}
+    />,
   );
-  const element = getByRole('radiogroup');
 
-  expect(element.innerHTML).toBe(nonValidReactElement);
+  expect(
+    screen.getByRole('radio', {
+      name: /2/i,
+    }),
+  ).toBeInTheDocument();
+
+  const radio = screen.getByRole('radio', {
+    name: /one/i,
+  }) as HTMLInputElement;
+
+  expect(radio.value).toBe('1');
+
+  fireEvent.change(radio, { target: { value: '2' } });
+
+  expect(radio.value).toBe('2');
 });

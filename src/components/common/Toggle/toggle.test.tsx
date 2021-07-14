@@ -1,22 +1,21 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { resetId } from 'react-id-generator';
+
 import { Toggle } from '~components';
-import { fireEvent, render } from '~lib';
+import { screen, render } from '~lib/test-utils';
 
-test('[Toggle] should not fail accessibility testing', async () => {
-  const { container } = render(<Toggle />);
-  const results = await axe(container);
+test('handles the id prop when an id has been provided', async () => {
+  const id = 'testid';
 
-  expect(results).toHaveNoViolations();
+  render(<Toggle id={id} />);
+
+  expect(screen.getByRole('checkbox')).toHaveAttribute('id', id);
 });
 
-test('receives change events', async () => {
-  const onChange = jest.fn();
-  const { getByRole } = render(<Toggle checked={false} onChange={onChange} />);
-  const toggleRole: any = getByRole('checkbox');
+test('handles the id prop when no id has been provided', async () => {
+  resetId();
 
-  expect(toggleRole.checked).toBeFalsy();
+  render(<Toggle />);
 
-  fireEvent.click(toggleRole, { target: { checked: true } });
-  expect(onChange).toBeCalled();
+  expect(screen.getByRole('checkbox')).toHaveAttribute('id', 'toggle-id1');
 });

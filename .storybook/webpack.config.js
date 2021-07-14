@@ -13,11 +13,6 @@ module.exports = ({config}) => {
     },
   });
 
-  config.module.rules.push({
-    test: /\.svg$/,
-    use: [{ loader: "@svgr/webpack", options: { icon: true, svgo: true } }],
-  });
-
   config.plugins.push(new webpack.DefinePlugin({
     'process.env.__NEXT_IMAGE_OPTS': JSON.stringify({
       deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
