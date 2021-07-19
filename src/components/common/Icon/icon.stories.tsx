@@ -1,16 +1,14 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Box, Flex, Text } from 'rebass/styled-components';
 
-import { Icon } from '~components';
+import { Box, Flex, Text, Icon } from '~components';
 
 import * as icons from '~components/common/Icon/library';
-// import { Arrow, BadgeError, Checkout, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Facebook, Gift, Heart, Help, Instagram, Play, Search, Star, Twitter, Volume, ZoomIn, ZoomOut } from '~components/common/Icon/library';
 
 const allIcons = (require as any)
-  .context('./library', false, /\.svg$/)
+  .context('./library', false, /\.tsx$/)
   .keys()
-  .map((k) => k.replace('./', '').replace('.svg', ''));
+  .map((k) => k.replace('./', '').replace('.tsx', ''));
 
 export default {
   component: Icon,
@@ -23,7 +21,7 @@ export default {
   },
 };
 
-export const Library = (args) => (
+export const Library = () => (
   <Box>
     <h1>
       To add an icon simply drop the svg file in ./library and change the
@@ -34,7 +32,7 @@ export const Library = (args) => (
         py={2}
         justifyContent="center"
         alignItems="center"
-        sx={{ borderBottom: '1px solid #D9D9D9' }}
+        borderBottom="1px solid #D9D9D9"
       >
         <Box width="75%">Name</Box>
         <Box width="25%">Icon</Box>
@@ -43,7 +41,7 @@ export const Library = (args) => (
         <Flex
           justifyContent="center"
           alignItems="center"
-          sx={{ borderBottom: '1px solid #D9D9D9' }}
+          borderBottom="1px solid #D9D9D9"
           key={icon}
           py={2}
         >
@@ -53,11 +51,7 @@ export const Library = (args) => (
             </Text>
           </Box>
           <Flex width="25%">
-            <Icon
-              icon={createElement(icons[icon])}
-              color="grey800"
-              fontSize={20}
-            />
+            <Icon icon={icons[icon]} color="grey800" fontSize={2} />
           </Flex>
         </Flex>
       ))}
@@ -66,16 +60,16 @@ export const Library = (args) => (
 );
 
 const commonProps = {
-  color: 'secondary500' as any,
-  icon: createElement(icons.Heart),
-  fontSize: 8 as any,
+  color: 'secondary500',
+  icon: icons.Heart,
+  fontSize: 8,
 };
 
 const getIcon = (name) => {
   const iconName = Object.keys(icons).find(
     (icon) => icon.toLowerCase() === name,
   );
-  return createElement(icons[iconName]);
+  return icons[iconName];
 };
 
 // different semantics
@@ -83,6 +77,7 @@ export const AsButton = (args) => (
   <Icon
     {...commonProps}
     {...args}
+    as="button"
     icon={getIcon(args.icon)}
     onClick={action('clicked')}
   />
@@ -93,6 +88,7 @@ export const AsATag = (args) => (
     {...commonProps}
     {...args}
     icon={getIcon(args.icon)}
+    as="a"
     href="https://www.example.com"
   />
 );

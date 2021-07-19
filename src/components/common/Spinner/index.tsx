@@ -1,6 +1,12 @@
 import React from 'react';
-import { Flex } from 'rebass/styled-components';
 import styled, { keyframes } from 'styled-components';
+
+import { SystemProps } from '~lib';
+import { Flex } from '~components/common/Flex';
+
+type SpinnerProps = SystemProps & {
+  size?: number;
+};
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -13,7 +19,7 @@ const Container = styled.div<{ color?: string; size: number }>`
 
   width: ${(p) => p.size}px;
   height: ${(p) => p.size}px;
-  color: ${(p) => (p.color ? p.theme.colors[p.color] : p.color)};
+  color: inherit;
 
   div {
     position: absolute;
@@ -36,10 +42,14 @@ const Container = styled.div<{ color?: string; size: number }>`
   }
 `;
 
-export const Spinner = ({ color = '', size = 80, ...props }) => {
+export const Spinner = ({
+  color = 'primary500',
+  size = 24,
+  ...rest
+}: SpinnerProps) => {
   return (
-    <Flex variant="center" {...props}>
-      <Container color={color} size={size}>
+    <Flex color={color} variant="center" {...rest}>
+      <Container size={size}>
         <div />
         <div />
         <div />
