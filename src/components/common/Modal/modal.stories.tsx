@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Text } from 'rebass/styled-components';
-import { Button } from '~components/common/Button';
-import { Modal } from '.';
+
+import { Button, Box, Text, Modal } from '~components';
 
 export default {
   component: Modal,
@@ -10,7 +9,7 @@ export default {
 
 // Header and renderFooter() are both equally valid props
 const Header = () => (
-  <Box width="100%" pb={1} mb={2} color="pink">
+  <Box width="100%" pb={1} mb={2} color={'pink' as any}>
     <Text fontSize={3} fontWeight="bold">
       My custom header
     </Text>
@@ -46,7 +45,7 @@ export const Basic = () => {
 
   return (
     <>
-      <Box p={5}>
+      <Box>
         <Button variant="primary" onClick={openModal}>
           Open modal
         </Button>
@@ -85,7 +84,7 @@ export const LongText = () => {
 
   return (
     <div>
-      <Box p={5}>
+      <Box>
         <Button variant="primary" onClick={openModal}>
           Open modal
         </Button>

@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
-import { Box } from 'rebass/styled-components';
+import React from 'react';
 
-import { Radio, RadioGroup } from '~components';
+import { RadioGroup } from '~components';
+
+const options = [
+  { value: '1', label: 'One' },
+  { value: '2', label: 'Two' },
+  { value: '3', label: 'Three' },
+];
 
 export default {
-  component: Radio,
+  component: RadioGroup,
   title: 'components/Radio',
   args: {
-    children: 'one',
+    name: 'Storybook radio',
     value: '1',
+    options,
   },
 };
 
-export const Basic = (args) => {
-  const [val, setVal] = useState(null);
-
-  return (
-    <Box>
-      <RadioGroup value={val} onChange={setVal}>
-        <Radio data-testid="radio-1" {...args} />
-        <Radio value="2">two</Radio>
-        <Radio data-testid="radio-3" value="3">
-          three
-        </Radio>
-      </RadioGroup>
-    </Box>
-  );
-};
+export const Basic = (args) => (
+  <RadioGroup space={1} flexDirection="column" {...args} />
+);

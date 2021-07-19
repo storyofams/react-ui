@@ -1,17 +1,22 @@
-import React, { ReactNode, FC } from 'react';
+import React, { ReactNode } from 'react';
 import {
   DialogOverlay as ReachDialogOverlay,
   DialogContent as ReachDialogContent,
+  DialogContentProps,
 } from '@reach/dialog';
 import { pick, omit } from '@styled-system/props';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Box, BoxProps, Text } from 'rebass/styled-components';
 import styled from 'styled-components';
-import { Icon } from '~components';
-import { Close } from '~components/common/Icon/library';
 
-const MotionOverlay = motion.custom(ReachDialogOverlay);
-const MotionDialog = motion.custom(ReachDialogContent);
+import type { SystemProps } from '~lib';
+import { Box } from '~components/common/Box';
+import { Flex } from '~components/common/Flex';
+import { Icon } from '~components/common/Icon';
+import { Close } from '~components/common/Icon/library';
+import { Text } from '~components/common/Text';
+
+const MotionOverlay = motion(ReachDialogOverlay);
+const MotionDialog = motion(ReachDialogContent);
 
 const DialogOverlay = styled(MotionOverlay)`
   position: fixed;
@@ -33,7 +38,7 @@ const DialogOverlay = styled(MotionOverlay)`
   }
 `;
 
-const DialogContent = styled(MotionDialog)<BoxProps>`
+const DialogContent = styled(MotionDialog)<SystemProps & DialogContentProps>`
   position: relative;
   flex: 1;
   padding: 0;
@@ -86,14 +91,14 @@ type ModalProps = {
   header?: ReactNode;
   footer?: ReactNode;
   children?: ReactNode;
-};
+} & SystemProps;
 
-export const ModalBase: FC<ModalProps & BoxProps> = ({
+export const ModalBase = ({
   children,
   ariaLabel,
   isOpen,
   close,
-}) => {
+}: ModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -115,7 +120,7 @@ export const ModalBase: FC<ModalProps & BoxProps> = ({
               exit={{ opacity: 1 }}
             >
               <CloseButton onClick={close} aria-label="Close modal">
-                <Icon icon={<Close />} size={12} color="grey600" />
+                <Icon icon={Close} fontSize={1.75} color="grey600" />
               </CloseButton>
 
               {children}
@@ -127,53 +132,40 @@ export const ModalBase: FC<ModalProps & BoxProps> = ({
   );
 };
 
-export const Modal: FC<ModalProps & BoxProps> = ({
-  children,
-  header,
-  footer,
-  ...props
-}) => {
-  return (
-    <ModalBase {...omit(props)}>
-      {typeof header === 'string' ? (
-        <Box
-          display="flex"
-          mb={4}
-          pb={2}
-          sx={{
-            alignItems: 'center',
-            borderBottom: '1px',
-            borderColor: 'grey200',
-          }}
-        >
-          <Text fontWeight="bold" fontSize={3}>
-            {header}
-          </Text>
-        </Box>
-      ) : (
-        header
-      )}
-
+export const Modal = ({ children, header, footer, ...props }: ModalProps) => (
+  <ModalBase {...omit(props)}>
+    {typeof header === 'string' ? (
       <Box
-        flex={1}
-        pr={1.5}
-        width="100%"
-        overflowY="auto"
-        fontSize={2}
-        {...pick(props)}
+        display="flex"
+        mb={4}
+        pb={2}
+        alignItems="center"
+        borderBottom="1px"
+        borderColor="grey200"
       >
-        {children}
+        <Text fontWeight="bold" fontSize={3}>
+          {header}
+        </Text>
       </Box>
+    ) : (
+      header
+    )}
 
-      {footer && (
-        <Box
-          display="flex"
-          mt={5}
-          sx={{ alignItems: 'center', justifyContent: 'flex-end' }}
-        >
-          {footer}
-        </Box>
-      )}
-    </ModalBase>
-  );
-};
+    <Box
+      flex={1}
+      pr={1.5}
+      width="100%"
+      overflowY="auto"
+      fontSize={2}
+      {...pick(props)}
+    >
+      {children}
+    </Box>
+
+    {footer && (
+      <Flex alignItems="center" justifyContent="flex-end" mt={5}>
+        {footer}
+      </Flex>
+    )}
+  </ModalBase>
+);

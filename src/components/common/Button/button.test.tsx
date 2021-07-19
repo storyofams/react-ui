@@ -2,20 +2,19 @@ import React, { useEffect, useRef } from 'react';
 import { axe } from 'jest-axe';
 
 import { Button } from '~components';
-import { fireEvent, render } from '~lib';
+import { userEvent, render, screen } from '~lib/test-utils';
 
 test('[Button] should not fail accessibility testing', async () => {
   const { container } = render(<Button>Click</Button>);
-  const results = await axe(container);
 
-  expect(results).toHaveNoViolations();
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test('registers event handlers', () => {
   const clickHandler = jest.fn();
-  const { getByText } = render(<Button onClick={clickHandler}>button</Button>);
+  render(<Button onClick={clickHandler}>button</Button>);
 
-  fireEvent.click(getByText('button'));
+  userEvent.click(screen.getByRole('button', { name: /button/i }));
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
@@ -37,43 +36,41 @@ const Component = ({ refHandler }) => {
 
 test('forwards ref', () => {
   const refHandler = jest.fn();
+
   render(<Component refHandler={refHandler} />);
 
   expect(refHandler).toHaveBeenCalledTimes(1);
 });
 
-test('has loading state when loading prop is passed', () => {
-  const { getByTestId } = render(
-    <Button data-testid="Button" isLoading>
+test('handles `isLoading` prop', () => {
+  render(
+    <Button data-testid="loading-btn" isLoading>
+      loading
+    </Button>,
+  );
+
+  expect(screen.getByRole('button')).toHaveAttribute('data-is-loading', 'true');
+});
+
+test('handles `href` prop', () => {
+  render(
+    <Button as="a" href="/">
       button
     </Button>,
   );
-  const element = getByTestId('Button');
 
-  const hasDataIsLoadingAttribute = element.attributes.getNamedItem(
-    'data-is-loading',
+  expect(screen.getByRole('link', { name: /button/i })).toHaveAttribute(
+    'href',
+    '/',
   );
-  expect(hasDataIsLoadingAttribute).toBeTruthy();
 });
 
-test('has loading state when href prop is passed', () => {
-  const { getByRole } = render(<Button href="/">button</Button>);
-  const element = getByRole('link');
-
-  const hasAttribute = element.attributes.getNamedItem('href');
-  expect(hasAttribute).toBeTruthy();
-});
-
-test('has loading state when to prop is passed', async () => {
-  const to = '/link';
-  const { findByTestId } = render(
-    <Button data-testid="NextLink" to={to}>
+test('handles `to` props', async () => {
+  render(
+    <Button as="a" to="/next-link">
       button
     </Button>,
   );
-  const element = await findByTestId('NextLink');
 
-  const hasAttribute = element.parentElement.attributes.getNamedItem('href');
-  expect(hasAttribute).toBeTruthy();
-  expect(hasAttribute.value).toBe(to);
+  expect(screen.getByText(/button/i)).toHaveAttribute('href', '/next-link');
 });

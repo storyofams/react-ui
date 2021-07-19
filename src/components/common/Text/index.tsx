@@ -1,14 +1,53 @@
-import React, { FC } from 'react';
-import {
-  Text as RebassText,
-  TextProps as RebassTextProps,
-  BoxProps,
-} from 'rebass/styled-components';
+import styled, { StyledComponent, DefaultTheme } from 'styled-components';
+import { variant } from 'styled-system';
 
-export interface TextProps extends BoxProps, RebassTextProps {}
+import { SystemProps, StyledConfigType } from '~lib';
+import { Box } from '~components/common/Box';
 
-export const Text: FC<TextProps> = ({ children, ...props }) => (
-  <RebassText {...props}>{children}</RebassText>
-);
+const variants = {
+  plg: {
+    fontSize: [1.75, 2.5],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  pmd: {
+    fontSize: [1.75, 2],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  psm: {
+    fontSize: [1.25, 1.5],
+    fontWeight: 'regular',
+    lineHeight: 'high',
+  },
+  label: {
+    display: 'flex',
 
-export default Text;
+    lineHeight: 'medium',
+    fontWeight: 'semiBold',
+    color: 'grey700',
+
+    cursor: 'pointer',
+
+    '&[disabled=""]': {
+      cursor: 'not-allowed',
+      opacity: 0.6,
+    },
+  },
+};
+
+type CustomProps = {
+  as?: 'p' | 'span' | 'blockquote' | 'strong' | 'em' | 'pre' | 'label';
+  variant?: keyof typeof variants;
+  id?: string;
+} & SystemProps;
+
+/** @ts-expect-error */
+export const Text: StyledComponent<'div', DefaultTheme, CustomProps> &
+  StyledConfigType = styled(Box)<CustomProps>`
+  ${variant({ variants })}
+`;
+
+Text.config = {
+  variant: variants,
+};
