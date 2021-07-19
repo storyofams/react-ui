@@ -4,14 +4,16 @@ import { pick, omit } from '@styled-system/props';
 import { useId } from 'react-id-generator';
 import styled from 'styled-components';
 
-import { system } from '~lib';
+import { system, SystemProps } from '~lib';
 import {
   InputWrapper,
   InputWrapperProps,
 } from '~components/common/InputWrapper';
 import { Text } from '~components/common/Text';
 
-const StyledCheckbox = styled(CustomCheckbox)`
+const StyledCheckbox = styled(CustomCheckbox)<
+  CustomCheckboxProps & SystemProps
+>`
   appearance: none;
   background-color: transparent;
   padding: 0;

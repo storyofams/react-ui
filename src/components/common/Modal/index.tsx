@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import {
   DialogOverlay as ReachDialogOverlay,
   DialogContent as ReachDialogContent,
+  DialogContentProps,
 } from '@reach/dialog';
 import { pick, omit } from '@styled-system/props';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -37,7 +38,7 @@ const DialogOverlay = styled(MotionOverlay)`
   }
 `;
 
-const DialogContent = styled(MotionDialog)<SystemProps>`
+const DialogContent = styled(MotionDialog)<SystemProps & DialogContentProps>`
   position: relative;
   flex: 1;
   padding: 0;
