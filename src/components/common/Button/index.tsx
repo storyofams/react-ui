@@ -211,7 +211,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
       return (
         <Link href={props.to} passHref>
           <StyledButton
-            as={_defaultElement}
+            as="a"
             {...props}
             /** @ts-ignore */
             ref={ref}
