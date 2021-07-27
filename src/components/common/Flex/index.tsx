@@ -1,4 +1,4 @@
-import styled, { StyledComponent, DefaultTheme } from 'styled-components';
+import styled from 'styled-components';
 import { variant } from 'styled-system';
 
 import { SystemProps, StyledConfigType } from '~lib';
@@ -23,8 +23,9 @@ type CustomProps = SystemProps & {
 };
 
 /** @ts-expect-error */
-export const Flex: StyledComponent<'div', DefaultTheme, CustomProps> &
-  StyledConfigType = styled(Box).withConfig({
+export const Flex: React.FC<CustomProps> & StyledConfigType = styled(
+  Box,
+).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
     ['flexSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
 })<CustomProps>`
