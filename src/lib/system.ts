@@ -19,8 +19,9 @@ import {
 
 const extraProps = {
   transform: true,
-  textDecoration: true,
   transition: true,
+  textDecoration: true,
+  textTransform: true,
   cursor: true,
   pointerEvents: true,
   whiteSpace: true,
@@ -38,16 +39,7 @@ export interface SystemProps extends BaseProps, Pseudo {
   color?: string & ColorProps['color'];
 }
 
-export const shouldForwardExtraProp = (prop: string) =>
-  [
-    'transform',
-    'transition',
-    'textDecoration',
-    'textTransform',
-    'cursor',
-    'pointerEvents',
-    'whiteSpace',
-  ].indexOf(prop) === -1;
+export const shouldForwardExtraProp = (prop: string) => !extraProps[prop];
 
 const _system = createSystem({
   strict: false,
