@@ -1,10 +1,13 @@
-import React, { FC, CSSProperties } from 'react';
+import React, { ElementType, CSSProperties } from 'react';
+import { PolymorphicPropsWithoutRef } from 'react-polymorphic-types';
 import { ResponsiveValue } from 'styled-system';
 
 import { SystemProps } from '~lib';
 import { Box } from '~components/common/Box';
 import { css } from '~lib/css';
 import { modifyResponsiveValue } from '~lib/modifyResponsiveValue';
+
+const StackDefaultElement = 'div';
 
 type CSS = CSSProperties;
 
@@ -14,12 +17,17 @@ type CustomProps = SystemProps & {
   flexDirection?: ResponsiveValue<CSS['flexDirection']>;
 };
 
-export const Stack: FC<CustomProps> = ({
+type StackProps<AsElement extends ElementType = typeof StackDefaultElement> =
+  PolymorphicPropsWithoutRef<CustomProps, AsElement>;
+
+export const Stack = <
+  AsElement extends ElementType = typeof StackDefaultElement,
+>({
   space,
   flexDirection,
   role,
   ...rest
-}) => {
+}: StackProps<AsElement>) => {
   const commonDirectionProp = flexDirection || 'row';
 
   function parseDirection(direction) {
@@ -37,14 +45,17 @@ export const Stack: FC<CustomProps> = ({
   );
 
   return (
-    <Box
-      {...rest}
-      display="flex"
-      flexDirection={commonDirectionProp}
-      role={role}
-      css={css({
-        '&& > * + *': spacingProp,
-      })}
-    />
+    <>
+      {/* @ts-expect-error */}
+      <Box
+        {...rest}
+        display="flex"
+        flexDirection={commonDirectionProp}
+        role={role}
+        css={css({
+          '&& > * + *': spacingProp,
+        })}
+      />
+    </>
   );
 };
