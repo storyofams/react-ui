@@ -42,7 +42,6 @@ type CustomProps = {
   id?: string;
 } & SystemProps;
 
-/** @ts-expect-error */
 export const Text: StyledComponent<'div', DefaultTheme, CustomProps> &
   StyledConfigType = styled(Box)<CustomProps>`
   ${variant({ variants })}

@@ -1,4 +1,5 @@
 import React, {
+  Ref,
   forwardRef,
   ElementType,
   ForwardedRef,
@@ -170,7 +171,6 @@ const StyledButton = styled(Box).withConfig({
   ${variant({ prop: 'buttonSize', variants: sizes })}
 `;
 
-/** @ts-expect-error */
 export const Button: PolymorphicForwardRefExoticComponent<
   CustomProps,
   typeof _defaultElement
@@ -185,8 +185,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
         <StyledButton
           as={_defaultElement}
           {...props}
-          /** @ts-ignore */
-          ref={ref}
+          ref={ref as Ref<HTMLDivElement> & Ref<HTMLButtonElement>}
           position="relative"
           data-is-loading
           aria-disabled
@@ -213,8 +212,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
           <StyledButton
             as="a"
             {...props}
-            /** @ts-ignore */
-            ref={ref}
+            ref={ref as Ref<HTMLDivElement> & Ref<HTMLAnchorElement>}
           />
         </Link>
       );
@@ -224,8 +222,7 @@ export const Button: PolymorphicForwardRefExoticComponent<
       <StyledButton
         as={_defaultElement}
         {...props}
-        /** @ts-ignore */
-        ref={ref}
+        ref={ref as Ref<HTMLDivElement> & Ref<HTMLButtonElement>}
       />
     );
   },
