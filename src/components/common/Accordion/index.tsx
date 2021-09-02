@@ -18,9 +18,9 @@ export const Accordion = ({ title, children, ...props }: AccordionProps) => {
   return (
     <Box borderBottom="1px solid" borderBottomColor="grey600">
       <Flex
+        as="button"
         justifyContent="space-between"
         alignItems="flex-start"
-        as="button"
         onClick={() => setOpen(!open)}
         pb={1}
         cursor="pointer"

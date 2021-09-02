@@ -1,8 +1,11 @@
+import React, { ElementType } from 'react';
 import styled from 'styled-components';
 import { variant } from 'styled-system';
 
-import { SystemProps, StyledConfigType } from '~lib';
+import { SystemProps, WithPolyMorphicProps } from '~lib';
 import { Box } from '~components/common/Box';
+
+const _defaultElement = 'div';
 
 const variants = {
   center: {
@@ -22,10 +25,7 @@ type CustomProps = SystemProps & {
   flexSize?: keyof typeof sizes;
 };
 
-/** @ts-expect-error */
-export const Flex: React.FC<CustomProps> & StyledConfigType = styled(
-  Box,
-).withConfig({
+const StyledFlex = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
     ['flexSize'].indexOf(prop) === -1 && defaultValidatorFn(prop),
 })<CustomProps>`
@@ -34,6 +34,15 @@ export const Flex: React.FC<CustomProps> & StyledConfigType = styled(
   ${variant({ prop: 'flexSize', variants: sizes })}
   ${variant({ variants })}
 `;
+
+export const Flex = <AsElement extends ElementType = typeof _defaultElement>(
+  props: WithPolyMorphicProps<AsElement, CustomProps>,
+) => (
+  <>
+    {/** @ts-ignore */}
+    <StyledFlex {...props} />
+  </>
+);
 
 Flex.config = {
   variant: variants,

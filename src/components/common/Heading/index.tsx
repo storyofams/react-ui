@@ -37,7 +37,6 @@ type CustomProps = {
   variant?: keyof typeof variants;
 } & SystemProps;
 
-/* @ts-expect-error */
 export const Heading: StyledComponent<'div', DefaultTheme, CustomProps> &
   StyledConfigType = styled(Box)<CustomProps>`
   ${variant({ variants })}
