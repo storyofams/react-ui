@@ -1,5 +1,13 @@
-import { ComponentType, FunctionComponent, ComponentClass } from 'react';
-import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
+import {
+  ComponentType,
+  FunctionComponent,
+  ComponentClass,
+  ElementType,
+} from 'react';
+import type {
+  PolymorphicForwardRefExoticComponent,
+  PolymorphicPropsWithoutRef,
+} from 'react-polymorphic-types';
 import { default as _styled } from 'styled-components';
 import { variant, ResponsiveValue } from 'styled-system';
 
@@ -11,26 +19,30 @@ type GenericOptionalNestedObjectType = {
 };
 
 export type StyledConfigType = {
-  config: {
+  config?: {
     readonly variant: GenericObjectType;
     readonly [key: string]: GenericObjectType;
   };
 };
 
-type ComponentWithConfig<P> = FunctionComponent<P> & StyledConfigType;
-type ComponentProps<
-  Component
-> = Component extends PolymorphicForwardRefExoticComponent<infer P, any>
-  ? P
-  : Component extends FunctionComponent<infer P>
-  ? P
-  : Component extends ComponentClass<infer P>
-  ? P
-  : never;
+export type WithPolyMorphicProps<
+  DefaultElement extends ElementType,
+  Props extends {},
+> = PolymorphicPropsWithoutRef<Props, DefaultElement>;
+
+export type ComponentWithConfig<P> = FunctionComponent<P> & StyledConfigType;
+type ComponentProps<Component> =
+  Component extends PolymorphicForwardRefExoticComponent<infer P, any>
+    ? P
+    : Component extends FunctionComponent<infer P>
+    ? P
+    : Component extends ComponentClass<infer P>
+    ? P
+    : never;
 
 type Intersection<
   T1 extends Record<string | symbol | number, any>,
-  T2 extends Record<string | symbol | number, any>
+  T2 extends Record<string | symbol | number, any>,
 > = {
   [P in keyof T1 | keyof T2 as unknown extends T1[P]
     ? never
@@ -73,7 +85,7 @@ const mergeVariants = (
 export const styled = <
   InheritedProps extends ComponentProps<Component>,
   Variants extends OptionProps,
-  Component extends ComponentWithConfig<any>
+  Component extends ComponentWithConfig<any>,
 >(
   component: Component,
   { variants, baseStyles }: Variants,
