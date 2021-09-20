@@ -17,10 +17,7 @@
             "release": "patch",
             "type": "style"
           }
-        ],
-        "parserOpts": {
-          "noteKeywords": ["Breaking changes:", "BREAKING CHANGE", "BREAKING CHANGES"]
-        }
+        ]
       }
     ],
     "@semantic-release/release-notes-generator",
