@@ -5,3 +5,4 @@ storybook-static/*
 dist/
 .next
 .next/*
+src/lib/css/index.ts
