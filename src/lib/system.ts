@@ -18,13 +18,14 @@ import {
 } from 'system-props';
 
 const extraProps = {
-  transform: true,
-  transition: true,
-  textDecoration: true,
-  textTransform: true,
   cursor: true,
-  pointerEvents: true,
+  transform: true,
   whiteSpace: true,
+  transition: true,
+  textOverflow: true,
+  pointerEvents: true,
+  textTransform: true,
+  textDecoration: true,
 } as const;
 
 type BaseProps = AllSystemProps<'noprefix'> &
