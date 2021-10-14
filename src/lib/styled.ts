@@ -11,6 +11,8 @@ import type {
 import { default as _styled } from 'styled-components';
 import { variant, ResponsiveValue } from 'styled-system';
 
+import css from './css';
+
 type GenericObjectType = { readonly [key: string]: any };
 type GenericNestedObjectType = { readonly [key: string]: GenericObjectType };
 type GenericOptionalNestedObjectType = {
@@ -103,7 +105,7 @@ export const styled = <
     shouldForwardProp: (prop, defaultValidatorFn) =>
       variantKeys.indexOf(prop as string) === -1 && defaultValidatorFn(prop),
   })`
-    ${baseStyles}
+    ${css(baseStyles)}
     ${Object.keys(newVariants).map((key) => variant(newVariants[key]))}
   ` as Component;
 };
