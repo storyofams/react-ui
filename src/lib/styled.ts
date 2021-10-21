@@ -90,16 +90,20 @@ export const styled = <
   Component extends ComponentWithConfig<any>,
 >(
   component: Component,
-  { variants, baseStyles }: Variants,
+  { baseStyles, variants = {} }: Variants,
 ): ComponentType<Blend<InheritedProps, VariantKeys<Variants['variants']>>> => {
   const variantKeys = [
     ...Object.keys(variants),
-    ...Object.keys(component?.config).filter(
+    ...Object.keys(component?.config ?? {}).filter(
       (variantKey) => Object.keys(variants).indexOf(variantKey) === -1,
     ),
   ] as const;
 
-  const newVariants = mergeVariants(variantKeys, variants, component.config);
+  const newVariants = mergeVariants(
+    variantKeys,
+    variants,
+    component?.config ?? {},
+  );
 
   return _styled(component as any).withConfig({
     shouldForwardProp: (prop, defaultValidatorFn) =>
