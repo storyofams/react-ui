@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button } from '~components';
+
+import { Button, Box } from '~components';
 import { styled } from '~lib/styled';
 import { render } from '~lib/test-utils';
 
@@ -18,6 +19,8 @@ const CustomButton = styled(Button, {
   },
 });
 
+const ExtendedBox = styled(Box, {});
+
 test('component with extended variants', () => {
   render(
     <>
@@ -28,6 +31,8 @@ test('component with extended variants', () => {
         button
       </CustomButton>
       <CustomButton variant="primary">button</CustomButton>
+      {/** components that don't have variants should also work */}
+      <ExtendedBox>box</ExtendedBox>
     </>,
   );
 });
