@@ -36,7 +36,7 @@ const ExtendedButton = styled(Button, {
 export const Extended = () => (
   <>
     <ExtendedButton variant="primary">button</ExtendedButton>
-    <ExtendedButton variant="customPrimary" newVariant="primary">
+    <ExtendedButton variant="customPrimary" newVariant="primary" isLoading>
       button
     </ExtendedButton>
     <ExtendedButton

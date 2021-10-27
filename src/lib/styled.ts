@@ -107,7 +107,8 @@ export const styled = <
 
   return _styled(component as any).withConfig({
     shouldForwardProp: (prop, defaultValidatorFn) =>
-      variantKeys.indexOf(prop as string) === -1 && defaultValidatorFn(prop),
+      prop === 'isLoading' ||
+      (variantKeys.indexOf(prop as string) === -1 && defaultValidatorFn(prop)),
   })`
     ${css(baseStyles)}
     ${Object.keys(newVariants).map((key) => variant(newVariants[key]))}
