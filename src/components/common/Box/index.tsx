@@ -12,6 +12,8 @@ export const Box = styled('div').withConfig({
 })<BoxProps>`
   box-sizing: border-box;
 
-  ${(props) => props.css}
-  ${system}
+  && {
+    ${(props) => props.css}
+    ${system}
+  }
 `;

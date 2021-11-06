@@ -35,16 +35,31 @@ const ExtendedButton = styled(Button, {
 
 export const Extended = () => (
   <>
-    <ExtendedButton variant="primary">button</ExtendedButton>
+    <ExtendedButton
+      variant="primary"
+      backgroundColor="red"
+      _hover={{ backgroundColor: 'red' }}
+      onClick={() => console.log('clickinggg')}
+    >
+      button
+    </ExtendedButton>
     <ExtendedButton variant="customPrimary" newVariant="primary" isLoading>
       button
     </ExtendedButton>
     <ExtendedButton
       variant="customPrimary"
+      to="/bla"
       buttonSize={['large', 'medium', 'medium-screen-xl']}
     >
       button
     </ExtendedButton>
+    <Button variant="primary" onClick={() => console.log('clickinggg')}>
+      button
+    </Button>
+    <Button as="a" href="bla" isLoading>
+      button
+    </Button>
+    <Button to="/bla">button</Button>
   </>
 );
 

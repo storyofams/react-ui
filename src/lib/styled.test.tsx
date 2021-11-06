@@ -1,38 +1,141 @@
 import React from 'react';
-
 import { Button, Box } from '~components';
 import { styled } from '~lib/styled';
-import { render } from '~lib/test-utils';
+import { render, screen } from '~lib/test-utils';
 
-const CustomButton = styled(Button, {
+const styles = {
+  baseStyles: {
+    color: 'blue',
+  },
   variants: {
-    custom: {
-      myOwnThing: {
-        fontSize: 21,
+    newVariant: {
+      largeFont: {
+        fontSize: 2,
       },
     },
     variant: {
+      primary: {
+        letterSpacing: '0.02em',
+        backgroundColor: 'red',
+      },
       custom: {
-        fontSize: 14,
+        backgroundColor: 'red',
       },
     },
   },
+};
+
+const ExtendedComponent = styled(Box, styles);
+const ExtendedButton = styled(Button, styles);
+
+describe('extend component without existing variations', () => {
+  it('allows adding new variations', () => {
+    render(
+      <ExtendedComponent
+        data-testid="box"
+        newVariant="largeFont"
+        variant="custom"
+      />,
+    );
+
+    expect(screen.getByTestId('box')).toHaveStyle(
+      'font-size: 16px; background-color: red;',
+    );
+  });
+  it('allows extending variations', () => {
+    render(<ExtendedComponent data-testid="box" variant="primary" />);
+
+    expect(screen.getByTestId('box')).toHaveStyle(
+      'letter-spacing: 0.02em; background-color: red;',
+    );
+  });
+  it('allows overriding baseStyles', () => {
+    render(<ExtendedComponent data-testid="box" color="aquamarine" />);
+
+    expect(screen.getByTestId('box')).toHaveStyle('color: aquamarine;');
+  });
+  it('allows overriding variantStyles', () => {
+    render(
+      <ExtendedComponent
+        data-testid="box"
+        variant="primary"
+        backgroundColor="aquamarine"
+      />,
+    );
+    expect(screen.getByTestId('box')).toHaveStyle(
+      'letter-spacing: 0.02em; background-color: aquamarine;',
+    );
+  });
+  it('allows bubbling down props', () => {
+    render(<ExtendedComponent as="a" data-testid="box" href="/link" />);
+
+    expect(screen.getByRole('link')).toBeInTheDocument();
+  });
+  // .. should probably also not work
+  // it('allows for bubbling down custom props', () => {
+  //   render(
+  //     <ExtendedButton data-testid="box" customProp="new-value">
+  //       button
+  //     </ExtendedButton>,
+  //   );
+  // });
 });
 
-const ExtendedBox = styled(Box, {});
+describe('extend component with existing variations', () => {
+  it('allows adding new variations', () => {
+    render(
+      <ExtendedButton newVariant="largeFont" variant="custom">
+        button
+      </ExtendedButton>,
+    );
 
-test('component with extended variants', () => {
-  render(
-    <>
-      <CustomButton backgroundColor="primary200" custom="myOwnThing">
+    expect(screen.getByRole('button')).toHaveStyle(
+      'font-size: 16px; background-color: red;',
+    );
+  });
+  it('allows extending variations', () => {
+    render(<ExtendedButton variant="primary">button</ExtendedButton>);
+
+    expect(screen.getByRole('button')).toHaveStyle('background-color: red;');
+  });
+  it('allows overriding baseStyles', () => {
+    render(<ExtendedButton color="aquamarine">button</ExtendedButton>);
+
+    expect(screen.getByRole('button')).toHaveStyle('color: aquamarine;');
+  });
+  it('allows overriding variantStyles', () => {
+    render(
+      <ExtendedButton variant="primary" backgroundColor="aquamarine">
         button
-      </CustomButton>
-      <CustomButton backgroundColor="primary200" variant="custom">
+      </ExtendedButton>,
+    );
+
+    expect(screen.getByRole('button')).toHaveStyle(
+      'background-color: aquamarine;',
+    );
+  });
+  it('allows bubbling down props', () => {
+    render(
+      <ExtendedButton data-testid="box" isLoading>
         button
-      </CustomButton>
-      <CustomButton variant="primary">button</CustomButton>
-      {/** components that don't have variants should also work */}
-      <ExtendedBox>box</ExtendedBox>
-    </>,
-  );
+      </ExtendedButton>,
+    );
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toHaveAttribute(
+      'data-is-loading',
+      'true',
+    );
+  });
+  // .. should probably also not work
+  // it('allows for bubbling down props', () => {
+  //   render(
+  //     <>
+  //       <ExtendedButton as="a" href="/bla">
+  //         button
+  //       </ExtendedButton>
+  //       <ExtendedButton onClick="button">button</ExtendedButton>
+  //     </>,
+  //   );
+  // });
 });
