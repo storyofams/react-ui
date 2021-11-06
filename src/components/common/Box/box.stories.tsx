@@ -57,5 +57,6 @@ export const Extended = (args) => (
   <Stack space={2}>
     <ExtendedBox />
     <ExtendedBox variant="blue" />
+    <ExtendedBox variant="blue" backgroundColor="red" />
   </Stack>
 );

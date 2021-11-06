@@ -1,15 +1,18 @@
-import {
+import type {
   ComponentType,
   FunctionComponent,
   ComponentClass,
   ElementType,
 } from 'react';
+
 import type {
   PolymorphicForwardRefExoticComponent,
   PolymorphicPropsWithoutRef,
 } from 'react-polymorphic-types';
 import { default as _styled } from 'styled-components';
 import { variant, ResponsiveValue } from 'styled-system';
+
+import { system } from '~lib/system';
 
 import css from './css';
 
@@ -106,11 +109,17 @@ export const styled = <
   );
 
   return _styled(component as any).withConfig({
-    shouldForwardProp: (prop, defaultValidatorFn) =>
-      prop === 'isLoading' ||
-      (variantKeys.indexOf(prop as string) === -1 && defaultValidatorFn(prop)),
+    // this is needed to pass down all of the props to the parent
+    // but do apply the styling props
+    // where the logic should be in regards to those props
+    shouldForwardProp: () => true,
   })`
     ${css(baseStyles)}
     ${Object.keys(newVariants).map((key) => variant(newVariants[key]))}
+
+    && {
+      ${(props) => props.css}
+      ${system}
+    }
   ` as Component;
 };
