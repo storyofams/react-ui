@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Box } from '~components';
 import { styled } from '~lib/styled';
-import { render, screen } from '~lib/test-utils';
+import { render, screen, userEvent } from '~lib/test-utils';
 
 const styles = {
   baseStyles: {
@@ -115,8 +115,9 @@ describe('extend component with existing variations', () => {
     );
   });
   it('allows bubbling down props', () => {
+    const mockFn = jest.fn();
     render(
-      <ExtendedButton data-testid="box" isLoading>
+      <ExtendedButton data-testid="box" isLoading onClick={mockFn}>
         button
       </ExtendedButton>,
     );
@@ -126,6 +127,11 @@ describe('extend component with existing variations', () => {
       'data-is-loading',
       'true',
     );
+
+    userEvent.click(screen.getByRole('button'));
+
+    // should not be fired in a loading state
+    expect(mockFn).not.toHaveBeenCalled();
   });
   // .. should probably also not work
   // it('allows for bubbling down props', () => {
