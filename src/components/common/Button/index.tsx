@@ -184,8 +184,8 @@ const StyledButton = styled(Box).withConfig({
 `;
 
 export const Button = forwardRef(
-  (props: ButtonProps, ref: ForwardedRef<any>) => {
-    if (props?.isLoading) {
+  ({ to, isLoading, ...props }: ButtonProps, ref: ForwardedRef<any>) => {
+    if (isLoading) {
       return (
         // @ts-expect-error
         <StyledButton
@@ -212,9 +212,9 @@ export const Button = forwardRef(
       );
     }
 
-    if (props?.to) {
+    if (to) {
       return (
-        <Link href={props.to} passHref>
+        <Link href={to} passHref>
           {/* @ts-expect-error */}
           <StyledButton as="a" {...props} ref={ref} />
         </Link>
