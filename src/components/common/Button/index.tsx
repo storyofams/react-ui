@@ -1,13 +1,12 @@
 import React, {
-  Ref,
   forwardRef,
-  ElementType,
   ForwardedRef,
-  ElementRef,
   ReactNode,
+  DetailedHTMLProps,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
 } from 'react';
 import Link from 'next/link';
-import type { PolymorphicForwardRefExoticComponent } from 'react-polymorphic-types';
 import styled from 'styled-components';
 import { variant } from 'styled-system';
 
@@ -118,14 +117,27 @@ const variants = {
   },
 };
 
-type CustomProps = SystemProps & {
+type ButtonType = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
+type AnchorType = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+>;
+
+type CustomProps = {
   isLoading?: boolean;
   to?: string | undefined;
   variant?: keyof typeof variants;
   buttonSize?: keyof typeof sizes;
   disabled?: boolean;
   children: ReactNode;
-};
+} & SystemProps;
+
+type ButtonProps =
+  | ({ as?: never } & ButtonType & CustomProps)
+  | ({ as: 'a' } & AnchorType & CustomProps);
 
 const StyledButton = styled(Box).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
@@ -171,21 +183,15 @@ const StyledButton = styled(Box).withConfig({
   ${variant({ prop: 'buttonSize', variants: sizes })}
 `;
 
-export const Button: PolymorphicForwardRefExoticComponent<
-  CustomProps,
-  typeof _defaultElement
-> &
-  StyledConfigType = forwardRef(
-  <AsElement extends ElementType = typeof _defaultElement>(
-    props: CustomProps,
-    ref: ForwardedRef<ElementRef<AsElement>>,
-  ) => {
+export const Button = forwardRef(
+  (props: ButtonProps, ref: ForwardedRef<any>) => {
     if (props?.isLoading) {
       return (
+        // @ts-expect-error
         <StyledButton
           as={_defaultElement}
           {...props}
-          ref={ref as Ref<HTMLDivElement> & Ref<HTMLButtonElement>}
+          ref={ref}
           position="relative"
           data-is-loading
           aria-disabled
@@ -209,26 +215,18 @@ export const Button: PolymorphicForwardRefExoticComponent<
     if (props?.to) {
       return (
         <Link href={props.to} passHref>
-          <StyledButton
-            as="a"
-            {...props}
-            ref={ref as Ref<HTMLDivElement> & Ref<HTMLAnchorElement>}
-          />
+          {/* @ts-expect-error */}
+          <StyledButton as="a" {...props} ref={ref} />
         </Link>
       );
     }
 
-    return (
-      <StyledButton
-        as={_defaultElement}
-        {...props}
-        ref={ref as Ref<HTMLDivElement> & Ref<HTMLButtonElement>}
-      />
-    );
+    // @ts-expect-error
+    return <StyledButton as={_defaultElement} {...props} ref={ref} />;
   },
 );
 
-Button.config = {
+(Button as StyledConfigType).config = {
   variant: variants,
   buttonSize: sizes,
 };
