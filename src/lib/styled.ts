@@ -67,25 +67,22 @@ type OptionProps = {
   readonly variants?: GenericNestedObjectType;
 };
 
-interface AllVariants {
-  readonly prop: string;
-  readonly variants: {
-    readonly [x: string]: GenericObjectType;
-  };
-}
-
 const mergeVariants = (
-  keys: readonly string[],
-  newVariants: GenericNestedObjectType,
-  defaultVariants: GenericNestedObjectType,
-): AllVariants[] =>
-  keys.map((key) => ({
-    prop: key,
-    variants: {
-      ...defaultVariants?.[key],
-      ...newVariants?.[key],
-    },
-  }));
+  oldVariants: GenericNestedObjectType = {},
+  newVariants: GenericNestedObjectType = {},
+) => ({
+  ...oldVariants,
+  ...Object.keys(newVariants)?.reduce(
+    (acc, curr) => ({
+      ...acc,
+      [curr]: {
+        ...oldVariants?.[curr],
+        ...newVariants[curr],
+      },
+    }),
+    {},
+  ),
+});
 
 export const styled = <
   InheritedProps extends ComponentProps<Component>,
@@ -102,20 +99,14 @@ export const styled = <
     ),
   ] as const;
 
-  const newVariants = mergeVariants(
-    variantKeys,
-    variants,
-    component?.config ?? {},
-  );
+  const newVars = variantKeys.map((varKey) => ({
+    prop: varKey,
+    variants: mergeVariants(component?.config?.[varKey], variants?.[varKey]),
+  }));
 
-  return _styled(component as any).withConfig({
-    // this is needed to pass down all of the props to the parent
-    // but do apply the styling props
-    // where the logic should be in regards to those props
-    shouldForwardProp: () => true,
-  })`
+  return _styled(component as any)`
     ${css(baseStyles)}
-    ${Object.keys(newVariants).map((key) => variant(newVariants[key]))}
+    ${newVars.map((newVariant) => variant(newVariant))}
 
     && {
       ${(props) => props.css}

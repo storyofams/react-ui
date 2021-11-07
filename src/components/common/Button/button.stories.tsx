@@ -26,6 +26,9 @@ const ExtendedButton = styled(Button, {
       },
     },
     variant: {
+      primary: {
+        backgroundColor: 'primary200',
+      },
       customPrimary: {
         fontSize: 14,
       },
