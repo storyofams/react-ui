@@ -24,8 +24,8 @@
     "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
     "semantic-release": "semantic-release",
     "storybook": "start-storybook -s ./public/static -p 6006",
-    "test:watch": "jest --watch",
-    "test": "jest --coverage",
+    "test:watch": "yarn jest --watch",
+    "test": "jest --coverage --runInBand",
     "ts-coverage": "typescript-coverage-report",
     "postinstall": "husky install"
   },
