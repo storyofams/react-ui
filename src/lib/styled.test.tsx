@@ -151,7 +151,8 @@ describe('extend component with existing variations', () => {
       'data-is-loading',
       'true',
     );
-
+    expect(screen.getByTestId('link-button')).toHaveAttribute('href', '/link');
+    expect(screen.getByTestId('next-button')).toHaveAttribute('href', '/link');
     userEvent.click(screen.getByTestId('click-button'));
     expect(mockFn).toHaveBeenCalled();
   });
