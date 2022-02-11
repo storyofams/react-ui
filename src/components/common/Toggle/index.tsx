@@ -15,6 +15,7 @@ type ToggleProps = {
   id?: string;
   disabled?: boolean;
   label?: string;
+  className?: string;
 } & InputWrapperProps;
 
 const ToggleContainer = styled(Box)<ToggleProps>`
@@ -89,6 +90,7 @@ export const Toggle = forwardRef<CustomCheckboxProps, ToggleProps>(
       id: givenId,
       disabled,
       label,
+      className,
       ...rest
     },
     ref,
@@ -112,6 +114,7 @@ export const Toggle = forwardRef<CustomCheckboxProps, ToggleProps>(
           as="label"
           htmlFor={id}
           disabled={disabled}
+          className={className}
           {...pick(rest)}
         >
           <CustomCheckbox
