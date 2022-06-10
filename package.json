@@ -147,7 +147,7 @@
     "rollup-plugin-rename": "1.0.1",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript2": "0.30.0",
-    "semantic-release": "17.4.4",
+    "semantic-release": "19.0.3",
     "styled-components": "5.3.0",
     "styled-system": "5.1.5",
     "system-props": "0.20.0",
